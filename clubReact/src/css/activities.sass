@@ -1,0 +1,62 @@
+@import "media-queries"
+@import "designsystem"
+
+.adminActivityView
+	display: grid
+	grid-template-rows: repeat(2, minmax(0, 1fr))
+	grid-gap: 1em
+	justify-content: center
+
+.activityView
+	@extend .article-content
+	justify-content: center
+	padding: 8rem 2rem
+
+.activity-table
+	border: 0rem
+	font-family: $Nunito
+	font-size: $text-sm
+	background-color: $primary_2
+	@include responsive($md)
+		font-size: $text-base
+	@include responsive($lg)
+		font-size: $text-lg
+	th
+		width: 33.33%
+		text-align: center
+		padding: 1rem 2rem
+		outline: 0.1rem solid $primary
+		@include responsive($lg)
+			padding: 2rem
+	td
+		padding: 0.5rem
+		outline: 0.1rem solid $primary
+	.data-center
+		width: 5%
+		text-align: center
+		@include responsive($lg)
+			padding: 1.5rem
+		@include responsive($xl2)
+			padding: 2rem
+
+// .add_form
+// 	padding: 1%
+// 	display: grid
+// 	grid-template-columns: 0.5fr 1fr
+// 	grid-gap: 1em
+// 	height: 15em
+// 	width: 40em
+// 	background-color: #00a345
+
+// .add_form > h3
+// 	grid-column: span 2
+// 	justify-self: center
+
+// button
+// 	background-color: #238723
+// 	border: 3px solid #238723
+// 	color: black
+
+// button:hover
+// 	background-color: #5ad45a
+// 	border: 3px solid #5ad45a

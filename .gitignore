@@ -1,0 +1,25 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Bundler related directories
+.cache
+dist
+
+# Dependency directories
+node_modules/
+-parcel-cache/
+
+# Files to ignore
+clubReact/package-lock.json
+clubReact/.proxyrc.json
+
+# Directories to ignore
+clubReact/node_modules/
+clubReact/.parcel-cache/
+clubReact/.cache/
+clubReact/dist/
+.vscode
+.DS_Store
+clubReact/clubServer/

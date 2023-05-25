@@ -1,0 +1,49 @@
+.apply_content
+	display: flex
+	justify-content: center
+	align-items: center
+
+.membership_form
+	padding: 1%
+	display: grid
+	grid-template-columns: 0.5fr 1fr
+	grid-gap: 1em
+	background-color: #00a345
+	width: 50em
+
+input:not(:focus):invalid
+	background-color: #e05138
+
+input:valid
+	background-color: #02fd9d
+
+#ThanksDialog
+	position: fixed
+	z-index: 1
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	background-color: rgba(0,0,0,0.5)
+	display: flex
+	align-items: center
+	justify-content: center
+
+#theMsg
+	display: flex
+	flex-direction: column
+	text-align: center
+	width: 20em
+	height: 5em
+	background-color: #44e996
+	border: 1px solid #3be981
+
+#theMsg > button
+	text-decoration: none
+	background-color: #239423
+	border: 3px solid #239423
+	color: black   
+
+#theMsg > button:hover
+	background-color: #5ad45a
+	border: 3px solid #5ad45a

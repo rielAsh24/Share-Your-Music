@@ -1,0 +1,51 @@
+@import "media-queries"
+@import "designsystem"
+
+.full-w-flex
+	display: flex
+	width: 100%
+	align-items: center
+
+nav
+	@extend .full-w-flex
+	justify-content: space-between
+	background-color: $secondary
+	padding: 1rem
+	@include responsive($lg)
+		padding: 2rem
+	h1
+		color: $tertiary_2
+		font-family: $Catamaran
+		font-size: $text-3xl
+		font-weight: 600
+		letter-spacing: 1rem
+		@include responsive($md)
+			font-size: $text-4xl
+			font-weight: 700
+		@include responsive($lg)
+			font-size: $text-5xl
+	ul
+		list-style-type: none
+		@extend .full-w-flex
+		column-gap: 1rem
+		li
+			button
+				color: $white
+				@include styled-buttons
+
+footer
+	@extend	.full-w-flex
+	justify-content: start
+	background-color: $tertiary_2
+	font-size: $text-base
+	font-family: $Nunito
+	color: $tertiary
+	padding: 1rem
+	@include responsive($md)
+		font-size: $text-lg
+	@include responsive($lg)
+		font-size: $text-lg
+		padding: 1.5rem 1rem
+	p
+		width: 100%
+		text-align: left

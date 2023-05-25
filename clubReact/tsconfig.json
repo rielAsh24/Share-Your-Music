@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "src",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "target": "ES2020",
+    "watch": true
+  },
+  "include": ["src/*"],
+  "exclude": ["node_modules"]
+}
