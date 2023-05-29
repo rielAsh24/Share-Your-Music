@@ -24,29 +24,36 @@ export default function Login(props) {
   }
 
   return (
-    <div className="login_content">
-      <form className="login_form" onSubmit={(e) => loginPost(e)}>
-        <label>Username</label>
-        <input
-          type="text"
-          placeholder="Username"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder="Password"
-          value={pass}
-          onChange={(e) => setPass(e.target.value)}
-        />
-
-        <button type="submit">Login</button>
-
-        <a href="./apply.html">Not a member? Join Now!</a>
+    <section className="article-content">
+      <form className="form_content" onSubmit={(e) => loginPost(e)}>
+        <span>
+          <label>Username</label>
+          <input
+            type="text"
+            placeholder="Username"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </span>
+        <span>
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+          />
+        </span>
+        <span>
+          <button type="submit">Login</button>
+          <h5>
+            Not a member? <a href="./apply.html">Join Now!</a>
+          </h5>
+        </span>
       </form>
-      <img src={require("./images/login_page.jpg")} />
-    </div>
+      {/* <div>
+        <img src={require("./images/login_page.jpg")} />
+      </div> */}
+    </section>
   );
 }

@@ -2,8 +2,8 @@ import "./css/home.sass";
 
 export default function Home() {
   return (
-    <article className="article-content">
-      <div className="article-written">
+    <section className="article-content">
+      <div className="section-written">
         <h2>Our Goal</h2>
         <p>
           We believe that music &#x1F3B6 is something helps many of us confront
@@ -25,9 +25,9 @@ export default function Home() {
           with their friends and listen to others playlists too.
         </p>
       </div>
-      <div className="">
+      <div>
         <img src={require("./images/home_page.jpg")} />
       </div>
-    </article>
+    </section>
   );
 }

@@ -123,9 +123,9 @@ export default function AdminActivity() {
   };
 
   return (
-    <article className="activityView">
+    <section className="activityView">
       <MockUp />
       <Activity_table />
-    </article>
+    </section>
   );
 }

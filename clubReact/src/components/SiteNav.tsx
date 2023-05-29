@@ -1,5 +1,19 @@
 import "../css/head_foot.sass";
 
+const SandwichMenu = (): JSX.Element => {
+  return (
+    <svg
+      width="40"
+      height="5"
+      viewBox="0 0 40 5"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="67" height="5" rx="2.5" fill="#283044" />
+    </svg>
+  );
+};
+
 function Menu_Button(props, value) {
   function isActive(name) {
     if (name === props.show) return "active";
@@ -32,12 +46,17 @@ function Menu(props) {
 
   return (
     <nav>
-      <div>
+      <span>
         <h1>SYMC</h1>
-      </div>
-      <div>
-        <ul>{list}</ul>
-      </div>
+      </span>
+      <span>
+        <ul className="full-menu">{list}</ul>
+        <span className="sandwich-menu">
+          <SandwichMenu />
+          <SandwichMenu />
+          <SandwichMenu />
+        </span>
+      </span>
     </nav>
   );
 }

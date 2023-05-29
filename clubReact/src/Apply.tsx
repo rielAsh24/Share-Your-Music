@@ -33,110 +33,79 @@ export default function Apply() {
     setFunction: React.Dispatch<React.SetStateAction<string>>
   ) {
     return (
-      <>
+      <span>
         <label>{fieldLabel}</label>
         <input
-          type="text"
-          placeholder="Name"
+          type={fieldLabel === "Password" ? "password" : "text"}
+          placeholder={fieldLabel}
           value={fieldName}
           onChange={(e) => setFunction(e.target.value)}
-          required
+          // required
         />
-      </>
+      </span>
     );
   }
 
-  const ApplyForm = () => {
-    const isValid = () => {
-      return fname && em && uname && pw && comment && how;
-    };
-
-    return (
-      <form className="membership_form">
-        <label>Name</label>
-        <input
-          type="text"
-          placeholder="Name"
-          value={fname}
-          onChange={(e) => setFname(e.target.value)}
-          required
-        />
-        {/* {FormField("Name", fname, setFname)} */}
-
-        <label>Email</label>
-        <input
-          type="text"
-          placeholder="Email"
-          value={em}
-          onChange={(e) => setEm(e.target.value)}
-          required
-        />
-
-        <label>Username</label>
-        <input
-          type="text"
-          placeholder="Username"
-          value={uname}
-          onChange={(e) => setUname(e.target.value)}
-          required
-        />
-
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder="Password"
-          minLength={8}
-          value={pw}
-          onChange={(e) => setPw(e.target.value)}
-          required
-        />
-
-        <label>Expectations from this club:</label>
-        <textarea
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          placeholder="expect.."
-        />
-
-        <label>How did you hear about us?</label>
-        <select
-          placeholder=""
-          value={how}
-          onChange={(e) => setHow(e.target.value)}
-          required
-        >
-          <option>Select One</option>
-          <option value="School">From your school</option>
-          <option value="SocialMedia">On Social Media</option>
-          <option value="Ads">Ads on websites</option>
-          <option value="Friends">Friends</option>
-        </select>
-
-        <button onClick={isValid}>Sign Up</button>
-
-        <button type="reset">Clear</button>
-      </form>
-    );
+  const isValid = () => {
+    return fname && em && uname && pw && comment && how;
   };
 
   return (
-    <>
-      <main className="apply_content">
-        <ApplyForm />
-      </main>
-      <section id="ThanksDialog" className={modalShow}>
-        <div id="theMsg">
-          {message}
-          <button
-            className="confirm_button"
-            onClick={() => {
-              SetModalShow("show");
-            }}
+    <section className="article-content">
+      <form className="membership_form">
+        {FormField("Name", fname, setFname)}
+
+        {FormField("Email", em, setEm)}
+
+        {FormField("Username", uname, setUname)}
+
+        {FormField("Password", pw, setPw)}
+
+        <span>
+          <label>Expectations from this club:</label>
+          <textarea
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            placeholder="expect.."
+          />
+        </span>
+
+        <span>
+          <label>How did you hear about us?</label>
+          <select
+            placeholder=""
+            value={how}
+            onChange={(e) => setHow(e.target.value)}
+            required
           >
-            Close
-          </button>
+            <option>Select One</option>
+            <option value="School">From your school</option>
+            <option value="SocialMedia">On Social Media</option>
+            <option value="Ads">Ads on websites</option>
+            <option value="Friends">Friends</option>
+          </select>
+        </span>
+
+        <span className="button-group">
+          <button onClick={() => SetModalShow("show")}>Sign Up</button>
+          <button type="reset">Clear</button>
+        </span>
+      </form>
+
+      <article id="ThanksDialog" className={modalShow}>
+        <div id="theMsg">
+          <span>{message}</span>
+          <span>
+            <button
+              onClick={() => {
+                SetModalShow("hide");
+              }}
+            >
+              Close
+            </button>
+          </span>
         </div>
-      </section>
-    </>
+      </article>
+    </section>
   );
 }

@@ -46,15 +46,15 @@ export default function Activities(props) {
 
   const DeleteButton = (i: number) => {
     return (
-      <td>
+      <td className="data-center">
         <button onClick={() => deleteEvent(i)}>Delete</button>
       </td>
     );
   };
 
   return (
-    <article className="activityView">
-      <table className="activity-table" cellPadding="20%">
+    <section className="activityView">
+      <table className="activity-table">
         <thead>
           <tr>
             <th className="data-center">Sr.No</th>
@@ -73,6 +73,6 @@ export default function Activities(props) {
           ))}
         </tbody>
       </table>
-    </article>
+    </section>
   );
 }

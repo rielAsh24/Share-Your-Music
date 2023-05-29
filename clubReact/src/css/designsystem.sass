@@ -50,9 +50,12 @@ $Nunito: "Nunito Sans", sans-serif
 .article-content
   display: flex
   width: 100%
-  height: fit
+  align-content: center
+  justify-content: center
   flex-wrap: wrap
+  flex-grow: 1
   row-gap: 1rem
+  padding: 2rem 1rem
   @include responsive($lg)
     flex-wrap: nowrap
     flex-grow: 1
@@ -61,13 +64,13 @@ $Nunito: "Nunito Sans", sans-serif
 
 @mixin styled-buttons
   background-color: $secondary_2
-  display: flex
   border: 0rem
+  border-radius: $rounded
+  color: $primary
   font-size: $text-base
   padding: 0.5rem 0.75rem
   @include responsive($lg)
     font-size: $text-lg
     padding: 0.5rem 1rem
-  border-radius: $rounded
   &:hover
     background-color: $secondary_3

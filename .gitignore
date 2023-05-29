@@ -14,6 +14,8 @@ node_modules/
 # Files to ignore
 clubReact/package-lock.json
 clubReact/.proxyrc.json
+clubReact/src/*
+clubReact/src/*.js.map
 
 # Directories to ignore
 clubReact/node_modules/

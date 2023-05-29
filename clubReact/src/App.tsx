@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import Activities from "./Activities";
-import AdAct from "./AdminActivity";
+// import AdAct from "./AdminActivity";
 import Apply from "./Apply";
 import Foot from "./components/SiteFooter";
 import Home from "./Home";
@@ -12,7 +12,7 @@ import "./css/index.sass";
 
 export default function App() {
   const [role, setRole] = useState("guest");
-  const [show, setShow] = useState("activities");
+  const [show, setShow] = useState("apply");
 
   const handleClick = () => {
     setRole(role);
@@ -39,11 +39,10 @@ export default function App() {
   };
 
   return (
-    <main>
+    <div className="pageLayout">
       <Menu role={role} show={show} handler={handleClick} />
       <PageContent />
-      {/* <div className="sample"></div> */}
       <Foot />
-    </main>
+    </div>
   );
 }

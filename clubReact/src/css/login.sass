@@ -1,28 +1,65 @@
-.login_content
-	display: grid
-	grid-template-columns: repeat(2, 1fr)
-	grid-row-gap: 1em
-	justify-items: center
-	align-items: center
+@import "designsystem"
 
-.login_form
-	padding: 1%
-	display: grid
-	grid-template-columns: 0.5fr 1fr
-	grid-gap: 1em
-	background-color: #00a345
-	width: 25em
-	height: 7em
+// .login_content
+// 	display: flex
+// 	width: 100%
+// 	height: fit
+// 	align-content: center
+// 	justify-content: center
+// 	row-gap: 1rem
+// 	font-family: ui-sans, $Nunito
+// 	@include responsive($lg)
+// 		width: 48%
+// 		flex-shrink: 0
+// 		padding: 1rem
 
-form > a
-	text-align: center
+.form_content
+	width: 20rem
+	display: flex
+	justify-content: center
+	flex-direction: column
+	row-gap: 2rem
+	padding: 2rem
+	box-shadow: 0 0 10px 0 $primary_2
+	background-color: $primary_2
+	@include responsive($lg)
+		width: 24rem
+	span
+		display: flex
+		flex-direction: column
+		justify-content: center
+		row-gap: 0.5rem
+		font-family: $Nunito
+		input, textarea
+			padding: 0.5rem
+			background-color: $primary
+			border: 1px solid $primary
+			border-radius: 0.25rem
+			&:focus
+				outline: none
+				border: 1px solid $primary_2
+		button
+			@include styled-buttons
+		h5
+			margin-top: 0.5rem
+			font-size: $text-base
+			font-weight: 500
 
-.doodle_section
-	grid-column: span 2
-	width: 50%
-	padding: 1em
-	border: 3px dashed black
+img
+	width: 100%
+	height: auto
+	padding: 2rem
+	@include responsive($lg)
+		padding: 0rem
+		flex-shrink: 0
+		z-index: 1
 
-.doodle_section > svg
-	border: 5px solid #004e2e
-	background-color: #ffffff
+// .doodle_section
+// 	grid-column: span 2
+// 	width: 50%
+// 	padding: 1em
+// 	border: 3px dashed black
+
+// .doodle_section > svg
+// 	border: 5px solid #004e2e
+// 	background-color: #ffffff
