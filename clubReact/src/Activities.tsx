@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-// import eventslist from "../clubServer/eventData.json";
+import { useContext, useEffect, useState } from "react";
+import { RoleContext } from "./App";
+
 import "./css/activities.sass";
 
 const eventslist = require("../clubServer/eventData.json");
@@ -9,9 +10,10 @@ type event = {
   dates: string[];
 };
 
-export default function Activities(props) {
+export default function Activities() {
   // var eventsList: event[];
   const [eventsList, setEvent] = useState<event[] | undefined>([]);
+  const role = useContext(RoleContext);
 
   // useEffect(() => {
   //   fetch("http://localhost:3030/activities", {
@@ -66,7 +68,7 @@ export default function Activities(props) {
           {eventsList.map((e: event, i: number) => (
             <tr key={i}>
               <td className="data-center">{i + 1}</td>
-              {props.role === "admin" ? DeleteButton(i) : ""}
+              {role === "admin" ? DeleteButton(i) : ""}
               <td className="data-center">{e.name}</td>
               <td>{e.dates}</td>
             </tr>

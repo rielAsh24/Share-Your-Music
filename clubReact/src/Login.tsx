@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./css/login.sass";
 
-export default function Login(props) {
+export default function Login({ setRole, setView }) {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   // const [cookie, setCookie] = useState("");
@@ -19,7 +19,8 @@ export default function Login(props) {
     })
       .then((res) => res.json())
       .then((newUserInfo) => {
-        props.roleHandler(newUserInfo.role, "home");
+        setRole(newUserInfo.role);
+        setView("Home");
       });
   }
 

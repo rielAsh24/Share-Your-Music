@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { RoleContext } from "../App";
+
 import "../css/head_foot.sass";
 
 const SandwichMenu = (): JSX.Element => {
@@ -14,35 +17,25 @@ const SandwichMenu = (): JSX.Element => {
   );
 };
 
-function Menu_Button(props, value) {
-  function isActive(name) {
-    if (name === props.show) return "active";
-    else return "";
-  }
-
+function Menu_Button({ setView, view }: { setView: Function; view: string }) {
   return (
-    <li key={value}>
-      <button
-        onClick={props.handler(props.role, value)}
-        className={isActive(value)}
-      >
-        {value[0].toUpperCase() + value.slice(1)}
-      </button>
+    <li>
+      <button onClick={() => setView(view)}>{view}</button>
     </li>
   );
 }
 
-function Menu(props) {
-  let list = [Menu_Button(props, "home")];
+export default function Menu({ setView }) {
+  const role = useContext(RoleContext);
+  const list = [
+    <Menu_Button setView={setView} view="Home" />,
+    <Menu_Button setView={setView} view="Activities" />,
+  ];
 
-  if (props.role === "guest") {
-    list.push(Menu_Button(props, "activities"));
-    list.push(Menu_Button(props, "login"));
-    list.push(Menu_Button(props, "apply"));
-  } else {
-    list.push(Menu_Button(props, "edit activities"));
-    list.push(Menu_Button(props, "logout"));
-  }
+  if (role === "guest") {
+    list.push(<Menu_Button setView={setView} view="Login" />);
+    list.push(<Menu_Button setView={setView} view="Apply" />);
+  } else list.push(<Menu_Button setView={setView} view="Logout" />);
 
   return (
     <nav>
@@ -60,5 +53,3 @@ function Menu(props) {
     </nav>
   );
 }
-
-export default Menu;

@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
 
 import Activities from "./Activities";
-// import AdAct from "./AdminActivity";
 import Apply from "./Apply";
 import Foot from "./components/SiteFooter";
 import Home from "./Home";
@@ -10,29 +9,22 @@ import Login from "./Login";
 
 import "./css/index.sass";
 
+const RoleContext = createContext("guest");
+
 export default function App() {
   const [role, setRole] = useState("guest");
-  const [show, setShow] = useState("apply");
-
-  const handleClick = () => {
-    setRole(role);
-    setShow(show);
-  };
+  const [view, setView] = useState("Home");
 
   const PageContent = () => {
-    switch (show) {
-      case "home":
-        return <Home />;
-      case "activities":
-        return <Activities role={role} />;
-      // case "edit activities":
-      //   return <Activities role={"admin"} />;
-      case "login":
-        return <Login roleHandler={handleClick} />;
-      case "apply":
+    switch (view) {
+      case "Activities":
+        return <Activities />;
+      case "Login":
+        return <Login setRole={setRole} setView={setView} />;
+      case "Apply":
         return <Apply />;
-      case "logout":
-        return <Login />;
+      case "Logout":
+        return <Login setRole={setRole} setView={setView} />;
       default:
         return <Home />;
     }
@@ -40,9 +32,13 @@ export default function App() {
 
   return (
     <div className="pageLayout">
-      <Menu role={role} show={show} handler={handleClick} />
+      <RoleContext.Provider value={role}>
+        <Menu setView={setView} />
+      </RoleContext.Provider>
       <PageContent />
       <Foot />
     </div>
   );
 }
+
+export { RoleContext };

@@ -8,7 +8,7 @@ export default function Apply() {
   const [pw, setPw] = useState("");
   const [comment, setComment] = useState("");
   const [how, setHow] = useState("");
-  const [modalShow, SetModalShow] = useState("show");
+  const [modalShow, SetModalShow] = useState("hide");
 
   let message: JSX.Element;
 
