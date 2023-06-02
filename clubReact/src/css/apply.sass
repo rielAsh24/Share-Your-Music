@@ -1,49 +1,35 @@
-@import "login"
+@import "designsystem"
 
 .membership_form
-	@extend .form_content
+	@extend .form_design
 	.button-group
 		display: flex
 		justify-content: center
 		row-gap: 1rem
-	select
+	select, option, option:selected
 		padding: 0.5rem
 		background-color: $primary
 		border: 1px solid $primary
 		border-radius: 0.25rem
-		&:focus
-			outline: none
-			border: 1px solid $primary_2
 
-// input:not(:focus):invalid
-// 	background-color: #e05138
+dialog::backdrop
+	background-color: rgba(0, 0, 0, 0.5)
 
-.show
-	display: flex
-	align-items: center
-	justify-content: center
-	position: fixed
-	z-index: 1
-	inset: 0
-	background-color: rgba(0,0,0,0.5)
-.hide
-	display: none
+dialog
+	margin: auto
+	border: none
+	padding: 4rem
+	background-color: $primary_2
+	font-family: $Nunito
+	box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5)
 
-#theMsg
+.modal-content
 	display: flex
 	flex-direction: column
-	width: 18rem
-	row-gap: 2rem
-	padding: 2rem 1rem
-	background-color: $primary_2
-	border-radius: 0.1rem
-	font-family: $Nunito
-	font-size: $text-lg
-	box-shadow: 0 0 1rem 0 rgba(0,0,0,0.5)
-	span
-		display: inline-flex
-		justify-content: center
-		padding: 1rem 0.5rem
-		button
-			@include styled-buttons
-			width: 64%
+	row-gap: 1rem
+	justify-content: center
+	align-items: center
+	font-size: $text-2xl
+	font-weight: 500
+	button
+		@include styled-buttons

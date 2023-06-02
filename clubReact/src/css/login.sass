@@ -1,49 +1,11 @@
 @import "designsystem"
 
-// .login_content
-// 	display: flex
-// 	width: 100%
-// 	height: fit
-// 	align-content: center
-// 	justify-content: center
-// 	row-gap: 1rem
-// 	font-family: ui-sans, $Nunito
-// 	@include responsive($lg)
-// 		width: 48%
-// 		flex-shrink: 0
-// 		padding: 1rem
-
 .form_content
-	width: 20rem
-	display: flex
-	justify-content: center
-	flex-direction: column
-	row-gap: 2rem
-	padding: 2rem
-	box-shadow: 0 0 10px 0 $primary_2
-	background-color: $primary_2
-	@include responsive($lg)
-		width: 24rem
-	span
-		display: flex
-		flex-direction: column
-		justify-content: center
-		row-gap: 0.5rem
-		font-family: $Nunito
-		input, textarea
-			padding: 0.5rem
-			background-color: $primary
-			border: 1px solid $primary
-			border-radius: 0.25rem
-			&:focus
-				outline: none
-				border: 1px solid $primary_2
-		button
-			@include styled-buttons
-		h5
-			margin-top: 0.5rem
-			font-size: $text-base
-			font-weight: 500
+	@extend .form_design
+	h5
+		margin-top: 0.5rem
+		font-size: $text-base
+		font-weight: 500
 
 img
 	width: 100%

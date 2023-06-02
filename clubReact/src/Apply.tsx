@@ -1,82 +1,120 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./css/apply.sass";
 
+type form_data = {
+  fname: string;
+  em: string;
+  uname: string;
+  pw: string;
+  comment: string;
+  how: string;
+};
+
 export default function Apply() {
-  const [fname, setFname] = useState("");
-  const [em, setEm] = useState("");
-  const [uname, setUname] = useState("");
-  const [pw, setPw] = useState("");
-  const [comment, setComment] = useState("");
-  const [how, setHow] = useState("");
-  const [modalShow, SetModalShow] = useState("hide");
+  const [form_info, setForm] = useState<form_data>({
+    fname: "",
+    em: "",
+    uname: "",
+    pw: "",
+    comment: "",
+    how: "",
+  });
 
-  let message: JSX.Element;
+  const modal = useRef(null);
 
-  if (fname.length < 2) message = <p>Name is not valid</p>;
-  else if (uname.length < 3) message = <p>Username is too short</p>;
-  else if (pw.length < 8) message = <p>Password too short or not confirmed.</p>;
-  else {
-    message = (
-      <p>
-        Welcome <em>{fname}</em>, your email is <em>{em}</em>, and you had the
-        following comments: <em>{comment}</em>
-        <br />
-        Our first event is an Ice Breaker Session on <em>September 17th</em>.
-        Hope to see you there!!
-      </p>
-    );
-  }
+  // useEffect(() => {
+  //   console.log(form_info);
+  // }, [form_info]);
 
-  function FormField(
-    fieldLabel: string,
-    fieldName: string,
-    setFunction: React.Dispatch<React.SetStateAction<string>>
-  ) {
-    return (
-      <span>
-        <label>{fieldLabel}</label>
-        <input
-          type={fieldLabel === "Password" ? "password" : "text"}
-          placeholder={fieldLabel}
-          value={fieldName}
-          onChange={(e) => setFunction(e.target.value)}
-          // required
-        />
-      </span>
-    );
-  }
+  let message: string;
 
-  const isValid = () => {
-    return fname && em && uname && pw && comment && how;
-  };
+  // if (form_info.fname.length < 2) message = <p>Name is not valid</p>;
+  // else if (uname.length < 3) message = <p>Username is too short</p>;
+  // else if (pw.length < 8) message = <p>Password too short or not confirmed.</p>;
+  // else {
+  //   message = (
+  //     <p>
+  //       Welcome <em>{fname}</em>, your email is <em>{em}</em>, and you had the
+  //       following comments: <em>{comment}</em>
+  //       <br />
+  //       Our first event is an Ice Breaker Session on <em>September 17th</em>.
+  //       Hope to see you there!!
+  //     </p>
+  //   );
+  // }
+
+  // const isValid = () => {
+  //   return fname && em && uname && pw && comment && how;
+  // };
 
   return (
     <section className="article-content">
       <form className="membership_form">
-        {FormField("Name", fname, setFname)}
-
-        {FormField("Email", em, setEm)}
-
-        {FormField("Username", uname, setUname)}
-
-        {FormField("Password", pw, setPw)}
+        <span>
+          <label>{"Name"}</label>
+          <input
+            type="text"
+            placeholder={"Name"}
+            value={form_info.fname}
+            onChange={(e) => setForm({ ...form_info, fname: e.target.value })}
+            minLength={2}
+            maxLength={20}
+            required
+          />
+        </span>
 
         <span>
-          <label>Expectations from this club:</label>
+          <label>{"Email"}</label>
+          <input
+            type="email"
+            placeholder={"Email"}
+            value={form_info.em}
+            onChange={(e) => setForm({ ...form_info, em: e.target.value })}
+            maxLength={20}
+            required
+          />
+        </span>
+
+        <span>
+          <label>{"Username"}</label>
+          <input
+            type="text"
+            placeholder={"Username"}
+            value={form_info.uname}
+            onChange={(e) => setForm({ ...form_info, uname: e.target.value })}
+            minLength={2}
+            maxLength={20}
+            required
+          />
+        </span>
+
+        <span>
+          <label>{"Password"}</label>
+          <input
+            type="text"
+            // placeholder={"Password"}
+            value={form_info.pw}
+            onChange={(e) => setForm({ ...form_info, pw: e.target.value })}
+            minLength={7}
+            maxLength={16}
+            required
+          />
+        </span>
+
+        <span>
+          <label>{"Expectations from this club:"}</label>
           <textarea
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            placeholder="expect.."
+            value={form_info.comment}
+            onChange={(e) => setForm({ ...form_info, comment: e.target.value })}
+            placeholder="If you have any comments, please enter them here."
           />
         </span>
 
         <span>
           <label>How did you hear about us?</label>
           <select
-            placeholder=""
-            value={how}
-            onChange={(e) => setHow(e.target.value)}
-            required
+            value={form_info.how}
+            onChange={(e) => setForm({ ...form_info, how: e.target.value })}
           >
             <option>Select One</option>
             <option value="School">From your school</option>
@@ -87,25 +125,25 @@ export default function Apply() {
         </span>
 
         <span className="button-group">
-          <button onClick={() => SetModalShow("show")}>Sign Up</button>
+          <button
+            onClick={() => {
+              modal.current.showModal();
+            }}
+          >
+            Sign Up
+          </button>
           <button type="reset">Clear</button>
         </span>
       </form>
 
-      <article id="ThanksDialog" className={modalShow}>
-        <div id="theMsg">
+      <dialog ref={modal}>
+        <div className="modal-content">
           <span>{message}</span>
           <span>
-            <button
-              onClick={() => {
-                SetModalShow("hide");
-              }}
-            >
-              Close
-            </button>
+            <button onClick={() => modal.current.close()}>Close</button>
           </span>
         </div>
-      </article>
+      </dialog>
     </section>
   );
 }

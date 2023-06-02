@@ -13,7 +13,7 @@ const RoleContext = createContext("guest");
 
 export default function App() {
   const [role, setRole] = useState("guest");
-  const [view, setView] = useState("Home");
+  const [view, setView] = useState("Apply");
 
   const PageContent = () => {
     switch (view) {

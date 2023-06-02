@@ -17,25 +17,14 @@ const SandwichMenu = (): JSX.Element => {
   );
 };
 
-function Menu_Button({ setView, view }: { setView: Function; view: string }) {
-  return (
-    <li>
-      <button onClick={() => setView(view)}>{view}</button>
-    </li>
-  );
-}
-
 export default function Menu({ setView }) {
   const role = useContext(RoleContext);
-  const list = [
-    <Menu_Button setView={setView} view="Home" />,
-    <Menu_Button setView={setView} view="Activities" />,
-  ];
 
-  if (role === "guest") {
-    list.push(<Menu_Button setView={setView} view="Login" />);
-    list.push(<Menu_Button setView={setView} view="Apply" />);
-  } else list.push(<Menu_Button setView={setView} view="Logout" />);
+  const list: string[] = ["Home", "Activities"];
+  const role_Tabs: string[] =
+    role === "guest"
+      ? list.concat(["Login", "Apply"])
+      : list.concat(["Logout"]);
 
   return (
     <nav>
@@ -43,7 +32,13 @@ export default function Menu({ setView }) {
         <h1>SYMC</h1>
       </span>
       <span>
-        <ul className="full-menu">{list}</ul>
+        <ul className="full-menu">
+          {role_Tabs.map((view, i) => (
+            <li key={i}>
+              <button onClick={() => setView(view)}>{view}</button>
+            </li>
+          ))}
+        </ul>
         <span className="sandwich-menu">
           <SandwichMenu />
           <SandwichMenu />

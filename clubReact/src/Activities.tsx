@@ -31,10 +31,14 @@ export default function Activities() {
 
   useEffect(() => {
     setEvent(eventslist);
-    console.log(eventsList);
-  });
+  }, []);
+
+  // useEffect(() => {
+  //   console.log(eventsList);
+  // }, [eventsList]);
 
   function deleteEvent(eventid: number) {
+    setEvent(eventsList.filter((_: event, key: number) => key !== eventid));
     // fetch("http://localhost:3030/activities?delIndex=" + eventsList[eventid], {
     //   method: "DELETE",
     //   headers: {
@@ -49,6 +53,7 @@ export default function Activities() {
   const DeleteButton = (i: number) => {
     return (
       <td className="data-center">
+        {/* <button onClick={() => deleteEvent(i)}>Delete</button> */}
         <button onClick={() => deleteEvent(i)}>Delete</button>
       </td>
     );
