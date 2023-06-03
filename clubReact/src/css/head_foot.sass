@@ -11,38 +11,64 @@ nav
 	justify-content: space-between
 	background-color: $secondary
 	padding: 1rem
-	span
-		display: inline-flex
-		justify-content: center
-		h1
-			color: $tertiary_2
-			font-family: $Catamaran
-			margin-right: -0.5rem
-			letter-spacing: 0.5rem
-			font-size: $text-4xl
-			font-weight: 600
-			@include responsive($md)
-				font-weight: 700
-				margin-right: -1rem
-				letter-spacing: 1rem
-			@include responsive($lg)
-				font-size: $text-5xl
-		.full-menu
-			display: none
+
+.logo-container
+	display: inline-flex
+	justify-content: center
+
+.logo
+	color: $tertiary_2
+	font-family: $Catamaran
+	margin-right: -0.5rem
+	letter-spacing: 0.5rem
+	font-size: $text-4xl
+	font-weight: 600
+	@include responsive($md)
+		font-weight: 700
+		margin-right: -1rem
+		letter-spacing: 1rem
+	@include responsive($lg)
+		font-size: $text-5xl
+
+.full-menu
+	display: none
+	@include responsive($lg)
+		display: block
+		ul
+			display: inline-flex
+			flex-direction: row
 			list-style-type: none
 			column-gap: 1rem
-			button
-				color: $white
-				@include styled-buttons
-			@include responsive($lg)
-				display: inline-flex
-		.sandwich-menu
-			display: inline-flex
-			flex-direction: column
-			row-gap: 0.5rem
+
+.sandwich-menu
+	display: block
+	@include responsive($lg)
+		display: none
+	.sandwich-collapse
+		display: inline-flex
+		flex-direction: column
+		row-gap: 0.5rem
+	.sandwich-expand
+		display: flex
+		flex-direction: column
+		justify-content: center
+		background-color: $secondary
+		row-gap: 0.5rem
+		position: absolute
+		inset: 0
+		.sandwich-menu-buttons
+			width: 100%
+			margin: 0 auto
 			padding: 1rem 0.75rem
-			@include responsive($lg)
-				display: none
+			border: 0rem
+			color: $tertiary_2
+			font-size: $text-base
+			background-color: transparent
+			&:hover
+				background-color: $secondary_2
+
+.menu-buttons
+	@include styled-buttons
 
 footer
 	@extend	.full-w-flex

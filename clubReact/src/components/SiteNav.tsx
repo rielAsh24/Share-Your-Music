@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RoleContext } from "../App";
 
 import "../css/head_foot.sass";
@@ -19,6 +19,7 @@ const SandwichMenu = (): JSX.Element => {
 
 export default function Menu({ setView }) {
   const role = useContext(RoleContext);
+  const [mMenu, setMMenu] = useState(false);
 
   const list: string[] = ["Home", "Activities"];
   const role_Tabs: string[] =
@@ -28,23 +29,47 @@ export default function Menu({ setView }) {
 
   return (
     <nav>
-      <span>
-        <h1>SYMC</h1>
+      <span className="logo-container">
+        <h1 className="logo">SYMC</h1>
       </span>
-      <span>
-        <ul className="full-menu">
+      <div className="full-menu">
+        <ul>
           {role_Tabs.map((view, i) => (
             <li key={i}>
-              <button onClick={() => setView(view)}>{view}</button>
+              <button className="menu-buttons" onClick={() => setView(view)}>
+                {view}
+              </button>
             </li>
           ))}
         </ul>
-        <span className="sandwich-menu">
-          <SandwichMenu />
-          <SandwichMenu />
-          <SandwichMenu />
-        </span>
-      </span>
+      </div>
+      <div onClick={() => setMMenu(!mMenu)} className="sandwich-menu">
+        {mMenu ? (
+          <span className="sandwich-expand">
+            <button
+              className="sandwich-menu-buttons"
+              onClick={() => setMMenu(!mMenu)}
+            >
+              X
+            </button>
+            {role_Tabs.map((view, i) => (
+              <button
+                key={i}
+                className="sandwich-menu-buttons"
+                onClick={() => setView(view)}
+              >
+                {view}
+              </button>
+            ))}
+          </span>
+        ) : (
+          <span className="sandwich-collapse">
+            <SandwichMenu />
+            <SandwichMenu />
+            <SandwichMenu />
+          </span>
+        )}
+      </div>
     </nav>
   );
 }
