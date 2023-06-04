@@ -18,10 +18,11 @@ clubReact/src/*
 clubReact/src/*.js.map
 
 # Directories to ignore
+.vscode
+.DS_Store
 clubReact/node_modules/
 clubReact/.parcel-cache/
 clubReact/.cache/
 clubReact/dist/
-.vscode
-.DS_Store
+clubReact/ui-tests/
 clubReact/clubServer/

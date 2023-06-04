@@ -34,8 +34,8 @@ export default function App() {
     <div className="pageLayout">
       <RoleContext.Provider value={role}>
         <Menu setView={setView} />
+        <PageContent />
       </RoleContext.Provider>
-      <PageContent />
       <Foot />
     </div>
   );

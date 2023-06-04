@@ -18,6 +18,7 @@
     "parcel-bundler": "^1.12.5"
   },
   "dependencies": {
+    "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.1",
     "@types/node": "^20.2.1",
     "ajv-cli": "^5.0.0",
@@ -31,6 +32,7 @@
     "node-fetch": "^3.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.44.3",
     "sass": "^1.62.1",
     "typescript": "^5.0.4"
   }
