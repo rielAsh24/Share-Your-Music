@@ -62,16 +62,16 @@ $Nunito: "Nunito Sans", sans-serif
     align-items: center
     padding: 2rem
 
-@mixin styled-buttons
+.styled-buttons
   background-color: $secondary_2
   border: 0rem
   border-radius: $rounded
   color: $primary
-  font-size: $text-base
-  padding: 0.5rem 0.75rem
+  font-size: $text-lg
+  padding: 0.75rem 4rem
   @include responsive($lg)
-    font-size: $text-lg
-    padding: 0.5rem 1rem
+    font-size: $text-xl
+    padding: 0.75rem 1rem
   &:hover
     background-color: $secondary_3
 
@@ -92,16 +92,26 @@ $Nunito: "Nunito Sans", sans-serif
     justify-content: center
     row-gap: 0.5rem
     font-family: $Nunito
+    label
+      display: none
+      @include responsive($lg)
+        display: block
+        font-size: $text-lg
     input, textarea, select, option
-      padding: 0.5rem
+      padding: 1rem
       background-color: $primary
       border: 1px solid $primary
       border-radius: 0.25rem
       &:focus
         outline: none
         border: 1px solid $primary_2
+      &::placeholder
+        opacity: 0.5
+        font-size: $text-base
+        @include responsive($lg)
+          opacity: 0
     button
-      @include styled-buttons
+      @extend .styled-buttons
 
   .button-group
     display: flex

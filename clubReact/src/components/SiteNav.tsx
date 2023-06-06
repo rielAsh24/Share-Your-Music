@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { RoleContext } from "../App";
 
 import "../css/head_foot.sass";
@@ -21,7 +21,7 @@ export default function Menu({ setView }) {
   const role = useContext(RoleContext);
   const [mMenu, setMMenu] = useState(false);
 
-  const list: string[] = ["Home", "Activities"];
+  const list: string[] = ["Home", "Events"];
   const role_Tabs: string[] =
     role === "guest"
       ? list.concat(["Login", "Apply"])

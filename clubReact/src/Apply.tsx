@@ -11,7 +11,7 @@ type form_data = {
 
 type event = {
   name: string;
-  dates: string[];
+  date: string;
 };
 
 const eventslist = require("../clubServer/eventData.json");
@@ -36,16 +36,23 @@ export default function Apply() {
   const modal = useRef(null);
   const [modal_info, setModal] = useState(<span></span>);
   const onSubmit = (data: form_data) => {
+    // data = {
+    //   Name: "John Doe",
+    //   Email: "johndoe28@email.com",
+    //   Username: "jdk2018",
+    //   Comments: "This is a test comment",
+    // };
     setModal(
       <span>
-        <p>ID created </p>
+        <h3>ID created!</h3>
         <p>
           Share Your Club welcomes you <em>{data.Username}</em>
         </p>
         <p>
-          We are glad to invite you to our first event: {firstevent.name} on
-          <em>{firstevent.dates}</em>. Hope to see you there!!
+          We are glad to invite you to our first event: {firstevent.name} on{" "}
+          <em>{firstevent.date}</em>.
         </p>
+        <h4>Hope to see you there!!</h4>
       </span>
     );
     modal.current.showModal();
@@ -103,6 +110,7 @@ export default function Apply() {
               required: true,
               maxLength: 500,
             })}
+            placeholder="Expectations from this club..."
             aria-required={errors.Comments ? "true" : "false"}
           />
           {errors.Comments && <p>Please provide us your expectations</p>}
@@ -126,6 +134,7 @@ export default function Apply() {
           <button type="reset">Clear Form</button>
         </span>
       </form>
+
       <dialog ref={modal}>
         <div className="modal-content">
           {modal_info}

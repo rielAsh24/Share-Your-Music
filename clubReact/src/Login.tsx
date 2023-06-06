@@ -9,19 +9,19 @@ export default function Login({ setRole, setView }) {
   function loginPost(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
 
-    fetch("http://localhost:3030/login", {
-      method: "POST",
-      body: JSON.stringify({
-        email: email,
-        password: pass,
-      }),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((newUserInfo) => {
-        setRole(newUserInfo.role);
-        setView("Home");
-      });
+    // fetch("http://localhost:3030/login", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     email: email,
+    //     password: pass,
+    //   }),
+    //   headers: { "Content-Type": "application/json" },
+    // })
+    //   .then((res) => res.json())
+    //   .then((newUserInfo) => {
+    //     setRole(newUserInfo.role);
+    //     setView("Home");
+    //   });
   }
 
   return (

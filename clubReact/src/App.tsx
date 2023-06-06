@@ -17,7 +17,7 @@ export default function App() {
 
   const PageContent = () => {
     switch (view) {
-      case "Activities":
+      case "Events":
         return <Activities />;
       case "Login":
         return <Login setRole={setRole} setView={setView} />;

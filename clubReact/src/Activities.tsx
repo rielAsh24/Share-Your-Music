@@ -7,13 +7,21 @@ const eventslist = require("../clubServer/eventData.json");
 
 type event = {
   name: string;
-  dates: string[];
+  date: string;
 };
 
 export default function Activities() {
   // var eventsList: event[];
-  const [eventsList, setEvent] = useState<event[] | undefined>([]);
+  const [eventsList, setEvents] = useState<event[] | undefined>([]);
+  const [newEvent, setNewEvent] = useState<event>({
+    name: "",
+    date: "",
+  });
   const role = useContext(RoleContext);
+
+  useEffect(() => {
+    setEvents(eventslist);
+  }, []);
 
   // useEffect(() => {
   //   fetch("http://localhost:3030/activities", {
@@ -22,7 +30,7 @@ export default function Activities() {
   //     .then((res: Response) => res.json())
   //     .then((events: event[]) => {
   //       // eventsList.concat(events);
-  //       setEvent(events);
+  //       setEvents(events);
   //       // events.map((e: event, i: number) => {
   //       //   console.log(e.name);
   //       // });
@@ -30,15 +38,11 @@ export default function Activities() {
   // }, [eventsList]);
 
   useEffect(() => {
-    setEvent(eventslist);
-  }, []);
-
-  // useEffect(() => {
-  //   console.log(eventsList);
-  // }, [eventsList]);
+    console.log(eventsList);
+  }, [eventsList]);
 
   function deleteEvent(eventid: number) {
-    setEvent(eventsList.filter((_: event, key: number) => key !== eventid));
+    setEvents(eventsList.filter((_: event, key: number) => key !== eventid));
     // fetch("http://localhost:3030/activities?delIndex=" + eventsList[eventid], {
     //   method: "DELETE",
     //   headers: {
@@ -53,7 +57,6 @@ export default function Activities() {
   const DeleteButton = (i: number) => {
     return (
       <td className="data-center">
-        {/* <button onClick={() => deleteEvent(i)}>Delete</button> */}
         <button onClick={() => deleteEvent(i)}>Delete</button>
       </td>
     );
@@ -61,25 +64,66 @@ export default function Activities() {
 
   return (
     <section className="activityView">
-      <table className="activity-table">
-        <thead>
-          <tr>
-            <th className="data-center">Sr.No</th>
-            <th>Event</th>
-            <th>Dates</th>
-          </tr>
-        </thead>
-        <tbody>
-          {eventsList.map((e: event, i: number) => (
-            <tr key={i}>
-              <td className="data-center">{i + 1}</td>
-              {role === "admin" ? DeleteButton(i) : ""}
-              <td className="data-center">{e.name}</td>
-              <td>{e.dates}</td>
+      {role === "admin" ? (
+        <div>
+          <form className="form_design">
+            <span>
+              <h3>Manage Activities</h3>
+            </span>
+            <span>
+              <label>Name</label>
+              <input
+                type="text"
+                name="ename"
+                value={newEvent.name}
+                onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setNewEvent({ ...newEvent, name: e.target.value })
+                }
+              />
+            </span>
+            <span>
+              <label>Date</label>
+              <input
+                type="text"
+                name="date"
+                value={newEvent.date}
+                onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setNewEvent({ ...newEvent, date: e.target.value })
+                }
+              />
+            </span>
+            <span>
+              <button onClick={() => setEvents([...eventsList, newEvent])}>
+                Add
+              </button>
+            </span>
+          </form>
+        </div>
+      ) : (
+        <div></div>
+      )}
+
+      <div>
+        <table className="activity-table">
+          <thead>
+            <tr>
+              <th className="data-center">Sr.No</th>
+              <th>Event</th>
+              <th>Date</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {eventsList.map((e: event, i: number) => (
+              <tr key={i}>
+                <td className="data-center">{i + 1}</td>
+                {role === "admin" ? DeleteButton(i) : ""}
+                <td className="data-center">{e.name}</td>
+                <td>{e.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 }
