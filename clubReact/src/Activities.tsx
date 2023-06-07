@@ -100,7 +100,7 @@ export default function Activities() {
           </form>
         </div>
       ) : (
-        <div></div>
+        ""
       )}
 
       <div>

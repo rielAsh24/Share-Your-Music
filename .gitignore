@@ -14,8 +14,8 @@ node_modules/
 # Files to ignore
 clubReact/package-lock.json
 clubReact/.proxyrc.json
-clubReact/src/*
-clubReact/src/*.js.map
+*.js
+*.js.map
 
 # Directories to ignore
 .vscode
@@ -24,5 +24,5 @@ clubReact/node_modules/
 clubReact/.parcel-cache/
 clubReact/.cache/
 clubReact/dist/
-clubReact/ui-tests/
+clubReact/src/ui-tests/
 clubReact/clubServer/
