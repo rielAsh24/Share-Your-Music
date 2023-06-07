@@ -8,6 +8,7 @@ const eventslist = require("../clubServer/eventData.json");
 type event = {
   name: string;
   date: string;
+  image: string;
 };
 
 export default function Activities() {
@@ -16,11 +17,21 @@ export default function Activities() {
   const [newEvent, setNewEvent] = useState<event>({
     name: "",
     date: "",
+    image: "",
   });
   const role = useContext(RoleContext);
 
   useEffect(() => {
-    setEvents(eventslist);
+    setEvents(
+      eventslist.map((e: event) => {
+        return {
+          name: e.name,
+          date: e.date,
+          image:
+            "./images/" + e.name.replace(/\s|-/g, "").toLowerCase() + ".jpg",
+        };
+      })
+    );
   }, []);
 
   // useEffect(() => {
@@ -103,7 +114,7 @@ export default function Activities() {
         ""
       )}
 
-      <div>
+      {/* <div>
         <table className="activity-table">
           <thead>
             <tr>
@@ -122,8 +133,18 @@ export default function Activities() {
               </tr>
             ))}
           </tbody>
-        </table>
-      </div>
+        </table> */}
+      {eventsList.map((e: event, i: number) => (
+        <div className="activityCards" key={i}>
+          <img src={e.image} />
+          <h5 className="card-title">{e.name}</h5>
+          <p className="card-text">{e.date}</p>
+          <p className="card-text">
+            {e.name.replace(/\s|-/g, "").toLowerCase()}
+          </p>
+        </div>
+      ))}
+      {/* </div> */}
     </section>
   );
 }
