@@ -6,7 +6,9 @@ type form_data = {
   Name: string;
   Email: string;
   Username: string;
+  Password: string;
   Comments: string;
+  Mode: string;
 };
 
 type event = {
@@ -14,19 +16,24 @@ type event = {
   date: string;
 };
 
-const eventslist = require("../clubServer/eventData.json");
-
 export default function Apply() {
   const [firstevent, setEvent] = useState<event | undefined>();
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm();
 
   useEffect(() => {
-    setEvent(eventslist[0]);
+    // setEvent(eventslist[0]);
+    fetch(import.meta.env.VITE_SERVER_HOME + "activities?dI=1", {
+      method: "GET"
+    })
+      .then((res: Response) => res.json())
+      .then((first: event) => {
+        setEvent(first);
+      });
   }, []);
 
   useEffect(() => {
@@ -36,12 +43,6 @@ export default function Apply() {
   const modal = useRef(null);
   const [modal_info, setModal] = useState(<span></span>);
   const onSubmit = (data: form_data) => {
-    // data = {
-    //   Name: "John Doe",
-    //   Email: "johndoe28@email.com",
-    //   Username: "jdk2018",
-    //   Comments: "This is a test comment",
-    // };
     setModal(
       <span>
         <h3>ID created!</h3>
@@ -69,7 +70,7 @@ export default function Apply() {
             {...register("Name", {
               required: true,
               min: 2,
-              maxLength: 30,
+              maxLength: 30
             })}
             aria-invalid={errors.Name ? "true" : "false"}
           />
@@ -96,7 +97,7 @@ export default function Apply() {
               required: true,
               min: 5,
               maxLength: 20,
-              pattern: /^[a-zA-Z0-9_]+$/i,
+              pattern: /^[a-zA-Z0-9_]+$/i
             })}
             aria-invalid={errors.Username ? "true" : "false"}
           />
@@ -104,11 +105,26 @@ export default function Apply() {
         </span>
 
         <span>
+          <label>{"Password"}</label>
+          <input
+            type="password"
+            placeholder="Password"
+            {...register("Password", {
+              required: true,
+              min: 8,
+              maxLength: 16
+            })}
+            aria-invalid={errors.Password ? "true" : "false"}
+          />
+          {errors.Password && <p>Invalid Password</p>}
+        </span>
+
+        <span>
           <label>{"Expectations from this club:"}</label>
           <textarea
             {...register("Comments", {
               required: true,
-              maxLength: 500,
+              maxLength: 500
             })}
             placeholder="Expectations from this club..."
             aria-required={errors.Comments ? "true" : "false"}
@@ -118,9 +134,7 @@ export default function Apply() {
 
         <span>
           <label>How did you hear about us?</label>
-          <select
-            {...register("How Did You Hear About Us?", { required: true })}
-          >
+          <select {...register("Mode", { required: true })}>
             <option value="Campus Events">Campus Events</option>
             <option value="Social Media">Social Media</option>
             <option value="School Website">School Website</option>

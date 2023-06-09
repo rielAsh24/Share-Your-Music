@@ -1,3 +1,4 @@
+import home_page from "./images/home_page.jpg";
 import "./css/home.sass";
 
 export default function Home() {
@@ -26,7 +27,7 @@ export default function Home() {
         </p>
       </div>
       <div>
-        <img src={require("./images/home_page.jpg")} />
+        <img src={home_page} />
       </div>
     </section>
   );

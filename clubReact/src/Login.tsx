@@ -9,7 +9,7 @@ export default function Login({ setRole, setView }) {
   function loginPost(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
 
-    // fetch("http://localhost:3030/login", {
+    // fetch(import.meta.env.VITE_SERVER_HOME + "login", {
     //   method: "POST",
     //   body: JSON.stringify({
     //     email: email,

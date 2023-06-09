@@ -3,55 +3,52 @@ import { RoleContext } from "./App";
 
 import "./css/activities.sass";
 
-const eventslist = require("../clubServer/eventData.json");
-
 type event = {
+  key: number;
   name: string;
   date: string;
 };
 
 export default function Activities() {
-  // var eventsList: event[];
   const [eventsList, setEvents] = useState<event[] | undefined>([]);
   const [newEvent, setNewEvent] = useState<event>({
+    key: -1,
     name: "",
-    date: "",
+    date: ""
   });
   const role = useContext(RoleContext);
 
   useEffect(() => {
-    setEvents(eventslist);
+    fetch(import.meta.env.VITE_SERVER_HOME + "activities", {
+      method: "GET"
+    })
+      .then((res: Response) => res.json())
+      .then((events: event[]) => {
+        setEvents(events);
+      })
+      .catch((err: Error) => {
+        console.log(err);
+      });
   }, []);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3030/activities", {
-  //     method: "GET",
-  //   })
-  //     .then((res: Response) => res.json())
-  //     .then((events: event[]) => {
-  //       // eventsList.concat(events);
-  //       setEvents(events);
-  //       // events.map((e: event, i: number) => {
-  //       //   console.log(e.name);
-  //       // });
-  //     });
-  // }, [eventsList]);
-
-  useEffect(() => {
-    console.log(eventsList);
-  }, [eventsList]);
-
   function deleteEvent(eventid: number) {
-    setEvents(eventsList.filter((_: event, key: number) => key !== eventid));
-    // fetch("http://localhost:3030/activities?delIndex=" + eventsList[eventid], {
-    //   method: "DELETE",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     cookie: "",
-    //   },
-    // });
-    /*let newEventList = this.state.eventsList.filter(eve => (eve.key !== i.toString()));
-    this.setState({eventsList: newEventList});*/
+    const deleteBool = fetch(
+      import.meta.env.VITE_SERVER_HOME + "activities?dI=1",
+      {
+        method: "DELETE"
+      }
+    )
+      .then((res: Response) => {
+        if (res.status == 204) {
+          console.log(`Event ${eventsList[eventid]} Deleted`);
+          setEvents(
+            eventsList.filter((_: event, key: number) => key !== eventid)
+          );
+        }
+      })
+      .catch((err: Error) => {
+        console.log(err);
+      });
   }
 
   const DeleteButton = (i: number) => {
