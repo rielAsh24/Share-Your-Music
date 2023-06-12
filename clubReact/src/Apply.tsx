@@ -26,10 +26,13 @@ export default function Apply() {
   } = useForm();
 
   useEffect(() => {
-    // setEvent(eventslist[0]);
-    fetch(import.meta.env.VITE_SERVER_HOME + "activities?dI=1", {
-      method: "GET"
-    })
+    fetch(
+      "https://clubserver-jjjr6nralq-uc.a.run.app" +
+        "/activities?dI=Ice-Breaker+Session",
+      {
+        method: "GET"
+      }
+    )
       .then((res: Response) => res.json())
       .then((first: event) => {
         setEvent(first);

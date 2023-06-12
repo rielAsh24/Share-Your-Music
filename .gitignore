@@ -9,12 +9,9 @@ dist
 
 # Dependency directories
 node_modules/
--parcel-cache/
 
 # Files to ignore
 .env
-clubReact/package-lock.json
-clubReact/.proxyrc.json
 *.js
 *.js.map
 *.test.ts
@@ -22,9 +19,4 @@ clubReact/.proxyrc.json
 # Directories to ignore
 .vscode
 .DS_Store
-clubReact/.cache/
-clubReact/.parcel-cache/
-clubReact/dist/
-clubReact/node_modules/
 clubServer/
-clubReact/tests/

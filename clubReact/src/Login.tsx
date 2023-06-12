@@ -1,27 +1,26 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./css/login.sass";
 
-export default function Login({ setRole, setView }) {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  // const [cookie, setCookie] = useState("");
+
+  const modal = useRef(null);
+  const [modal_info, setModal] = useState(<span></span>);
 
   function loginPost(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-
-    // fetch(import.meta.env.VITE_SERVER_HOME + "login", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     email: email,
-    //     password: pass,
-    //   }),
-    //   headers: { "Content-Type": "application/json" },
-    // })
-    //   .then((res) => res.json())
-    //   .then((newUserInfo) => {
-    //     setRole(newUserInfo.role);
-    //     setView("Home");
-    //   });
+    setModal(
+      <span>
+        <h3>Hey Friend</h3>
+        <p>Share Your Club welcomes you!</p>
+        <p>
+          I'm glad you are here and wanted to thank you for looking at my site.
+        </p>
+        <h4>Interested in getting connected?.</h4>
+      </span>
+    );
+    modal.current.showModal();
   }
 
   return (
@@ -52,9 +51,14 @@ export default function Login({ setRole, setView }) {
           </h5>
         </span>
       </form>
-      {/* <div>
-        <img src={require("./images/login_page.jpg")} />
-      </div> */}
+      <dialog ref={modal}>
+        <div className="modal-content">
+          {modal_info}
+          <span>
+            <button onClick={() => modal.current.close()}>Close</button>
+          </span>
+        </div>
+      </dialog>
     </section>
   );
 }
