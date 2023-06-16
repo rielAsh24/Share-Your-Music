@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { activity } from "./customtypes";
 
 import Activities from "./Activities";
 import Apply from "./Apply";
@@ -9,8 +10,24 @@ import Menu from "./components/SiteNav";
 
 import "./css/index.sass";
 
+const ActivityContext = createContext([]);
+
 export default function App() {
   const [view, setView] = useState("Home");
+  const [eventsList, setEvents] = useState<activity[] | undefined>([]);
+
+  useEffect(() => {
+    fetch("https://clubserver-jjjr6nralq-uc.a.run.app/activities", {
+      method: "GET"
+    })
+      .then((res: Response) => res.json())
+      .then((events: activity[]) => {
+        setEvents(events);
+      })
+      .catch((err: Error) => {
+        console.log(err);
+      });
+  }, []);
 
   const PageContent = () => {
     switch (view) {
@@ -28,8 +45,12 @@ export default function App() {
   return (
     <div className="pageLayout">
       <Menu setView={setView} />
-      <PageContent />
+      <ActivityContext.Provider value={eventsList}>
+        <PageContent />
+      </ActivityContext.Provider>
       <Foot />
     </div>
   );
 }
+
+export { ActivityContext };

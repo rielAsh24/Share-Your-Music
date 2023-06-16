@@ -1,47 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { ActivityContext } from "./App";
+import { activity, form_data } from "./customtypes";
 import "./css/apply.sass";
 
-type form_data = {
-  Name: string;
-  Email: string;
-  Username: string;
-  Password: string;
-  Comments: string;
-  Mode: string;
-};
-
-type event = {
-  name: string;
-  date: string;
-};
-
 export default function Apply() {
-  const [firstevent, setEvent] = useState<event | undefined>();
+  const firstevent: activity = useContext(ActivityContext)[0];
 
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
-
-  useEffect(() => {
-    fetch(
-      "https://clubserver-jjjr6nralq-uc.a.run.app" +
-        "/activities?dI=Ice-Breaker+Session",
-      {
-        method: "GET"
-      }
-    )
-      .then((res: Response) => res.json())
-      .then((first: event) => {
-        setEvent(first);
-      });
-  }, []);
-
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
 
   const modal = useRef(null);
   const [modal_info, setModal] = useState(<span></span>);

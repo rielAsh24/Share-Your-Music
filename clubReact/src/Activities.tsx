@@ -1,27 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { ActivityContext } from "./App";
+import { activity } from "./customtypes";
 
 import "./css/activities.sass";
 
-type event = {
-  name: string;
-  date: string;
-};
-
 export default function Activities() {
-  const [eventsList, setEvents] = useState<event[] | undefined>([]);
-
-  useEffect(() => {
-    fetch("https://clubserver-jjjr6nralq-uc.a.run.app" + "/activities", {
-      method: "GET"
-    })
-      .then((res: Response) => res.json())
-      .then((events: event[]) => {
-        setEvents(events);
-      })
-      .catch((err: Error) => {
-        console.log(err);
-      });
-  }, []);
+  const eventsList: activity[] = useContext(ActivityContext);
 
   return (
     <section className="activityView">
@@ -35,7 +19,7 @@ export default function Activities() {
             </tr>
           </thead>
           <tbody>
-            {eventsList.map((e: event, i: number) => (
+            {eventsList.map((e: activity, i: number) => (
               <tr key={i}>
                 <td className="data-center">{i + 1}</td>
                 <td className="data-center">{e.name}</td>
