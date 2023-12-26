@@ -9,44 +9,36 @@ import Login from "./Login";
 import Menu from "./components/SiteNav";
 
 import "./css/index.sass";
+import { Route, Routes } from "react-router-dom";
 
 const ActivityContext = createContext([]);
 
 export default function App() {
-  const [view, setView] = useState("Home");
   const [eventsList, setEvents] = useState<activity[] | undefined>([]);
 
-  useEffect(() => {
-    fetch("https://clubserver-jjjr6nralq-uc.a.run.app/activities", {
-      method: "GET"
-    })
-      .then((res: Response) => res.json())
-      .then((events: activity[]) => {
-        setEvents(events);
-      })
-      .catch((err: Error) => {
-        console.log(err);
-      });
-  }, []);
-
-  const PageContent = () => {
-    switch (view) {
-      case "Events":
-        return <Activities />;
-      case "Apply":
-        return <Apply />;
-      case "Login":
-        return <Login />;
-      default:
-        return <Home />;
-    }
-  };
+  // useEffect(() => {
+  //   fetch("https://clubserver-jjjr6nralq-uc.a.run.app/activities", {
+  //     method: "GET"
+  //   })
+  //     .then((res: Response) => res.json())
+  //     .then((events: activity[]) => {
+  //       setEvents(events);
+  //     })
+  //     .catch((err: Error) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   return (
     <div className="pageLayout">
-      <Menu setView={setView} />
+      <Menu />
       <ActivityContext.Provider value={eventsList}>
-        <PageContent />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/events" element={<Activities />} />
+          <Route path="/apply" element={<Apply />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
       </ActivityContext.Provider>
       <Foot />
     </div>
