@@ -4,15 +4,15 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-  base: "/Share-Your-Music/",
+  base: "/Share-Your-Music",
   build: {
-    outDir: "dist"
+    outDir: "dist",
   },
   plugins: [react()],
   publicDir: "public",
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src")
-    }
-  }
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 });

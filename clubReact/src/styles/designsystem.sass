@@ -38,7 +38,6 @@ $rounded-3xl: 1.5rem
 $rounded-full: 9999px
 
 // FONTS
-$Catamaran: "Catamaran", sans-serif
 $Cormorant: "Cormorant Garamond", serif
 $Nunito: "Nunito Sans", sans-serif
 
@@ -46,6 +45,9 @@ $Nunito: "Nunito Sans", sans-serif
   box-sizing: border-box
   margin: 0
   padding: 0
+
+body, button
+  font-family: $Nunito
 
 .article-content
   display: flex
@@ -63,17 +65,17 @@ $Nunito: "Nunito Sans", sans-serif
     padding: 2rem
 
 .styled-buttons
-  background-color: $secondary_2
+  background-color: $secondary
   border: 0rem
   border-radius: $rounded
   color: $primary
-  font-size: $text-lg
-  padding: 0.75rem 4rem
-  @include responsive($lg)
-    font-size: $text-xl
-    padding: 0.75rem 1rem
+  padding: 0.5rem 1rem
+  text-align: center
+  text-decoration: none
   &:hover
-    background-color: $secondary_3
+    background-color: $secondary_2
+  &.active
+    background-color: $tertiary_2
 
 .form_design
   width: 20rem
@@ -91,7 +93,6 @@ $Nunito: "Nunito Sans", sans-serif
     flex-direction: column
     justify-content: center
     row-gap: 0.5rem
-    font-family: $Nunito
     label
       display: none
       @include responsive($lg)
@@ -107,7 +108,6 @@ $Nunito: "Nunito Sans", sans-serif
         border: 1px solid $primary_2
       &::placeholder
         opacity: 0.5
-        font-size: $text-base
         @include responsive($lg)
           opacity: 0
     button
@@ -117,3 +117,6 @@ $Nunito: "Nunito Sans", sans-serif
     display: flex
     justify-content: center
     row-gap: 1rem
+
+.debug
+  outline: 1px solid $black

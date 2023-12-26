@@ -10,16 +10,16 @@ import Foot from "./components/SiteFooter";
 import Menu from "./components/SiteNav";
 
 import "@/styles/index.sass";
+import { Route, Routes } from "react-router-dom";
 
 const ActivityContext = createContext([]);
 
 export default function App() {
-  const [view, setView] = useState("Home");
   const [eventsList, setEvents] = useState<activity[] | undefined>([]);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_SERVER_HOME}/activities`, {
-      method: "GET"
+      method: "GET",
     })
       .then((res: Response) => res.json())
       .then((events: activity[]) => {
@@ -30,24 +30,16 @@ export default function App() {
       });
   }, []);
 
-  const PageContent = () => {
-    switch (view) {
-      case "Events":
-        return <Activities />;
-      case "Apply":
-        return <Apply />;
-      case "Login":
-        return <Login />;
-      default:
-        return <Home />;
-    }
-  };
-
   return (
     <div className="pageLayout">
-      <Menu setView={setView} />
+      <Menu />
       <ActivityContext.Provider value={eventsList}>
-        <PageContent />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/events" element={<Activities />} />
+          <Route path="/apply" element={<Apply />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
       </ActivityContext.Provider>
       <Foot />
     </div>
