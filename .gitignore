@@ -6,15 +6,15 @@ npm-debug.log*
 # Bundler related directories
 .cache
 dist
+.next
 
 # Dependency directories
 node_modules/
 
 # Files to ignore
 .env
-*.js
-*.js.map
 *.test.ts
+next-env.d.ts
 
 # Directories to ignore
 .vscode
