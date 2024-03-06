@@ -15,6 +15,8 @@ import {
   FormMessage
 } from "./ui/form";
 import { Input } from "./ui/input";
+import { ApplyData } from "@/typings/customtypes";
+import { apply } from "@/libs/server-actions";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -27,7 +29,7 @@ const formSchema = z.object({
 });
 
 export default function ApplyForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<ApplyData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -36,8 +38,14 @@ export default function ApplyForm() {
     }
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log(data);
+  function onSubmit(data: ApplyData) {
+    apply(data)
+      .then((status) => {
+        console.log(status);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
@@ -86,7 +94,7 @@ export default function ApplyForm() {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="shhhhh" {...field} />
+                <Input type="password" placeholder="Password" {...field} />
               </FormControl>
               <FormDescription></FormDescription>
               <FormMessage />

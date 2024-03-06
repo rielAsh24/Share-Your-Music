@@ -12,7 +12,7 @@ dist
 node_modules/
 
 # Files to ignore
-.env
+.env.*
 *.test.ts
 next-env.d.ts
 

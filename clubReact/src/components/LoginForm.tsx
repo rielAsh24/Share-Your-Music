@@ -1,8 +1,8 @@
 "use client";
 
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 import { Button } from "./ui/button";
 import {
@@ -15,6 +15,8 @@ import {
   FormMessage
 } from "./ui/form";
 import { Input } from "./ui/input";
+import { login } from "@/libs/server-actions";
+import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
   email: z.string().email().min(5),
@@ -23,8 +25,12 @@ const loginSchema = z.object({
   })
 });
 
+type Login = z.infer<typeof loginSchema>;
+
 export default function LoginForm() {
-  const form = useForm<z.infer<typeof loginSchema>>({
+  const router = useRouter();
+
+  const form = useForm<Login>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
@@ -32,8 +38,11 @@ export default function LoginForm() {
     }
   });
 
-  function onSubmit(data: z.infer<typeof loginSchema>) {
-    console.log(data);
+  function onSubmit(data: Login): void {
+    login(data)
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
+    router.push("/profile");
   }
 
   return (
@@ -66,7 +75,7 @@ export default function LoginForm() {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="password" {...field} />
+                <Input type="password" placeholder="Password" {...field} />
               </FormControl>
               <FormDescription></FormDescription>
               <FormMessage />

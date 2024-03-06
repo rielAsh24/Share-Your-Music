@@ -1,8 +1,8 @@
-import homeImg from "../../public/home_page.jpg";
+import homeImg from "@/../public/home_page.jpg";
 
 export default function Page() {
   return (
-    <section className="grid grid-cols-2 place-items-center debug">
+    <section className="grid grid-cols-2 place-items-center">
       <div className="grid grid-flow-row gap-y-8">
         <div className="text-3xl">
           <h2>Our Goal</h2>
