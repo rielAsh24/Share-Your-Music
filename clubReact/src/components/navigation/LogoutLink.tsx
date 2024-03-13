@@ -1,6 +1,6 @@
 "use client";
 
-import { logout } from "@/libs/server-actions";
+import { logout } from "@/actions/auth";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 

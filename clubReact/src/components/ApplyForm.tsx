@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 import { Button } from "./ui/button";
 import {
@@ -12,30 +11,21 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "./ui/form";
 import { Input } from "./ui/input";
-import { ApplyData } from "@/typings/customtypes";
-import { apply } from "@/libs/server-actions";
 
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters."
-  }),
-  email: z.string().email().min(5),
-  password: z.string().min(8, {
-    message: "Password must be at least 8 characters."
-  })
-});
+import { apply } from "@/actions/auth";
+import { applySchema, type ApplyData } from "@/libs/schemas";
 
 export default function ApplyForm() {
   const form = useForm<ApplyData>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(applySchema),
     defaultValues: {
       name: "",
       email: "",
-      password: ""
-    }
+      password: "",
+    },
   });
 
   function onSubmit(data: ApplyData) {

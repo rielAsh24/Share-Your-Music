@@ -1,3 +1,4 @@
+import Image from "next/image";
 import homeImg from "@/../public/home_page.jpg";
 
 export default function Page() {
@@ -30,7 +31,7 @@ export default function Page() {
         </div>
       </div>
       <div>
-        <img src={homeImg.src} className="w-full aspect-video" />
+        <Image src={homeImg} alt="Hero Image" />
       </div>
     </section>
   );
