@@ -1,30 +1,39 @@
-import { ActivityData } from "../../../typings/customtypes";
+import {
+  Table,
+  TableCaption,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "@/components/ui/table";
+import { fetchAllActivities } from "@/actions/activities";
+import { ActivityData } from "@/typings/customtypes";
 
 export default async function Activities() {
-  const eventsList: ActivityData[] | void = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/activities`,
-    {
-      method: "GET"
-    }
-  )
-    .then((res: Response) => res.json())
-    .then((events) => events as ActivityData[])
-    .catch((err: Error) => {
-      throw new Error(err.message);
-    });
+  const eventsList: ActivityData[] = await fetchAllActivities();
 
   return (
-    <section className="grid grid-flow-row grid-cols-3 gap-0.5">
-      <h2 className="p-4 debug">Sr.No</h2>
-      <h2 className="p-4 debug">Event</h2>
-      <h2 className="p-4 debug">Date</h2>
-      {eventsList.map((e: ActivityData, i: number) => (
-        <div key={e.name} className="col-span-3 grid grid-cols-3 gap-0.5">
-          <span className="p-4 debug">{i + 1}</span>
-          <span className="p-4 debug">{e.name}</span>
-          <span className="p-4 debug">{new Date(e.date).toDateString()}</span>
-        </div>
-      ))}
+    <section className="flex w-full items-center">
+      <Table className="max-w-lg">
+        <TableCaption>A list of our upcoming events</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="">Sr.No</TableHead>
+            <TableHead>Event</TableHead>
+            <TableHead>Date</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {eventsList.map((e: ActivityData, i: number) => (
+            <TableRow key={e.name}>
+              <TableCell>{i + 1}</TableCell>
+              <TableCell>{e.name}</TableCell>
+              <TableCell>{new Date(e.date).toDateString()}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </section>
   );
 }

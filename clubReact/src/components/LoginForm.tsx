@@ -1,8 +1,8 @@
 "use client";
 
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "./ui/button";
 import {
@@ -12,37 +12,28 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "./ui/form";
 import { Input } from "./ui/input";
-import { login } from "@/libs/server-actions";
-import { useRouter } from "next/navigation";
-
-const loginSchema = z.object({
-  email: z.string().email().min(5),
-  password: z.string().min(8, {
-    message: "Password must be at least 8 characters."
-  })
-});
-
-type Login = z.infer<typeof loginSchema>;
+import { login } from "@/actions/auth";
+import { loginSchema, type LoginData } from "@/libs/schemas";
 
 export default function LoginForm() {
   const router = useRouter();
 
-  const form = useForm<Login>({
+  const form = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
-      password: ""
-    }
+      password: "",
+    },
   });
 
-  function onSubmit(data: Login): void {
+  function onSubmit(data: LoginData): void {
     login(data)
       .then((res) => console.log(res))
       .catch((error) => console.log(error));
-    router.push("/profile");
+    router.replace("/");
   }
 
   return (
