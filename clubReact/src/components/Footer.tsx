@@ -4,9 +4,9 @@ export default function Footer() {
   return (
     <Card>
       <CardContent>
-        <div className="flex items-center h-12">
+        <div className="flex h-12 items-center">
           <footer>
-            <p> &copy; 2023 Share Your Music Club. All rights reversed.</p>
+            <p> &copy; 2024 Share Your Music Club. All rights reversed.</p>
           </footer>
         </div>
       </CardContent>
