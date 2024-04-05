@@ -2,7 +2,7 @@ import { Card, CardContent } from "./ui/card";
 
 export default function Footer() {
   return (
-    <Card>
+    <Card className="bg-primary text-primary-foreground">
       <CardContent>
         <div className="flex h-12 items-center">
           <footer>

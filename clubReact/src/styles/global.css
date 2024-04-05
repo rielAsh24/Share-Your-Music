@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
 body,
 :root {
   min-height: 100dvh;
@@ -10,26 +9,26 @@ body,
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 138 33% 94%;
+    --foreground: 233 37% 17%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 138 33% 94%;
+    --card-foreground: 233 37% 17%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 138 33% 94%;
+    --popover-foreground: 233 37% 17%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 224 25% 21%;
+    --primary-foreground: 138 33% 94%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 18 20% 68%;
+    --secondary-foreground: 233 37% 17%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 31 96% 62%;
+    --accent-foreground: 233 37% 17%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -77,7 +76,7 @@ body,
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground container flex flex-col;
+    @apply container flex flex-col bg-background text-foreground;
   }
   main {
     @apply flex grow;

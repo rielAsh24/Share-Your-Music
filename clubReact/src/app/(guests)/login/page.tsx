@@ -4,7 +4,7 @@ import LoginForm from "@/components/LoginForm";
 
 export default function Login() {
   return (
-    <section className="flex w-full justify-center items-center">
+    <section className="flex w-full items-center justify-center">
       <Card>
         <CardHeader>
           <CardTitle>Login</CardTitle>

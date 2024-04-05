@@ -4,7 +4,7 @@ import ApplyForm from "@/components/ApplyForm";
 
 export default function Apply() {
   return (
-    <section className="flex w-full justify-center items-center">
+    <section className="flex w-full items-center justify-center">
       <Card>
         <CardHeader>
           <CardTitle>Sign Up</CardTitle>
