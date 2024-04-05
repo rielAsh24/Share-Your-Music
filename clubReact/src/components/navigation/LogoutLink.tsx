@@ -15,7 +15,7 @@ export default function LogoutLink() {
   }
 
   return (
-    <Button variant="ghost" onClick={onLogout}>
+    <Button className="text-base" variant="link" onClick={onLogout}>
       Logout
     </Button>
   );

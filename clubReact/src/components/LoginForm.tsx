@@ -16,7 +16,7 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { login } from "@/actions/auth";
-import { loginSchema, type LoginData } from "@/libs/schemas";
+import { loginSchema, type LoginData } from "@/lib/schemas";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -40,7 +40,7 @@ export default function LoginForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-[400px] grid grid-flow-row items-center gap-y-4"
+        className="grid w-[400px] grid-flow-row items-center gap-y-4"
       >
         <FormField
           control={form.control}

@@ -15,7 +15,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="place-self-center grid grid-rows-2 gap-y-4 place-items-center">
+    <div className="grid grid-rows-2 place-items-center gap-y-4 place-self-center">
       <h2 className="text-4xl">Something went wrong!</h2>
       <Button onClick={() => reset()}>Retry</Button>
     </div>

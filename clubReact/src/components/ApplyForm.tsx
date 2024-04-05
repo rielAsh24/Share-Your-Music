@@ -16,7 +16,7 @@ import {
 import { Input } from "./ui/input";
 
 import { apply } from "@/actions/auth";
-import { applySchema, type ApplyData } from "@/libs/schemas";
+import { applySchema, type ApplyData } from "@/lib/schemas";
 
 export default function ApplyForm() {
   const form = useForm<ApplyData>({
@@ -42,7 +42,7 @@ export default function ApplyForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-[400px] grid grid-flow-row items-center gap-y-4"
+        className="grid w-[400px] grid-flow-row items-center gap-y-4"
       >
         <FormField
           control={form.control}

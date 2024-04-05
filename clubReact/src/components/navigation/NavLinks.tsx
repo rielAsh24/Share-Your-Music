@@ -4,10 +4,10 @@ import { Button } from "../ui/button";
 function GuestLinks() {
   return (
     <>
-      <Button variant="ghost" asChild>
+      <Button className="text-base" variant="link" asChild>
         <Link href="/apply">Sign Up</Link>
       </Button>
-      <Button variant="ghost" asChild>
+      <Button className="text-base" variant="link" asChild>
         <Link href="/login">Login</Link>
       </Button>
     </>
@@ -16,7 +16,7 @@ function GuestLinks() {
 
 function MemberLinks() {
   return (
-    <Button variant="ghost" asChild>
+    <Button className="text-base" variant="link" asChild>
       <Link href="/profile">Profile</Link>
     </Button>
   );

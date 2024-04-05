@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { ApplyData, LoginData } from "@/libs/schemas";
+import { ApplyData, LoginData } from "@/lib/schemas";
 
 async function apply(data: ApplyData) {
   const response = await fetch(`${process.env.API_URL}/auth/apply`, {
@@ -51,7 +51,7 @@ async function logout() {
 }
 
 // const isAuth = () => cookies().has("session");
-function isAuth() {
+async function isAuth() {
   const authenticated: boolean = cookies().has(process.env.COOKIE_NAME!);
   // console.log(authenticated);
   if (authenticated) return true;

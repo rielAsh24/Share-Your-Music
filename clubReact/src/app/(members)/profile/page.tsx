@@ -5,14 +5,14 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 
 export default function Profile() {
   return (
-    <section className="flex justify-center items-center w-full">
+    <section className="flex w-full items-center justify-center">
       <Card>
-        <CardHeader className="grid grid-flow-row gap-y-2 justify-items-center">
+        <CardHeader className="grid grid-flow-row justify-items-center gap-y-2">
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>Test Profile</AvatarFallback>

@@ -5,19 +5,19 @@ import { isAuth } from "@/actions/auth";
 import { GuestLinks, MemberLinks } from "./NavLinks";
 import LogoutLink from "./LogoutLink";
 
-export default function Navigation() {
-  const authLink = isAuth();
+export default async function Navigation() {
+  const authLink = await isAuth();
 
   return (
     <Card>
       <CardContent>
-        <div className="flex justify-between items-center">
-          <span>Logo</span>
-          <div className="">
-            <Button variant="ghost" asChild>
+        <div className="flex items-center justify-between">
+          <span className="text-4xl font-bold tracking-[1rem]">SYMC</span>
+          <div className="flex gap-x-2">
+            <Button className="text-base" variant="link" asChild>
               <Link href="/">Home</Link>
             </Button>
-            <Button variant="ghost" asChild>
+            <Button className="text-base" variant="link" asChild>
               <Link href="/activities">Events</Link>
             </Button>
             {authLink ? <MemberLinks /> : <GuestLinks />}
