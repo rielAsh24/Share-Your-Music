@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -12,8 +13,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "target": "ESNext",
-    "types": ["node", "vite/client"]
+    "types": ["vite/client"]
   },
-  "include": ["src/*.tsx", "vite-env.d.ts", "src/app/Activities.tsx", "src/app/Apply.tsx", "src/app/Home.tsx", "src/app/Login.tsx"],
+  "include": ["vite-env.d.ts", "src/**/*"],
   "exclude": ["node_modules"]
 }

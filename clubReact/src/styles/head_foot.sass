@@ -72,6 +72,8 @@
 	// z-index: 2
 	outline: none
 	border: none
+	@include responsive($lg)
+		display: none
 
 .close-hamburger
 	position: absolute
@@ -82,6 +84,8 @@
 	outline: none
 	border: none
 	background-color: $secondary
+	@include responsive($lg)
+		display: none
 
 // done
 nav
@@ -114,6 +118,8 @@ nav
 	a
 		width: 8rem
 		text-align: center
+	@include responsive($lg)
+		display: none
 
 footer
 	display: flex

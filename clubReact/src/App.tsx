@@ -1,16 +1,16 @@
 import { createContext, useEffect, useState } from "react";
-import { activity } from "./types/customtypes";
-
-import Activities from "./app/Activities";
-import Apply from "./app/Apply";
-import Home from "./app/Home";
-import Login from "./app/Login";
-
-import Foot from "./components/SiteFooter";
-import Menu from "./components/SiteNav";
-
-import "@/styles/index.sass";
 import { Route, Routes } from "react-router-dom";
+
+import type { activity } from "./types/customtypes";
+import "@/styles/index.sass";
+
+import Activities from "./app/Activities.tsx";
+import Apply from "./app/Apply.tsx";
+import Home from "./app/Home.tsx";
+import Login from "./app/Login.tsx";
+
+import Foot from "./components/SiteFooter.tsx";
+import Menu from "./components/SiteNav.tsx";
 
 const ActivityContext = createContext([]);
 
