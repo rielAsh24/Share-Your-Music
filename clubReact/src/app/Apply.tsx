@@ -1,8 +1,8 @@
 import { useContext, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { ActivityContext } from "./App";
-import { activity, form_data } from "./customtypes";
-import "./css/apply.sass";
+import { ActivityContext } from "@/App";
+import { activity, form_data } from "@/types/customtypes";
+import "@/styles/apply.sass";
 
 export default function Apply() {
   const firstevent: activity = useContext(ActivityContext)[0];

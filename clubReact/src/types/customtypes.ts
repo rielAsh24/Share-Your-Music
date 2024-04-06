@@ -12,4 +12,4 @@ type form_data = {
   Mode: string;
 };
 
-export { activity, form_data };
+export type { activity, form_data };

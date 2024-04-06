@@ -1,11 +1,18 @@
 // vite.config.ts
 import { defineConfig } from "vite";
-import reactRefresh from "@vitejs/plugin-react-refresh";
+import react from "@vitejs/plugin-react";
+import path from "path";
 
 export default defineConfig({
   base: "/Share-Your-Music/",
   build: {
-    outDir: "build"
+    outDir: "dist"
   },
-  plugins: [reactRefresh()]
+  plugins: [react()],
+  publicDir: "public",
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src")
+    }
+  }
 });

@@ -1,16 +1,19 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "jsx": "react-jsx",
+    "isolatedModules": true,
+    "jsx": "preserve",
     "module": "ESNext",
-    "moduleResolution": "NodeNext",
-    "noEmit": false,
-    "outDir": "src",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "resolveJsonModule": true,
-    "sourceMap": true,
-    "target": "ES6",
-    "types": ["node"]
+    "skipLibCheck": true,
+    "target": "ESNext",
+    "types": ["node", "vite/client"]
   },
-  "include": ["src/*", "tests", "vite-env.d.ts", "vite/client"],
+  "include": ["src/*.tsx", "vite-env.d.ts", "src/app/Activities.tsx", "src/app/Apply.tsx", "src/app/Home.tsx", "src/app/Login.tsx"],
   "exclude": ["node_modules"]
 }

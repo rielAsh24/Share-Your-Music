@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import "../css/head_foot.sass";
+import "@/styles/head_foot.sass";
 
 const SandwichMenu = (): JSX.Element => {
   return (

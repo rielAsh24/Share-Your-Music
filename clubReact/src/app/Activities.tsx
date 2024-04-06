@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { ActivityContext } from "./App";
-import { activity } from "./customtypes";
+import { ActivityContext } from "@/App";
+import { activity } from "@/types/customtypes";
 
-import "./css/activities.sass";
+import "@/styles/activities.sass";
 
 export default function Activities() {
   const eventsList: activity[] = useContext(ActivityContext);

@@ -1,14 +1,15 @@
 import { createContext, useEffect, useState } from "react";
-import { activity } from "./customtypes";
+import { activity } from "./types/customtypes";
 
-import Activities from "./Activities";
-import Apply from "./Apply";
+import Activities from "./app/Activities";
+import Apply from "./app/Apply";
+import Home from "./app/Home";
+import Login from "./app/Login";
+
 import Foot from "./components/SiteFooter";
-import Home from "./Home";
-import Login from "./Login";
 import Menu from "./components/SiteNav";
 
-import "./css/index.sass";
+import "@/styles/index.sass";
 
 const ActivityContext = createContext([]);
 
@@ -17,7 +18,7 @@ export default function App() {
   const [eventsList, setEvents] = useState<activity[] | undefined>([]);
 
   useEffect(() => {
-    fetch("https://clubserver-jjjr6nralq-uc.a.run.app/activities", {
+    fetch(`${import.meta.env.VITE_SERVER_HOME}/activities`, {
       method: "GET"
     })
       .then((res: Response) => res.json())

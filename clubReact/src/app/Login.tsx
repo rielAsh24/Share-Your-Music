@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import "./css/login.sass";
+import "@/styles/login.sass";
 
 export default function Login() {
   const [email, setEmail] = useState("");

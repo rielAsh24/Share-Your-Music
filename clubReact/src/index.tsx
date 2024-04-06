@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./css/index.sass";
+import "@/styles/index.sass";
 import App from "./App";
 
 // @ts-ignore
