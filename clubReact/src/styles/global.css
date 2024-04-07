@@ -79,7 +79,7 @@ body,
     @apply container flex flex-col bg-background text-foreground;
   }
   main {
-    @apply flex grow;
+    @apply flex grow py-8 lg:py-0;
   }
 }
 
