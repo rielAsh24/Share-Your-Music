@@ -19,4 +19,3 @@ next-env.d.ts
 # Directories to ignore
 .vscode
 .DS_Store
-clubServer/
