@@ -20,4 +20,3 @@ node_modules/
 # Directories to ignore
 .vscode
 .DS_Store
-clubServer/

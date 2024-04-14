@@ -1,0 +1,50 @@
+{
+  "name": "clubserver",
+  "version": "2.0.0",
+  "description": "",
+  "main": "./dist/src/index.js",
+  "scripts": {
+    "clean:install": "rm -rf node_modules yarn.lock",
+    "start": "node --watch ./dist/src/index.js",
+    "build": "tsc",
+    "db:init": "node ./dist/tests/initTestData.js",
+    "db:start": "docker compose up",
+    "deploy": "firebase deploy --only functions:clubserver",
+    "lint": "eslint . --ext .ts",
+    "test": "jest --watchAll"
+  },
+  "author": "Ashriel",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "express-session": "^1.18.0",
+    "firebase-admin": "^12.0.0",
+    "firebase-functions": "^4.4.0",
+    "mongoose": "^8.2.0",
+    "uuid": "^9.0.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/express-session": "^1.18.0",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.2.6",
+    "@typescript-eslint/eslint-plugin": "^7.5.0",
+    "@typescript-eslint/parser": "^7.5.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jest": "^27.9.0",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
+    "firebase-tools": "^13.7.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.4.0"
+  }
+}
