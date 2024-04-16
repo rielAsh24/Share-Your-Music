@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./clubReact
+        working-directory: ./frontend
 
     steps:
       - uses: actions/checkout@v4
@@ -39,7 +39,7 @@ jobs:
         with:
           node-version: 20
           cache: "yarn"
-          cache-dependency-path: "./clubReact/yarn.lock"
+          cache-dependency-path: "./frontend/yarn.lock"
 
       - name: Install dependencies
         run: yarn install
@@ -53,7 +53,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./clubReact/dist"
+          path: "./frontend/dist"
 
       - name: Deploy to GitHub Pages
         id: deployment

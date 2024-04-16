@@ -12,6 +12,7 @@ node_modules/
 
 # Files to ignore
 .env
+.env.*
 *.js
 *.js.map
 *.test.ts

@@ -1,11 +1,11 @@
 @import "media-queries"
-@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;500;600;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500&display=swap')
 
 // COLORS
 $primary: #EBF5EE
 $primary_2: #D5CFC6
 $secondary: #BFA89E
-$secondary_2: #8B786D
+$secondary_2: #B69B90
 $secondary_3: #6C5B51
 $tertiary: #78A1BB
 $tertiary_2: #283044
@@ -45,6 +45,7 @@ $Nunito: "Nunito Sans", sans-serif
   box-sizing: border-box
   margin: 0
   padding: 0
+  font-size: $text-base
 
 body, button
   font-size: $text-base
@@ -53,17 +54,15 @@ body, button
 .article-content
   display: flex
   width: 100%
-  align-content: center
+  flex-direction: column
   justify-content: center
-  flex-wrap: wrap
-  flex-grow: 1
+  align-items: center
   row-gap: 1rem
-  padding: 2rem 1rem
+  padding: 0rem 2rem
   @include responsive($lg)
-    flex-wrap: nowrap
-    flex-grow: 1
-    align-items: center
-    padding: 2rem
+    flex-direction: row
+    align-content: center
+    padding: 0rem 2rem
 
 .styled-buttons
   background-color: $secondary
@@ -85,8 +84,8 @@ body, button
   flex-direction: column
   row-gap: 2rem
   padding: 2rem
-  box-shadow: 0 0 10px 0 $primary_2
-  background-color: $primary_2
+  box-shadow: 0 0 0.25rem 0 $primary_2
+  border-radius: 0.5rem
   @include responsive($lg)
     width: 24rem
   span
@@ -101,11 +100,11 @@ body, button
     input, textarea, select, option
       padding: 1rem
       background-color: $primary
-      border: 1px solid $primary
+      border: solid $primary_2
       border-radius: 0.25rem
       &:focus
         outline: none
-        border: 1px solid $primary_2
+        border: 2px solid $secondary
       &::placeholder
         opacity: 0.5
         @include responsive($lg)

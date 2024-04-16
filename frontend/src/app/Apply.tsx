@@ -108,6 +108,10 @@ export default function Apply() {
         <span>
           <label>How did you hear about us?</label>
           <select {...register("Mode", { required: true })}>
+            <option selected className="pH" value="How do you know us?">
+              How do you know us?
+            </option>
+            <hr />
             <option value="Campus Events">Campus Events</option>
             <option value="Social Media">Social Media</option>
             <option value="School Website">School Website</option>

@@ -2,11 +2,7 @@
 
 .membership_form
 	@extend .form_design
-	.button-group
-		display: flex
-		justify-content: center
-		row-gap: 1rem
-	select, option, option
+	select, option
 		padding: 0.5rem
 		background-color: $primary
 		border: 1px solid $primary
@@ -21,7 +17,6 @@ dialog
 	padding: 2rem
 	width: 24rem
 	background-color: $primary_2
-	font-family: $Nunito
 	border-radius: $rounded-lg
 	box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5)
 	@include responsive($lg)
@@ -44,7 +39,7 @@ dialog
 		text-align: center
 		padding-top: 1rem
 	button
-		@extend .styled-buttons
+		@extend .styled-buttons, .button-group
 		padding: 0.75rem
 		width: 10em
 		@include responsive($lg)
