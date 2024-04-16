@@ -9,11 +9,10 @@ dist
 .next
 
 # Dependency directories
-node_modules/
+node_modules
 
 # Files to ignore
 .env.*
-*.test.ts
 next-env.d.ts
 
 # Directories to ignore
