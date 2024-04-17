@@ -12,64 +12,13 @@
 .logo
 	color: $tertiary_2
 	font-family: $Cormorant
-	margin-right: -0.5rem
 	letter-spacing: 0.5rem
 	font-size: $text-4xl
 	font-weight: 600
 	@include responsive($md)
 		font-weight: 700
-		margin-right: -1rem
-		letter-spacing: 1rem
-	@include responsive($lg)
-		font-size: $text-5xl
-
-.sandwich-menu
-	display: block
-	@include responsive($lg)
-		display: none
-	.sandwich-collapse
-		display: inline-flex
-		flex-direction: column
-		row-gap: 0.5rem
-	.sandwich-expand
-		display: flex
-		flex-direction: column
-		justify-content: center
-		background-color: $secondary
-		row-gap: 0.5rem
-		position: absolute
-		inset: 0
-		z-index: 1
-		.sandwich-menu-buttons
-			width: 100%
-			margin: 0 auto
-			padding: 1rem 0.75rem
-			border: 0rem
-			color: $tertiary_2
-			background-color: $secondary
-			&:hover
-				background-color: $secondary_2
-
-.sandwich-menu
-	display: flex
-	margin: 0
-	padding: 0
-	position: absolute
-	top: 1rem
-	right: 2rem
-	background-color: #fff
-	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)
-	transform: translateY(-100%)
-	transition: transform 0.3s ease-in-out
-
-	&.sidebar
-		transform: translateY(0)
 
 .hamburger
-	// position: absolute
-	// top: 2rem
-	// right: 2rem
-	// z-index: 2
 	outline: none
 	border: none
 	@include responsive($lg)
@@ -87,12 +36,11 @@
 	@include responsive($lg)
 		display: none
 
-// done
 nav
 	display: flex
 	justify-content: space-between
 	place-items: center
-	padding: 1rem 2rem
+	padding: 1.5rem 2rem
 
 .full-menu
 	display: none
@@ -125,4 +73,4 @@ footer
 	display: flex
 	background-color: $tertiary_2
 	color: $tertiary
-	padding: 2rem
+	padding: 1.5rem 2rem

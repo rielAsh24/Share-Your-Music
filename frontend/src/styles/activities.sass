@@ -3,27 +3,20 @@
 .activityView
 	@extend .article-content
 	column-gap: 1rem
-	div
-		outline: 0.1rem solid $black
 
 .activity-table
 	border: 0rem
-	font-size: $text-sm
 	background-color: $primary_2
-	@include responsive($md)
-		font-size: $text-base
-	@include responsive($lg)
-		font-size: $text-lg
 	th
 		width: 33.33%
 		text-align: center
 		padding: 1rem 2rem
-		outline: 0.1rem solid $primary
+		outline: 0.1rem solid $primary_2
 		@include responsive($lg)
 			padding: 2rem
 	td
 		padding: 0.5rem
-		outline: 0.1rem solid $primary
+		outline: 0.1rem solid $primary_2
 		button
 			@extend .styled-buttons
 			width: 7rem
