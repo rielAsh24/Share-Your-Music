@@ -2,6 +2,7 @@ import { isAuth } from "@/actions/auth";
 import { NavMember, NavVisitor } from "./NavDefine";
 
 export default async function Navigation() {
-  if (isAuth()) return <NavMember />;
+  const isloggedIn = await isAuth();
+  if (isloggedIn) return <NavMember />;
   else return <NavVisitor />;
 }
