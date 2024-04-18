@@ -1,0 +1,12 @@
+services:
+  mongo:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_DATABASE: sym-db
+    ports:
+      - 7655:27017
+    volumes:
+      - clubdb:/data/db
+volumes:
+  clubdb:
+    driver: local

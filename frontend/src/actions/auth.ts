@@ -20,17 +20,18 @@ async function apply(data: FormData) {
 }
 
 async function login(data: FormData) {
-  try {
-    const response = await fetch(`${process.env.SERVER_HOME}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: data.get("email"),
-        password: data.get("password"),
-      }),
-    });
+  const response = await fetch(`${process.env.SERVER_HOME}/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: data.get("email"),
+      password: data.get("password"),
+    }),
+  });
+
+  if (response.ok) {
     const res = await response.json();
 
     if (res.sess)
@@ -42,27 +43,23 @@ async function login(data: FormData) {
           maxAge: 60 * 30,
         },
       );
-    else throw "Something went wrong :(";
-  } catch (error) {
-    return error;
-  }
+  } else throw "Something went wrong :(";
   redirect("/", RedirectType.replace);
 }
 
 async function logout() {
   cookies().delete(process.env.COOKIE_NAME!);
-  let response: Response;
-  try {
-    response = await fetch(`${process.env.SERVER_HOME}/auth/logout`, {
+  const response: Response = await fetch(
+    `${process.env.SERVER_HOME}/auth/logout`,
+    {
       method: "GET",
-    });
-  } catch (error) {
-    return error;
-  }
-  redirect("/", RedirectType.replace);
+    },
+  );
+  if (response.ok) redirect("/", RedirectType.replace);
+  else throw "Something went wrong :(";
 }
 
-function isAuth() {
+async function isAuth() {
   const authenticated: boolean = cookies().has(process.env.COOKIE_NAME!);
   if (authenticated) return true;
   return false;

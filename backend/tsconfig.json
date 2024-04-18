@@ -1,14 +1,10 @@
 {
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "outDir": "dist",
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "ESNext"
+    "outDir": "dist"
   },
-  "include": ["src/**/*.ts", "tests/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts", "tests/*.ts"]
 }
