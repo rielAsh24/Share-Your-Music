@@ -5,6 +5,8 @@ import { describe, expect, test } from "@jest/globals";
  * TODO: Re-write all tests
  */
 
+let cookie: string;
+
 describe("1. Apply for membership", () => {
   test("should return 201 (Account Created)", async () => {
     const response = await fetch(`${process.env.API_URL}/auth/apply`, {
@@ -18,8 +20,8 @@ describe("1. Apply for membership", () => {
         password: "somebody#2usetoknow"
       })
     });
-    const res = await response.json();
 
+    const res = await response.json();
     expect(response.ok).toBeTruthy();
     expect(response.status).toEqual(201);
     expect(res.message).toEqual("Member Application Successful");
@@ -38,6 +40,7 @@ describe("2. Login as a member", () => {
         password: "somebody#1usetoknow"
       })
     });
+    cookie = response.headers.getSetCookie()[0];
 
     const res = await response.json();
     expect(response.ok).toBeTruthy();
@@ -49,7 +52,10 @@ describe("2. Login as a member", () => {
 describe("3. Logout as a member", () => {
   test("should return 204", async () => {
     const response = await fetch(`${process.env.API_URL}/auth/logout`, {
-      method: "GET"
+      method: "GET",
+      headers: {
+        cookie: cookie
+      }
     });
     expect(response.ok).toBeTruthy();
     expect(response.status).toEqual(204);

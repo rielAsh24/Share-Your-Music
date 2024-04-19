@@ -3,10 +3,14 @@ import { Router } from "express";
 import type { Request, Response } from "express";
 import { Activities } from "../models/Events";
 
+import { isAuthenticated } from "../middleware/auth";
+
 const router = Router();
 
+router.use(isAuthenticated);
+
 // GET ALL ACTIVITIES
-router.get("/activities", (_: Request, res: Response) => {
+router.get("/activities", (__: Request, res: Response) => {
   Activities.find({})
     .select({ _id: 0, __v: 0 })
     .then((acts) => {
