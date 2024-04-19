@@ -15,8 +15,12 @@ async function apply(data: FormData) {
       password: data.get("password"),
     }),
   });
+  console.log(response.status);
 
-  return response.status;
+  if (response.ok) {
+    const res = await response.json();
+    return res.message;
+  } else throw Error("Something went wrong :(");
 }
 
 async function login(data: FormData) {
@@ -33,7 +37,6 @@ async function login(data: FormData) {
 
   if (response.ok) {
     const res = await response.json();
-
     if (res.sess)
       cookies().set(
         process.env.COOKIE_NAME!,
@@ -48,15 +51,22 @@ async function login(data: FormData) {
 }
 
 async function logout() {
-  cookies().delete(process.env.COOKIE_NAME!);
+  const header_cookie = cookies().get(process.env.COOKIE_NAME!);
+
   const response: Response = await fetch(
     `${process.env.SERVER_HOME}/auth/logout`,
     {
       method: "GET",
+      headers: {
+        cookie: `${header_cookie!.value}`,
+      },
     },
   );
-  if (response.ok) redirect("/", RedirectType.replace);
-  else throw "Something went wrong :(";
+
+  if (response.ok) {
+    cookies().delete(process.env.COOKIE_NAME!);
+    redirect("/", RedirectType.replace);
+  } else throw "Something went wrong :(";
 }
 
 async function isAuth() {

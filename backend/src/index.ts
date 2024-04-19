@@ -1,7 +1,10 @@
 import "dotenv/config";
 
 import express from "express";
+import session from "express-session";
+
 import mongoose from "mongoose";
+import MongoStore from "connect-mongo";
 
 import apiRouter from "./routes/activities";
 import authRouter from "./routes/members";
@@ -10,11 +13,24 @@ import authRouter from "./routes/members";
 const PORT: number = Number(process.env.SERVE_PORT);
 const app = express();
 
+// SESSION SETUP
+app.use(
+  session({
+    store: MongoStore.create({
+      mongoUrl: process.env.DB_URL!
+    }),
+    name: process.env.COOKIE_NAME!,
+    cookie: { secure: false },
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.SESS_SEC!
+  })
+);
+
 app.use(express.json({ limit: 300 }));
 
 if (app.get("env") === "production") {
   app.set("trust proxy", 1); // trust first proxy
-  // sess.cookie.secure = true; // serve secure cookies
 }
 
 app.use("/api", apiRouter);

@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 export function middleware(request: NextRequest) {
   const isAuthenticated = cookies().has(process.env.COOKIE_NAME!);
   const reqURL: string = request.nextUrl.pathname;
+
   if (isAuthenticated) {
     if (reqURL === "/login" || reqURL === "/apply")
       return NextResponse.redirect(new URL("/", request.url));

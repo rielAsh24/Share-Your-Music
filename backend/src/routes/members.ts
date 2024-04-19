@@ -1,25 +1,17 @@
 import "dotenv/config";
-import bcrypt from "bcrypt";
-import session from "express-session";
-import { Router } from "express";
 
+import bcrypt from "bcrypt";
+import { Router } from "express";
 import type { Request, Response } from "express";
+
 import { Members } from "../models/Members";
+
+import { isAuthenticated } from "../middleware/auth";
+import { verifySession } from "../middleware/verify";
 
 const router = Router();
 
-// SESSION SETUP
-router.use(
-  session({
-    secret: process.env.SESS_SEC!,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false },
-    name: process.env.COOKIE_NAME!
-  })
-);
-
-// APPLY AS MEMBER
+// APPLY FOR MEMBERSHIP
 router.post("/apply", (req: Request, res: Response) => {
   let { name, email, password } = req.body;
   // Encryption
@@ -38,25 +30,27 @@ router.post("/apply", (req: Request, res: Response) => {
     });
 });
 
-// LOGIN AS MEMBER
-router.post("/login", (req: Request, res: Response) => {
+// LOGIN
+router.post("/login", verifySession, (req: Request, res: Response) => {
   const { email, password } = req.body;
+  // Find if email exists
   Members.findOne({ email: email }).then((user_info) => {
     if (user_info === null) {
-      res.status(401).json({ error: true, message: "User Not Found" });
-      return;
+      res.status(404).json({ error: true, message: "User Not Found" });
     } else {
+      // Encrypt pass
       const verified = bcrypt.compareSync(password, user_info.password);
       if (verified) {
+        // Regenerate session
         req.session.regenerate((err) => {
           if (err) {
             console.log(err);
             res
               .status(500)
               .json({ error: true, message: "Internal Server error" });
-          } else if (req.session)
-            // res.status(202).json({ sess: true, message: "Login Success" });
+          } else if (req.session) {
             res.status(202).json({ sess: true, message: "Login Success" });
+          }
         });
       } else
         res.status(401).json({ error: true, message: "User/Password error" });
@@ -64,14 +58,26 @@ router.post("/login", (req: Request, res: Response) => {
   });
 });
 
-// LOGOUT AS MEMBER
-router.get("/logout", (req: Request, res: Response) => {
+router.get("/verify", (req: Request, res: Response) => {
+  const { session, sessionStore } = req;
+  sessionStore.get(session.id, (err, session) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
+
+    if (!session) res.status(404).send("Session Not Found");
+    else res.status(204).send("Session Found");
+  });
+});
+
+// LOGOUT
+router.get("/logout", isAuthenticated, (req: Request, res: Response) => {
   req.session.destroy((err) => {
     if (err) {
       console.log(err);
       res.status(500).json({ error: true, message: "Internal Server error" });
     }
-    // res.clearCookie(process.env.COOKIE_NAME!);
     res.sendStatus(204);
   });
 });

@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 
-export async function isAuthenticated(
+export async function verifySession(
   req: Request,
   res: Response,
   next: NextFunction
@@ -12,7 +12,7 @@ export async function isAuthenticated(
       res.sendStatus(500);
     }
 
-    if (!session) res.status(401).json({ message: "Unauthorized" });
-    else next();
+    if (!session) next();
+    else res.status(204).json({ message: "Session Found" });
   });
 }
