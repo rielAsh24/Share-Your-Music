@@ -1,11 +1,23 @@
 import "dotenv/config";
 import bcrypt from "bcrypt";
+import session from "express-session";
 import { Router } from "express";
 
 import type { Request, Response } from "express";
-import Members from "../models/Members";
+import { Members } from "../models/Members";
 
 const router = Router();
+
+// SESSION SETUP
+router.use(
+  session({
+    secret: process.env.SESS_SEC!,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+    name: process.env.COOKIE_NAME!
+  })
+);
 
 // APPLY AS MEMBER
 router.post("/apply", (req: Request, res: Response) => {
@@ -37,8 +49,13 @@ router.post("/login", (req: Request, res: Response) => {
       const verified = bcrypt.compareSync(password, user_info.password);
       if (verified) {
         req.session.regenerate((err) => {
-          if (err) console.log(err);
-          else if (req.session)
+          if (err) {
+            console.log(err);
+            res
+              .status(500)
+              .json({ error: true, message: "Internal Server error" });
+          } else if (req.session)
+            // res.status(202).json({ sess: true, message: "Login Success" });
             res.status(202).json({ sess: true, message: "Login Success" });
         });
       } else
@@ -50,9 +67,12 @@ router.post("/login", (req: Request, res: Response) => {
 // LOGOUT AS MEMBER
 router.get("/logout", (req: Request, res: Response) => {
   req.session.destroy((err) => {
-    if (err) console.log(err);
-    res.clearCookie(process.env.COOKIE_NAME!);
-    res.status(200).json({ message: "Logout Operation Successful\n" });
+    if (err) {
+      console.log(err);
+      res.status(500).json({ error: true, message: "Internal Server error" });
+    }
+    // res.clearCookie(process.env.COOKIE_NAME!);
+    res.sendStatus(204);
   });
 });
 

@@ -4,7 +4,8 @@ name: Deploy SYMC to Pages
 on:
   # Runs on pushes targeting below branch
   push:
-    branches: ["gh-pages"]
+    branches:
+      - "gh-pages"
 
 # Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
 permissions:
@@ -29,23 +30,26 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./clubReact
+        working-directory: ./frontend
 
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "yarn"
-          cache-dependency-path: "./clubReact/yarn.lock"
+          cache: "pnpm"
+          cache-dependency-path: "pnpm-lock.yaml"
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Build
-        run: yarn build
+        run: pnpm build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -53,7 +57,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./clubReact/dist"
+          path: "./frontend/.next"
 
       - name: Deploy to GitHub Pages
         id: deployment
