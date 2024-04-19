@@ -4,7 +4,6 @@
     "allowImportingTsExtensions": true,
     "allowJs": true,
     "baseUrl": ".",
-    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
     "jsx": "preserve",

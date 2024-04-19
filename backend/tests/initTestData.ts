@@ -2,8 +2,8 @@ import "dotenv/config";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
-import Activities from "../src/models/Activities";
-import Members from "../src/models/Members";
+import { Activities } from "../src/models/Events";
+import { Members } from "../src/models/Members";
 import eventsList from "./test_data/eventData.json";
 
 /**
@@ -18,20 +18,20 @@ async function addTestMember() {
 
   await Members.create(testMember)
     .then(() => console.log("Test Member Added"))
-    .catch((err) => console.error(err));
+    .catch((err: Error) => console.error(err));
 }
 
 async function addTestEvents() {
   const eventsTest = eventsList.map((events) => {
     return {
       name: events.name,
-      date: new Date(events.date).toISOString()
+      date: new Date(events.date).toDateString()
     };
   });
 
   await Activities.insertMany(eventsTest)
     .then(() => console.log("Test Events Added"))
-    .catch((err) => console.error(err));
+    .catch((err: Error) => console.error(err));
 }
 
 mongoose
@@ -41,4 +41,4 @@ mongoose
       mongoose.connection.close();
     });
   })
-  .catch((err) => console.error(err));
+  .catch((err: Error) => console.error(err));

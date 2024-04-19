@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const userSchema = new Schema({
+const memberSchema = new Schema({
   name: {
     type: String,
     minLength: 2,
@@ -19,6 +19,4 @@ const userSchema = new Schema({
   }
 });
 
-const Members = model("Members", userSchema);
-
-export default Members;
+export const Members = model("Members", memberSchema);

@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const activitiesSchema = new Schema({
+const activity = new Schema({
   name: {
     type: String,
     minLength: 10,
@@ -19,6 +19,9 @@ const activitiesSchema = new Schema({
   }
 });
 
-const Activities = model("Activities", activitiesSchema);
+export const Activities = model("Activities", activity);
 
-export default Activities;
+export type Activity = {
+  name: string;
+  date: string;
+};

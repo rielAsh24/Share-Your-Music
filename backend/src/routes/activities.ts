@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { Router } from "express";
 import type { Request, Response } from "express";
-import Activities from "../models/Activities";
+import { Activities } from "../models/Events";
 
 const router = Router();
 
@@ -18,9 +18,9 @@ router.get("/activities", (_: Request, res: Response) => {
     });
 });
 
-// GET ONE ACTIVITy
+// GET ONE ACTIVITY
 router.get("/activities/:name", (req: Request, res: Response) => {
-  Activities.findOne({ name: req.params.name })
+  Activities.findOne({ name: decodeURIComponent(req.params.name) })
     .select({ _id: 0, __v: 0 })
     .then((acts) => {
       res.status(200).json(acts);

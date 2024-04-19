@@ -43,7 +43,7 @@ async function login(data: FormData) {
           maxAge: 60 * 30,
         },
       );
-  } else throw "Something went wrong :(";
+  } else throw Error("Something went wrong :(");
   redirect("/", RedirectType.replace);
 }
 

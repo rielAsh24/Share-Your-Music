@@ -13,7 +13,7 @@
     "db:down": "docker compose down && docker volume rm backend_clubdb",
     "deploy": "firebase deploy --only functions:clubserver",
     "lint": "eslint . --ext .ts",
-    "test": "jest --watchAll"
+    "test": "jest"
   },
   "author": "Ashriel",
   "license": "ISC",
@@ -23,17 +23,15 @@
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "express-session": "^1.18.0",
-    "firebase-admin": "^12.0.0",
-    "firebase-functions": "^4.4.0",
     "mongoose": "^8.2.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/express-session": "^1.18.0",
-    "@jest/globals": "^29.7.0",
     "@types/node": "^20.2.6",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
@@ -44,7 +42,7 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jest": "^27.9.0",
     "eslint-plugin-promise": "^6.0.0",
-    "firebase-tools": "^13.7.0",
+    "firebase-tools": "^13.7.3",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.2"
   }
