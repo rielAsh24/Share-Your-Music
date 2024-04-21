@@ -9,15 +9,24 @@ import eventsList from "./test_data/eventData.json";
 /**
  * TODO: Re-work init and Server + DB interaction
  */
+
 async function addTestMember() {
   const testMember = {
     name: "test",
     email: "test@email.com",
-    password: bcrypt.hashSync("somebody#1usetoknow", 13)
+    password: bcrypt.hashSync("somebody#1usetoknow", 13),
+    role: "member"
   };
 
-  await Members.create(testMember)
-    .then(() => console.log("Test Member Added"))
+  const adminMember = {
+    name: "ADMIN",
+    email: process.env.ADMIN_EMAIL!,
+    password: bcrypt.hashSync(process.env.ADMIN_PASS!, 13),
+    role: "admin"
+  };
+
+  await Members.insertMany([testMember, adminMember])
+    .then(() => console.log("Test Members Added"))
     .catch((err: Error) => console.error(err));
 }
 

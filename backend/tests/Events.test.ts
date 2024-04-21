@@ -5,12 +5,14 @@ import type { Activity } from "../src/models/Events";
 import eventsList from "./test_data/eventData.json";
 
 const api = `${process.env.API_URL}/api/activities`;
+
 const eventsTest: Activity[] = eventsList.map((e) => {
   return {
     name: e.name,
     date: new Date(e.date).toISOString()
   };
 });
+
 let cookie: string;
 
 beforeAll(async () => {
@@ -65,7 +67,7 @@ describe("2. Get One Event", () => {
     const res = await response.json();
     expect(response.ok).toBeTruthy();
     expect(response.status).toEqual(200);
-    expect(res.first).toEqual(eventsTest[0]);
+    expect(res).toEqual(eventsTest[0]);
   });
 });
 

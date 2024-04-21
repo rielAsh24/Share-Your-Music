@@ -20,7 +20,8 @@ router.post("/apply", (req: Request, res: Response) => {
   Members.create({
     name: name,
     email: email,
-    password: newpassword
+    password: newpassword,
+    role: "member"
   })
     .then(() => {
       res.status(201).json({ message: "Member Application Successful" });
@@ -49,15 +50,28 @@ router.post("/login", verifySession, (req: Request, res: Response) => {
               .status(500)
               .json({ error: true, message: "Internal Server error" });
           } else if (req.session) {
-            res.status(202).json({ sess: true, message: "Login Success" });
-          }
+            if (user_info.role === "admin") req.session.admin = true;
+            else req.session.admin = false;
+            req.session.save((err) => {
+              if (err) {
+                console.log(err);
+                res
+                  .status(500)
+                  .json({ error: true, message: "Internal Server error" });
+              }
+              res.status(202).json({ sess: true, message: "Login Success" });
+            });
+          } else
+            res
+              .status(401)
+              .json({ error: true, message: "User/Password error" });
         });
-      } else
-        res.status(401).json({ error: true, message: "User/Password error" });
+      }
     }
   });
 });
 
+// VERIFY SESSIONS
 router.get("/verify", (req: Request, res: Response) => {
   const { session, sessionStore } = req;
   sessionStore.get(session.id, (err, session) => {
