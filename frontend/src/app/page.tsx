@@ -3,12 +3,12 @@ import homeImg from "@/../public/home_page.jpg";
 
 export default function Page() {
   return (
-    <section className="grid gap-8 lg:grid-cols-2 lg:place-content-center">
-      <div className="grid grid-flow-row gap-y-4 lg:gap-y-8">
-        <div className="text-2xl lg:text-4xl">
+    <section className="grid gap-8 lg:grid-cols-2 lg:place-items-center">
+      <div className="grid grid-flow-row gap-y-4 lg:gap-y-6">
+        <div className="text-2xl font-medium lg:text-4xl">
           <h2>Our Goal</h2>
         </div>
-        <div className="grid grid-flow-row gap-y-2 lg:gap-y-4 text-justify">
+        <div className="grid grid-flow-row gap-y-2 text-justify lg:gap-y-4">
           <p className="">
             We believe that music &#x1f3b6; is something helps many of us
             confront our feelings, our thoughts, our emotions and sharing this

@@ -5,11 +5,13 @@ import { describe, expect, test } from "@jest/globals";
  * TODO: Re-write all tests
  */
 
+const api = `${process.env.API_URL}/auth/`;
+
 let cookie: string;
 
 describe("1. Apply for membership", () => {
   test("should return 201 (Account Created)", async () => {
-    const response = await fetch(`${process.env.API_URL}/auth/apply`, {
+    const response = await fetch(`${api}/apply`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -30,7 +32,7 @@ describe("1. Apply for membership", () => {
 
 describe("2. Login as a member", () => {
   test("should return 202 (Login Sucessful)", async () => {
-    const response = await fetch(`${process.env.API_URL}/auth/login`, {
+    const response = await fetch(`${api}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -51,7 +53,7 @@ describe("2. Login as a member", () => {
 
 describe("3. Logout as a member", () => {
   test("should return 204", async () => {
-    const response = await fetch(`${process.env.API_URL}/auth/logout`, {
+    const response = await fetch(`${api}/logout`, {
       method: "GET",
       headers: {
         cookie: cookie

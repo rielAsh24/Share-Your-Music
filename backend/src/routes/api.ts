@@ -24,7 +24,7 @@ router.get("/activities", (__: Request, res: Response) => {
 
 // GET ONE ACTIVITY
 router.get("/activities/:name", (req: Request, res: Response) => {
-  Activities.findOne({ name: decodeURIComponent(req.params.name) })
+  Activities.findOne({ name: req.params.name })
     .select({ _id: 0, __v: 0 })
     .then((acts) => {
       res.status(200).json(acts);
