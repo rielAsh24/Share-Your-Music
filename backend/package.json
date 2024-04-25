@@ -4,7 +4,7 @@
   "description": "",
   "main": "./dist/src/index.js",
   "scripts": {
-    "clean:install": "rm -rf node_modules yarn.lock",
+    "clean:install": "rm -rf node_modules",
     "clean:build": "rm -rf dist",
     "dev": "node --watch ./dist/src/index.js",
     "build": "tsc",
