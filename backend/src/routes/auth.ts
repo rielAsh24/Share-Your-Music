@@ -71,6 +71,18 @@ router.post("/login", verifySession, (req: Request, res: Response) => {
   });
 });
 
+// GET USER PROFILE
+router.get("/profile", isAuthenticated, (__: Request, res: Response) => {
+  Members.findOne({ role: "member" })
+    .select({ _id: 0, password: 0 })
+    .then((profile) => {
+      res.status(200).json(profile);
+    })
+    .catch((err) => {
+      res.status(400).json({ error: true, message: err.message });
+    });
+});
+
 // VERIFY SESSIONS
 router.get("/verify", (req: Request, res: Response) => {
   const { session, sessionStore } = req;
