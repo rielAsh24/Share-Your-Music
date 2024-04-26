@@ -6,18 +6,18 @@ npm-debug.log*
 # Bundler related directories
 .cache
 dist
+.next
 
 # Dependency directories
-node_modules/
+node_modules
 
 # Files to ignore
-.env
 .env.*
-*.js
-*.js.map
-*.test.ts
+next-env.d.ts
+pnpm-lock.yaml
+members.json
+firebase-hosting-*.yml
 
 # Directories to ignore
 .vscode
 .DS_Store
-clubServer/
