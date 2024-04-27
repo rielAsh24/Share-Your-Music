@@ -14,6 +14,11 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
     defaults:
       run:
         working-directory: ./backend
@@ -35,13 +40,15 @@ jobs:
           cache: "pnpm"
 
       - name: Build
-        run: pnpm build
+        run: pnpm build:deploy
+      
+      - name: Create env file
+        run: |
+          touch .env
+          echo DB_URL="${{ secrets.DB_URL }}" >> .env
+          echo COOKIE_NAME="${{ secrets.COOKIE_NAME }}" >> .env
+          echo SESS_SEC="${{ secrets.SESS_SEC }}" >> .env
+          cat .env
 
-      - name: Firebase Deploy
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          channelId: live
-          entryPoint: ./backend
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_SYM_C_22620 }}"
-          projectId: sym-c-22620
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Deploy to Firebase
+        run: pnpm fb:deploy ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SYM_C_22620 }}

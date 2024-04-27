@@ -10,7 +10,7 @@ const router = Router();
 router.use(isAuthenticated);
 
 // GET ALL ACTIVITIES
-router.get("/activities", (__: Request, res: Response) => {
+router.get("/", (__: Request, res: Response) => {
   Activities.find({})
     .select({ _id: 0, __v: 0 })
     .then((acts) => {
@@ -23,7 +23,7 @@ router.get("/activities", (__: Request, res: Response) => {
 });
 
 // GET ONE ACTIVITY
-router.get("/activities/:name", (req: Request, res: Response) => {
+router.get("/:name", (req: Request, res: Response) => {
   Activities.findOne({ name: req.params.name })
     .select({ _id: 0, __v: 0 })
     .then((acts) => {

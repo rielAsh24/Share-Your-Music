@@ -12,6 +12,7 @@ dist
 node_modules
 
 # Files to ignore
+.env
 .env.*
 next-env.d.ts
 pnpm-lock.yaml

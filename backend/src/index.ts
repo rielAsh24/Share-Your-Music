@@ -5,14 +5,19 @@ import session from "express-session";
 
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
+import {onRequest} from "firebase-functions/v2/https";
 
-import apiRouter from "./routes/api";
+import eventsRouter from "./routes/events";
 import authRouter from "./routes/auth";
 import ad_memRouter from "./routes/ad-mems";
 
 // SERVER DEFINITIONS
-const PORT: number = Number(process.env.SERVE_PORT);
 const app = express();
+
+// DATABASE CONNECTION
+mongoose.connect(process.env.DB_URL!).then(() => {
+  console.log("Connected to MongoDB");
+});
 
 // SESSION SETUP
 app.use(
@@ -36,13 +41,8 @@ if (app.get("env") === "production") {
   app.set("trust proxy", 1); // trust first proxy
 }
 
-app.use("/api", apiRouter);
+app.use("/events", eventsRouter);
 app.use("/auth", authRouter);
 app.use("/members", ad_memRouter);
 
-// DATABASE CONNECTION
-mongoose.connect(process.env.DB_URL!).then(() => {
-  console.log("Connected to MongoDB");
-});
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+export const api = onRequest(app);

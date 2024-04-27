@@ -4,7 +4,7 @@ import type { Activity } from "../src/models/Events";
 
 import eventsList from "./test_data/eventData.json";
 
-const api = `${process.env.API_URL}/api/activities`;
+const api = `${process.env.API_URL}/events`;
 
 const eventsTest: Activity[] = eventsList.map((e) => {
   return {
