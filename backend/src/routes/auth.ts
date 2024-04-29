@@ -13,7 +13,7 @@ const router = Router();
 
 // APPLY FOR MEMBERSHIP
 router.post("/apply", (req: Request, res: Response) => {
-  let { name, email, password } = req.body;
+  const { name, email, password } = req.body;
   // Encryption
   const newpassword = bcrypt.hashSync(password, 13);
 

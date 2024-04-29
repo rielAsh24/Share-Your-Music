@@ -7,6 +7,7 @@ npm-debug.log*
 .cache
 dist
 .next
+backend/lib
 
 # Dependency directories
 node_modules

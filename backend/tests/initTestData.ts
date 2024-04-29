@@ -44,7 +44,7 @@ async function addTestEvents() {
 }
 
 mongoose
-  .connect(process.env.DB_URL!)
+  .connect(process.env.MONGODB_URI!)
   .then(() => {
     Promise.all([addTestMember(), addTestEvents()]).then(() => {
       mongoose.connection.close();

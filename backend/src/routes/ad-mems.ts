@@ -51,7 +51,7 @@ router.get("/:email", (req: Request, res: Response) => {
 
 // MANUALLY ADD MEMBERS
 router.post("/", (req: Request, res: Response) => {
-  let { name, email } = req.body;
+  const { name, email } = req.body;
   // Generate Default Password
   const password = bcrypt.hashSync("thisshouldbechanged", 13);
 

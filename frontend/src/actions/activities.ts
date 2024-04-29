@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 async function allEvents() {
   const header_cookie = cookies().get(process.env.COOKIE_NAME!);
 
-  const response = await fetch(`${process.env.SERVER_HOME}/api/activities`, {
+  const response = await fetch(`${process.env.SERVER_HOME}/events`, {
     method: "GET",
     headers: {
       cookie: `${header_cookie!.value}`,
