@@ -6,9 +6,9 @@
   "scripts": {
     "clean:install": "rm -rf node_modules",
     "clean:build": "rm -rf dist",
-    "dev": "node --watch ./dist/src/index.js",
+    "dev": "node --watch ./dist/api/index.js",
     "dev:v": "vercel dev",
-    "build": "tsc",
+    "build": "tsc -w --project tsconfig.dev.json",
     "vercel-build": "echo Build in process",
     "db:up": "docker compose up -d",
     "db:init": "node ./dist/tests/initTestData.js",

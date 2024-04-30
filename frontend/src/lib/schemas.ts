@@ -22,6 +22,7 @@ const loginSchema = z.object({
 type ApplyData = z.infer<typeof applySchema>;
 type LoginData = z.infer<typeof loginSchema>;
 type Activity = {
+  _id: string;
   name: string;
   date: string;
 };

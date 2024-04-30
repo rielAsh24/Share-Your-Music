@@ -10,7 +10,7 @@ export async function isAdmin(req: Request, res: Response, next: NextFunction) {
 
     if (!session) res.status(401).json({ message: "Unauthorized" });
     else {
-      if (session.admin) next();
+      if (session.profile.role === "admin") next();
       else res.status(401).json({ message: "Unauthorized" });
     }
   });

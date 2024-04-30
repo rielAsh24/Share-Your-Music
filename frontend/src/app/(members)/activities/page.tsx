@@ -27,7 +27,7 @@ export default async function Activities() {
         </TableHeader>
         <TableBody>
           {eventsList.map((e: Activity, i: number) => (
-            <TableRow key={e.name}>
+            <TableRow key={e._id}>
               <TableCell>{i + 1}</TableCell>
               <TableCell>{e.name}</TableCell>
               <TableCell>{new Date(e.date).toDateString()}</TableCell>

@@ -1,19 +1,20 @@
 import "dotenv/config";
-import { beforeAll, describe, expect, test } from "@jest/globals";
-import type { Activity } from "../src/models/Events";
 
+import { beforeAll, describe, expect, test } from "@jest/globals";
+import type { Activity } from "../api/models/Events";
 import eventsList from "./test_data/eventData.json";
 
 const api = `${process.env.API_URL}/events`;
 
-const eventsTest: Activity[] = eventsList.map((e) => {
+let cookie: string;
+
+const eventsTest: Activity[] = eventsList.map((e, i) => {
   return {
+    _id: `${e.name.substring(0, 2).toUpperCase()}${i}`,
     name: e.name,
     date: new Date(e.date).toISOString()
   };
 });
-
-let cookie: string;
 
 beforeAll(async () => {
   const response = await fetch(`${process.env.API_URL}/auth/login`, {
@@ -48,15 +49,12 @@ describe("1. Get All Events", () => {
 
 describe("2. Get One Event", () => {
   test("should return 1st Event", async () => {
-    const response = await fetch(
-      `${api}/${encodeURIComponent("Ice Breaker Session")}`,
-      {
-        method: "GET",
-        headers: {
-          cookie: cookie
-        }
+    const response = await fetch(`${api}/${eventsTest[0]._id}`, {
+      method: "GET",
+      headers: {
+        cookie: cookie
       }
-    );
+    });
 
     const res = await response.json();
     expect(response.ok).toBeTruthy();

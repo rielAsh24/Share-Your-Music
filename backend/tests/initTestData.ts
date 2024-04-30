@@ -1,9 +1,10 @@
 import "dotenv/config";
+
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
-import { Activities } from "../src/models/Events";
-import { Members } from "../src/models/Members";
+import { Activities, type Activity } from "../api/models/Events";
+import { Members } from "../api/models/Members";
 import eventsList from "./test_data/eventData.json";
 
 /**
@@ -13,14 +14,14 @@ import eventsList from "./test_data/eventData.json";
 async function addTestMember() {
   const testMember = {
     name: "test",
-    email: "test@email.com",
+    _id: "test@email.com",
     password: bcrypt.hashSync("somebody#1usetoknow", 13),
     role: "member"
   };
 
   const adminMember = {
     name: "ADMIN",
-    email: process.env.ADMIN_EMAIL!,
+    _id: process.env.ADMIN_EMAIL!,
     password: bcrypt.hashSync(process.env.ADMIN_PASS!, 13),
     role: "admin"
   };
@@ -31,10 +32,11 @@ async function addTestMember() {
 }
 
 async function addTestEvents() {
-  const eventsTest = eventsList.map((events) => {
+  const eventsTest: Activity[] = eventsList.map((e, i) => {
     return {
-      name: events.name,
-      date: new Date(events.date).toDateString()
+      _id: `${e.name.substring(0, 2).toUpperCase()}${i}`,
+      name: e.name,
+      date: new Date(e.date).toISOString()
     };
   });
 

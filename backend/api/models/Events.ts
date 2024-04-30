@@ -1,6 +1,11 @@
 import { Schema, model } from "mongoose";
 
 const activity = new Schema({
+  _id: {
+    type: String,
+    minLength: 2,
+    maxLength: 4
+  },
   name: {
     type: String,
     minLength: 10,
@@ -22,6 +27,7 @@ const activity = new Schema({
 export const Activities = model("Activities", activity);
 
 export type Activity = {
+  _id: string;
   name: string;
   date: string;
 };

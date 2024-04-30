@@ -25,6 +25,6 @@
   "parserOptions": {
     "sourceType": "module"
   },
-  "ignorePatterns": ["/lib/**/*"],
+  "ignorePatterns": ["/dist/**/*"],
   "plugins": ["@typescript-eslint/eslint-plugin", "import"]
 }

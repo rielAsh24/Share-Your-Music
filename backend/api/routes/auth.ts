@@ -5,7 +5,6 @@ import { Router } from "express";
 import type { Request, Response } from "express";
 
 import { Members } from "../models/Members";
-
 import { isAuthenticated } from "../middleware/auth";
 import { verifySession } from "../middleware/verify";
 
@@ -19,7 +18,7 @@ router.post("/apply", (req: Request, res: Response) => {
 
   Members.create({
     name: name,
-    email: email,
+    _id: email,
     password: newpassword,
     role: "member"
   })
@@ -35,48 +34,59 @@ router.post("/apply", (req: Request, res: Response) => {
 router.post("/login", verifySession, (req: Request, res: Response) => {
   const { email, password } = req.body;
   // Find if email exists
-  Members.findOne({ email: email }).then((user_info) => {
-    if (user_info === null) {
-      res.status(404).json({ error: true, message: "User Not Found" });
-    } else {
-      // Encrypt pass
-      const verified = bcrypt.compareSync(password, user_info.password);
-      if (verified) {
-        // Regenerate session
-        req.session.regenerate((err) => {
-          if (err) {
-            console.log(err);
-            res
-              .status(500)
-              .json({ error: true, message: "Internal Server error" });
-          } else if (req.session) {
-            if (user_info.role === "admin") req.session.admin = true;
-            else req.session.admin = false;
-            req.session.save((err) => {
-              if (err) {
-                console.log(err);
-                res
-                  .status(500)
-                  .json({ error: true, message: "Internal Server error" });
-              }
-              res.status(202).json({ sess: true, message: "Login Success" });
-            });
-          } else
-            res
-              .status(401)
-              .json({ error: true, message: "User/Password error" });
-        });
+  Members.findOne({ _id: email })
+    .select({ name: 0, __v: 0 })
+    .then((user_info) => {
+      if (user_info === null) {
+        res.status(404).json({ error: true, message: "User Not Found" });
+      } else {
+        // Encrypt pass
+        const verified = bcrypt.compareSync(password, user_info.password);
+        if (verified) {
+          // Regenerate session
+          req.session.regenerate((err) => {
+            if (err) {
+              console.log(err);
+              res
+                .status(500)
+                .json({ error: true, message: "Internal Server error" });
+            } else if (req.session) {
+              // Setup session profile
+              req.session.profile = {
+                email: user_info.id,
+                role: user_info.role
+              };
+              req.session.save((err) => {
+                if (err) {
+                  console.log(err);
+                  res
+                    .status(500)
+                    .json({ error: true, message: "Internal Server error" });
+                }
+                res.status(202).json({ sess: true, message: "Login Success" });
+              });
+            } else
+              res
+                .status(401)
+                .json({ error: true, message: "User/Password error" });
+          });
+        }
       }
-    }
-  });
+    });
 });
 
 // GET USER PROFILE
-router.get("/profile", isAuthenticated, (__: Request, res: Response) => {
-  Members.findOne({ role: "member" })
-    .select({ _id: 0, password: 0 })
+router.get("/profile", isAuthenticated, (req: Request, res: Response) => {
+  const email: string = req.session.profile!.email;
+  Members.findOne({ _id: email })
+    .select({ name: 1, _id: 1 })
     .then((profile) => {
-      res.status(200).json(profile);
+      if (profile)
+        res.status(200).json({
+          name: profile.name,
+          email: profile.id
+        });
+      else res.status(404).json({ error: true, message: "Not Found" });
     })
     .catch((err) => {
       res.status(400).json({ error: true, message: err.message });

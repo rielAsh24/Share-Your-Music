@@ -7,10 +7,9 @@ const memberSchema = new Schema({
     maxLength: 20,
     required: true
   },
-  email: {
+  _id: {
     type: String,
-    minLength: 8,
-    required: true
+    minLength: 8
   },
   password: {
     type: String,
@@ -20,7 +19,8 @@ const memberSchema = new Schema({
   role: {
     type: String,
     enum: ["admin", "member"],
-    default: "member"
+    default: "member",
+    required: true
   }
 });
 
@@ -30,4 +30,10 @@ export type Member = {
   name: string;
   email: string;
   password?: string;
+  role?: "member" | "admin";
+};
+
+export type Profile = {
+  email: string;
+  role?: "member" | "admin";
 };

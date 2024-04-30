@@ -1,16 +1,17 @@
 import "dotenv/config";
-import { beforeAll, describe, expect, test } from "@jest/globals";
-import type { Member } from "../src/models/Members";
+
+import { afterAll, beforeAll, describe, expect, test } from "@jest/globals";
+import type { Member } from "../api/models/Members";
 
 const api = `${process.env.API_URL}/members`;
+
+let cookie: string;
 
 const testMember: Member = {
   name: "test",
   email: "test3@email.com",
   password: "test"
 };
-
-let cookie: string;
 
 beforeAll(async () => {
   const response = await fetch(`${process.env.API_URL}/auth/login`, {
@@ -78,5 +79,14 @@ describe("4. Delete An member", () => {
     });
     expect(response.ok).toBeTruthy();
     expect(response.status).toBe(204);
+  });
+});
+
+afterAll(async () => {
+  await fetch(`${api}/test2@email.com`, {
+    method: "DELETE",
+    headers: {
+      cookie: cookie
+    }
   });
 });

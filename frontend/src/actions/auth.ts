@@ -15,7 +15,6 @@ async function apply(data: FormData) {
       password: data.get("password"),
     }),
   });
-  console.log(response.status);
 
   if (response.ok) {
     const res = await response.json();

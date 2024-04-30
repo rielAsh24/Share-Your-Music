@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Nunito_Sans } from "next/font/google";
 import { ReactNode } from "react";
-
-import "@/styles/global.css";
+import { Nunito_Sans } from "next/font/google";
 
 import Navigation from "@/components/navigation/Navigation";
 import Footer from "@/components/Footer";
 import { Separator } from "@/components/ui/separator";
 
+import "@/styles/global.css";
+
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
+  weight: ["200", "400", "700"],
   display: "swap",
 });
 
