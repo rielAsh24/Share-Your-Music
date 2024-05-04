@@ -74,7 +74,7 @@ body,
     @apply flex flex-col bg-background text-foreground;
   }
   main {
-    @apply container flex grow py-8 lg:py-0;
+    @apply container flex grow justify-center py-8 lg:py-0;
   }
 }
 

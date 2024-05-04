@@ -7,12 +7,15 @@ import {
   NavigationMenuLogout,
   navigationTriggerStyle,
 } from "./NavClient";
+import Logo from "../Logo";
 
 export function NavVisitor() {
   return (
     <NavigationMenu>
       <NavigationMenuLink asChild>
-        <Link href="/">SYMC</Link>
+        <Link href="/">
+          <Logo />
+        </Link>
       </NavigationMenuLink>
       <NavigationMenuList>
         <NavigationMenuItem>
@@ -22,7 +25,7 @@ export function NavVisitor() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink className={navigationTriggerStyle} asChild>
-            <Link href="/activities">Events</Link>
+            <Link href="/members/activities">Events</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -44,7 +47,9 @@ export function NavMember() {
   return (
     <NavigationMenu>
       <NavigationMenuLink asChild>
-        <Link href="/">SYMC</Link>
+        <Link href="/">
+          <Logo />
+        </Link>
       </NavigationMenuLink>
       <NavigationMenuList>
         <NavigationMenuItem>
@@ -54,12 +59,12 @@ export function NavMember() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink className={navigationTriggerStyle} asChild>
-            <Link href="/activities">Events</Link>
+            <Link href="/members/activities">Events</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink className={navigationTriggerStyle} asChild>
-            <Link href="/profile">Profile</Link>
+            <Link href="/members/profile">Profile</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem className={navigationTriggerStyle}>

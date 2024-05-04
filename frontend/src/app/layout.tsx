@@ -4,7 +4,6 @@ import { Nunito_Sans } from "next/font/google";
 
 import Navigation from "@/components/navigation/Navigation";
 import Footer from "@/components/Footer";
-import { Separator } from "@/components/ui/separator";
 
 import "@/styles/global.css";
 
@@ -24,7 +23,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en" className={nunitoSans.className}>
       <body>
         <Navigation />
-        <Separator />
         <main>{children}</main>
         <Footer />
       </body>

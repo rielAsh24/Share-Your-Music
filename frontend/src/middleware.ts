@@ -7,8 +7,8 @@ export function middleware(request: NextRequest) {
 
   if (isAuthenticated) {
     if (reqURL === "/login" || reqURL === "/apply")
-      return NextResponse.redirect(new URL("/", request.url));
-  } else if (reqURL === "/profile" || reqURL === "/activities") {
+      return NextResponse.redirect(new URL("/members", request.url));
+  } else if (reqURL.startsWith("/members")) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
