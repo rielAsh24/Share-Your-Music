@@ -25,7 +25,7 @@ export function NavVisitor() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink className={navigationTriggerStyle} asChild>
-            <Link href="/members/activities">Events</Link>
+            <Link href="/about">About</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -47,14 +47,14 @@ export function NavMember() {
   return (
     <NavigationMenu>
       <NavigationMenuLink asChild>
-        <Link href="/">
+        <Link href="/members">
           <Logo />
         </Link>
       </NavigationMenuLink>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuLink className={navigationTriggerStyle} asChild>
-            <Link href="/">Home</Link>
+            <Link href="/members">Home</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>

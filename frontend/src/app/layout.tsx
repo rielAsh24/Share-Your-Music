@@ -22,8 +22,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={nunitoSans.className}>
       <body>
-        <Navigation />
-        <main>{children}</main>
+        <div className="flex min-h-dvh flex-col">
+          <Navigation />
+          <main>{children}</main>
+        </div>
         <Footer />
       </body>
     </html>

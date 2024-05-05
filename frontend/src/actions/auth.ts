@@ -46,7 +46,7 @@ async function login(data: FormData) {
         },
       );
   } else throw Error("Something went wrong :(");
-  redirect("/", RedirectType.replace);
+  redirect("/members", RedirectType.replace);
 }
 
 async function logout() {
