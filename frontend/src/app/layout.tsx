@@ -9,7 +9,6 @@ import "@/styles/global.css";
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
-  weight: ["200", "400", "700"],
   display: "swap",
 });
 

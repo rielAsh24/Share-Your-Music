@@ -71,7 +71,7 @@ body,
     @apply border-border;
   }
   body {
-    @apply flex flex-col overflow-y-scroll bg-background text-foreground;
+    @apply flex flex-col overflow-y-scroll bg-background text-base text-foreground;
   }
   main {
     @apply container flex grow justify-center py-8;

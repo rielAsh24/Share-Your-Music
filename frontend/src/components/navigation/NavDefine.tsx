@@ -1,43 +1,21 @@
 import Link from "next/link";
 import {
+  NavLogo,
   NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
+  NavigationLink,
   NavigationMenuList,
   NavigationMenuLogout,
-  navigationTriggerStyle,
 } from "./NavClient";
-import Logo from "../Logo";
 
 export function NavVisitor() {
   return (
     <NavigationMenu>
-      <NavigationMenuLink asChild>
-        <Link href="/">
-          <Logo />
-        </Link>
-      </NavigationMenuLink>
+      <NavLogo />
       <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuLink className={navigationTriggerStyle} asChild>
-            <Link href="/">Home</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink className={navigationTriggerStyle} asChild>
-            <Link href="/about">About</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink className={navigationTriggerStyle} asChild>
-            <Link href="/apply">Sign Up</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink className={navigationTriggerStyle} asChild>
-            <Link href="/login">Login</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
+        <NavigationLink href="/">Home</NavigationLink>
+        <NavigationLink href="/about">About</NavigationLink>
+        <NavigationLink href="/apply">Sign Up</NavigationLink>
+        <NavigationLink href="/login">Login</NavigationLink>
       </NavigationMenuList>
     </NavigationMenu>
   );
@@ -46,30 +24,12 @@ export function NavVisitor() {
 export function NavMember() {
   return (
     <NavigationMenu>
-      <NavigationMenuLink asChild>
-        <Link href="/members">
-          <Logo />
-        </Link>
-      </NavigationMenuLink>
+      <NavLogo />
       <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuLink className={navigationTriggerStyle} asChild>
-            <Link href="/members">Home</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink className={navigationTriggerStyle} asChild>
-            <Link href="/members/activities">Events</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink className={navigationTriggerStyle} asChild>
-            <Link href="/members/profile">Profile</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem className={navigationTriggerStyle}>
-          <NavigationMenuLogout />
-        </NavigationMenuItem>
+        <NavigationLink href="/members">Home</NavigationLink>
+        <NavigationLink href="/members/activities">Events</NavigationLink>
+        <NavigationLink href="/members/profile">Profile</NavigationLink>
+        <NavigationMenuLogout />
       </NavigationMenuList>
     </NavigationMenu>
   );
