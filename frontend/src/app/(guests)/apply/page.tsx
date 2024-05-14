@@ -8,7 +8,7 @@ export default function Apply() {
     <section className="flex w-full items-center justify-center">
       {/* <Image alt="SignUp" src={applyImg} className="aspect-auto w-1/2" /> */}
       <Card>
-        <CardHeader>
+        <CardHeader className="pb-4">
           <CardTitle>Sign Up</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">

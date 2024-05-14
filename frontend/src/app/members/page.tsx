@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <section className="flex items-center justify-around">
       <div className="grid gap-y-12">
-        <div className="text-5xl">
+        <div className="text-5xl font-semibold">
           <h2>Our Goal</h2>
         </div>
         <div className="grid max-w-xl gap-y-6 text-justify">

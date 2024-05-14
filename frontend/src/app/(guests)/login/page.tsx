@@ -5,7 +5,7 @@ export default function Login() {
   return (
     <section className="flex w-full items-center justify-center">
       <Card>
-        <CardHeader>
+        <CardHeader className="pb-4">
           <CardTitle>Login</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">

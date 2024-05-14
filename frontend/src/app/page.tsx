@@ -1,16 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
+
 import heroImg from "@/../public/hero.jpg";
-// import hero1 from "@/../public/hero-1.jpg";
 import hero2 from "@/../public/hero-2.jpg";
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import Testimonial from "@/components/ui/testimonial";
 
 export default function Page() {
   return (
@@ -22,7 +17,7 @@ export default function Page() {
           className="aspect-auto rounded-lg lg:w-[1184px]"
         />
         <div className="flex items-start justify-between">
-          <h1 className="text-5xl leading-tight">
+          <h1 className="text-5xl font-semibold leading-tight">
             <span className="text-primary">Symphony Music Club</span>
           </h1>
           <p className="max-w-sm">
@@ -57,47 +52,24 @@ export default function Page() {
       <article className="grid w-full items-center justify-items-center gap-y-12">
         <h2 className="text-center text-4xl">Testimonies from our peers</h2>
         <div className="flex justify-evenly gap-x-12 text-justify">
-          <Card className="w-1/3 bg-accent">
-            <CardHeader></CardHeader>
-            <CardContent>
-              <p>
-                “They have such talented group of musicians, who can play
+          <Testimonial
+            name="Alice"
+            content="They have such talented group of musicians, who can play
                 anything from classical to hip hop. Their performances are
-                always entertaining and inspiring. I’m a big fan of their music
-                and the message”
-              </p>
-            </CardContent>
-            <CardFooter className="items-end justify-end">
-              <p className="text-right">Alice</p>
-            </CardFooter>
-          </Card>
-          <Card className="w-1/3 bg-accent">
-            <CardHeader></CardHeader>
-            <CardContent>
-              <p>
-                “Members of Symphony always provides us with fresh talent, which
-                our listeners love. They also participate in our interviews,
-                podcasts, and contests, which help us promote our station...”
-              </p>
-            </CardContent>
-            <CardFooter className="items-end justify-end">
-              <p className="text-right">Bob</p>
-            </CardFooter>
-          </Card>
-          <Card className="w-1/3 bg-accent">
-            <CardHeader></CardHeader>
-            <CardContent>
-              <p>
-                “Symphony is a valuable asset for our campus. They not only
-                create and share their music, but they also contribute to
-                various causes and initiatives, such as raising awareness and
-                funds for social and environmental issues”
-              </p>
-            </CardContent>
-            <CardFooter className="items-end justify-end">
-              <p className="text-right">Carol</p>
-            </CardFooter>
-          </Card>
+                always entertaining and inspiring."
+          />
+          <Testimonial
+            name="Bob"
+            content="Members of Symphony always provides us with fresh talent, which
+            our listeners love. They also participate in our interviews,
+            podcasts, and contests, which help us promote our station..."
+          />
+          <Testimonial
+            name="Carol"
+            content="Symphony is a valuable asset for our campus. They not only
+            create and share their music, but also contribute to raising awareness and 
+            funds for social and environmental issues"
+          />
         </div>
       </article>
     </section>
