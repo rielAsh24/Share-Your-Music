@@ -13,7 +13,7 @@ export default function Testimonial({
       <CardHeader className="flex flex-row content-center gap-x-2 p-0">
         <Avatar className="size-10 border">
           <AvatarImage alt="@username" src="/placeholder-user.jpg" />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarFallback>{name[0]}</AvatarFallback>
         </Avatar>
         <div className="h-full align-middle font-medium">{name}</div>
       </CardHeader>

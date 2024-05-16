@@ -41,7 +41,7 @@ export default function Page() {
         </div>
       </article>
       <article className="grid w-full items-center justify-items-center gap-y-12">
-        <h2 className="text-center text-4xl">Activities we conduct</h2>
+        <h2 className="text-center text-4xl">Activities We Conduct</h2>
         <div className="flex w-full max-w-screen-xl items-center justify-around">
           <div className="grid max-w-md grid-rows-3 gap-y-8">
             <div className="space-y-1.5 text-justify">

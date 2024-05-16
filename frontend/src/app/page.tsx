@@ -21,8 +21,8 @@ export default function Page() {
             <span className="text-primary">Symphony Music Club</span>
           </h1>
           <p className="max-w-sm">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit
-            expedita voluptate consequuntur
+            A club for music enthusiasts. We are divided by genres, united in
+            Symphony.
           </p>
           <Button className="w-32" asChild>
             <Link href="/apply">Register Now!</Link>
@@ -32,9 +32,7 @@ export default function Page() {
       <article className="flex w-full max-w-screen-xl items-center justify-around">
         <Image src={hero2} alt="Logo" className="aspect-auto" />
         <div className="max-w-lg space-y-6">
-          <h2 className="text-4xl">
-            A community that shares the passion for music
-          </h2>
+          <h2 className="text-4xl">United by a Passion</h2>
           <p className="text-justify">
             We cherish the joy of creating and enjoying music of all genres and
             styles. Whether you are a singer, a rapper, a guitarist, a pianist,
@@ -50,7 +48,7 @@ export default function Page() {
         </div>
       </article>
       <article className="grid w-full items-center justify-items-center gap-y-12">
-        <h2 className="text-center text-4xl">Testimonies from our peers</h2>
+        <h2 className="text-center text-4xl">Testimonies from Our Peers</h2>
         <div className="flex justify-evenly gap-x-12 text-justify">
           <Testimonial
             name="Alice"

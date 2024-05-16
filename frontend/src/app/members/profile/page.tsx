@@ -18,14 +18,14 @@ export default async function Profile() {
         <CardHeader className="grid grid-flow-row justify-items-center gap-y-2">
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>Test Profile</AvatarFallback>
+            <AvatarFallback>TP</AvatarFallback>
           </Avatar>
           <CardTitle>{name[0].toUpperCase() + name.slice(1)}</CardTitle>
           <CardDescription className="text-center">
             {"Make changes to your account here. Click save when you're done."}
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-2 pt-2">
           <ProfileForm email={email} />
         </CardContent>
       </Card>
