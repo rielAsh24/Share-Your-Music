@@ -74,7 +74,7 @@ body,
     @apply flex flex-col overflow-y-scroll bg-background text-base text-foreground;
   }
   main {
-    @apply container flex grow justify-center py-8;
+    @apply flex grow justify-center py-8 sm:container max-sm:px-4;
   }
 }
 

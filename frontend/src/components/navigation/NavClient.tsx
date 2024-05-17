@@ -17,13 +17,11 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 import Logo from "../Logo";
 
 const navigationTriggerStyle: string = navigationMenuTriggerStyle();
@@ -35,20 +33,12 @@ function NavigationMenuLogout() {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
-        <NavigationMenuItem>
-          <NavigationMenuLink className={navigationTriggerStyle} asChild>
-            <div className="hover:cursor-pointer">Logout</div>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
+      <AlertDialogTrigger className={navigationTriggerStyle}>
+        Logout
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-          {/* <AlertDialogDescription>
-        This action cannot be undone. This will permanently delete your account
-        and remove your data from our servers.
-      </AlertDialogDescription> */}
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
@@ -89,7 +79,7 @@ function NavigationLink({
 
 function NavLogo() {
   return (
-    <Link href="/">
+    <Link href="/" className="size-fit">
       <Logo />
     </Link>
   );

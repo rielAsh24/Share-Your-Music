@@ -14,22 +14,22 @@ export default function Page() {
         <Image
           src={heroImg}
           alt="Logo"
-          className="aspect-auto rounded-lg lg:w-[1184px]"
+          className="aspect-auto rounded-lg lg:max-w-[1184px]"
         />
-        <div className="flex items-start justify-between">
-          <h1 className="text-5xl font-semibold leading-tight">
-            <span className="text-primary">Symphony Music Club</span>
+        <div className="grid gap-4 lg:grid-flow-col">
+          <h1 className="text-4xl font-semibold text-primary lg:text-5xl lg:leading-tight">
+            Symphony Music Club
           </h1>
-          <p className="max-w-sm">
+          <p className="max-w-sm lg:justify-self-center">
             A club for music enthusiasts. We are divided by genres, united in
             Symphony.
           </p>
-          <Button className="w-32" asChild>
+          <Button className="w-32 lg:justify-self-end" asChild>
             <Link href="/apply">Register Now!</Link>
           </Button>
         </div>
       </article>
-      <article className="flex w-full max-w-screen-xl items-center justify-around">
+      <article className="flex w-full flex-col items-center justify-around gap-12 md:flex-row lg:max-w-screen-xl">
         <Image src={hero2} alt="Logo" className="aspect-auto" />
         <div className="max-w-lg space-y-6">
           <h2 className="text-4xl">United by a Passion</h2>
@@ -49,7 +49,7 @@ export default function Page() {
       </article>
       <article className="grid w-full items-center justify-items-center gap-y-12">
         <h2 className="text-center text-4xl">Testimonies from Our Peers</h2>
-        <div className="flex justify-evenly gap-x-12 text-justify">
+        <div className="flex flex-col justify-evenly gap-12 text-justify lg:flex-row">
           <Testimonial
             name="Alice"
             content="They have such talented group of musicians, who can play

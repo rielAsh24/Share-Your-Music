@@ -3,12 +3,12 @@ import homeImg from "@/../public/home_page.jpg";
 
 export default function Page() {
   return (
-    <section className="flex items-center justify-around">
-      <div className="grid gap-y-12">
-        <div className="text-5xl font-semibold">
+    <section className="flex flex-col-reverse items-center justify-around gap-8 lg:flex-row">
+      <div className="grid gap-y-6 lg:gap-y-8">
+        <div className="text-4xl font-semibold lg:text-5xl">
           <h2>Our Goal</h2>
         </div>
-        <div className="grid max-w-xl gap-y-6 text-justify">
+        <div className="grid max-w-xl gap-y-4 text-justify lg:gap-y-6">
           <p>
             We believe that music &#x1f3b6; is something helps many of us
             confront our feelings, our thoughts, our emotions and sharing this
@@ -33,7 +33,7 @@ export default function Page() {
       <Image
         src={homeImg}
         alt="Hero Image"
-        className="aspect-auto w-2/5 rounded-md"
+        className="aspect-auto rounded-md lg:w-2/5"
       />
     </section>
   );
