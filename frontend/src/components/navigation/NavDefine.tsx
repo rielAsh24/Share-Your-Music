@@ -1,4 +1,4 @@
-import { NavigationLink, NavigationMenuLogout } from "./NavClient";
+import { NavigationLink, NavigationMenuLogout } from "../client/NavClient";
 
 export function NavVisitor() {
   return (

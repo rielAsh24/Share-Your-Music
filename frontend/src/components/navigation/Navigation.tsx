@@ -8,7 +8,11 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
-import { NavLogo, NavigationMenu, NavigationMenuList } from "./NavClient";
+import {
+  NavLogo,
+  NavigationMenu,
+  NavigationMenuList,
+} from "../client/NavClient";
 import { NavMember, NavVisitor } from "./NavDefine";
 import { Separator } from "../ui/separator";
 

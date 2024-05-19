@@ -49,24 +49,25 @@ export default function Page() {
             <div className="space-y-1.5 text-justify">
               <h2 className="font-bold">Jam Sessions</h2>
               <p className="">
-                Join or form groups and play music together. Choose from a wide
-                range of instruments and genres, or experiment with new ones.
+                Unleash Your Sound: Dive into spontaneous melodies and harmonies
+                at our Jam Sessions. Perfect for those who love to collaborate
+                and create on-the-fly.
               </p>
             </div>
             <div className="space-y-1.5 text-justify">
               <h2 className="font-bold">Workshops</h2>
               <p className="">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et
-                aliquam consequuntur recusandae dolorem laborum eius, ullam
-                error maiores at.
+                Master Your Craft: Elevate your musical skills with expert-led
+                Workshops. Ideal for enthusiasts eager to learn and grow in
+                their musical journey.
               </p>
             </div>
             <div className="space-y-1.5 text-justify">
               <h2 className="font-bold">Events</h2>
               <p className="">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et
-                aliquam consequuntur recusandae dolorem laborum eius, ullam
-                error maiores at.
+                Spotlight Moments: Experience the thrill of live Musical Events.
+                From solo acts to ensemble pieces, there’s a stage for every
+                talent.
               </p>
             </div>
           </div>

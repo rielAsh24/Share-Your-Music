@@ -3,6 +3,41 @@ import { allEvents } from "@/actions/activities";
 
 import { Button } from "@/components/ui/button";
 import { CardContent, Card } from "@/components/ui/card";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
+function Register() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button size="lg">Register</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Almost There!</AlertDialogTitle>
+          <AlertDialogDescription>
+            {`Thank you for your interest! 🎵 We're fine-tuning the final notes of
+            our registration system to ensure our members can engage with us
+            sooner. Looking forward to seeing you soon!`}
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction disabled={true}>Confirm</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
 
 export default async function Activities() {
   const eventsList: Activity[] = await allEvents();
@@ -37,9 +72,7 @@ export default async function Activities() {
                 <h4 className="font-bold">Timings</h4>
                 <p className="">{new Date(e.date).toDateString()}</p>
               </div>
-              <Button className="max-sm:w-full lg:self-center" size="lg">
-                Register
-              </Button>
+              <Register />
             </CardContent>
           </Card>
         ))}

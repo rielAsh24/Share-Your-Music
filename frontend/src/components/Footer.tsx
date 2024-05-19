@@ -6,7 +6,7 @@ export default function Footer() {
     <div className="flex items-center border-0 border-t-2 border-t-muted max-sm:p-8 lg:h-64">
       <footer className="container grid place-content-between max-sm:gap-8 lg:grid-cols-2">
         <Logo />
-        <div className="row-span-2 grid grid-flow-col place-content-start lg:place-content-end lg:divide-x-2">
+        <div className="row-span-2 grid grid-flow-col place-content-start lg:place-content-end lg:divide-x-[1px] lg:divide-secondary">
           <div className="grid gap-4 pr-8 lg:text-right">
             {[
               ["Home", "/"],

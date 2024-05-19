@@ -9,7 +9,7 @@ export default function Testimonial({
   content: string;
 }) {
   return (
-    <Card className="grid items-start gap-y-4 bg-secondary/50 p-6 text-secondary-foreground">
+    <Card className="grid items-start gap-y-4 border-secondary p-6 text-secondary-foreground shadow-none">
       <CardHeader className="flex flex-row content-center gap-x-2 p-0">
         <Avatar className="size-10 border">
           <AvatarImage alt={`@${name[0]}`} />
