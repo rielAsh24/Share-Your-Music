@@ -1,0 +1,76 @@
+@import "designsystem"
+
+.full-w-flex
+	display: flex
+	width: 100%
+	align-items: center
+
+.logo-container
+	display: inline-flex
+	justify-content: center
+
+.logo
+	color: $tertiary_2
+	font-family: $Cormorant
+	letter-spacing: 0.5rem
+	font-size: $text-4xl
+	font-weight: 600
+	@include responsive($md)
+		font-weight: 700
+
+.hamburger
+	outline: none
+	border: none
+	@include responsive($lg)
+		display: none
+
+.close-hamburger
+	position: absolute
+	top: 2rem
+	right: 2rem
+	width: fit-content
+	padding: 1rem
+	outline: none
+	border: none
+	background-color: $secondary
+	@include responsive($lg)
+		display: none
+
+nav
+	display: flex
+	justify-content: space-between
+	place-items: center
+	padding: 1.5rem 2rem
+
+.full-menu
+	display: none
+	@include responsive($lg)
+		display: grid
+		grid-template-columns: repeat(4, minmax(0, 1fr))
+		justify-content: space-between
+		column-gap: 2rem
+
+.full-menu-mobile
+	display: flex
+	flex-direction: column
+	row-gap: 2rem
+	align-items: end
+	padding-top: 25%
+	padding-right: 25%
+	background-color: $secondary
+	width: 75%
+	height: 100%
+	position: absolute
+	top: 0
+	right: 0
+	a
+		width: 8rem
+		text-align: center
+	@include responsive($lg)
+		display: none
+
+footer
+	display: flex
+	background-color: $tertiary_2
+	color: $tertiary
+	padding: 1.5rem 2rem

@@ -1,0 +1,48 @@
+@import "designsystem"
+
+.article-written
+  display: flex
+  width: 100%
+  height: fit
+  flex-wrap: wrap
+  align-content: center
+  justify-content: center
+  row-gap: 1rem
+  @include responsive($lg)
+    display: flex
+    width: 48%
+    flex-shrink: 0
+
+  h2
+    display: flex
+    width: 100%
+    height: fit
+    justify-content: center
+    align-items: flex-end
+    padding-top: 2rem
+    font-size: $text-4xl
+    font-weight: 600
+    letter-spacing: 0.125rem
+    @include responsive($lg)
+      width: fit
+      padding-top: 0rem
+      justify-content: start
+
+  p
+    width: 87%
+    text-align: center
+    line-height: 1.5rem
+    @include responsive($lg)
+      width: 100%
+      text-align: justify
+      padding-right: 2rem
+
+img
+  width: 96%
+  height: auto
+  aspect-ratio: "16/9"
+  border-radius: 0.25rem
+  @include responsive($lg)
+    padding: 0rem
+    flex-shrink: 0
+    z-index: 1

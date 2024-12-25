@@ -1,0 +1,16 @@
+@import "designsystem"
+
+.form_content
+	@extend .form_design
+	h5
+		margin-top: 0.5rem
+		font-weight: 500
+
+img
+	width: 100%
+	height: auto
+	padding: 2rem
+	@include responsive($lg)
+		padding: 0rem
+		flex-shrink: 0
+		z-index: 1

@@ -1,0 +1,29 @@
+@import "designsystem"
+
+.activityView
+	@extend .article-content
+	column-gap: 1rem
+
+.activity-table
+	border: 0rem
+	background-color: $primary_2
+	th
+		width: 33.33%
+		text-align: center
+		background-color: $primary_2
+		padding: 1rem 2rem
+		outline: 0.1rem solid $primary_2
+		@include responsive($lg)
+			padding: 2rem
+	td
+		padding: 0.5rem
+		border-bottom: 1px solid $primary_2
+		button
+			width: 7rem
+	.data-center
+		width: 5%
+		text-align: center
+		@include responsive($lg)
+			padding: 1.5rem
+		@include responsive($xl2)
+			padding: 2rem

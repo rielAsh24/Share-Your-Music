@@ -1,0 +1,47 @@
+@import "designsystem"
+
+.membership_form
+	@extend .form_design
+	select, option
+		padding: 0.5rem
+		background-color: $primary
+		border: 1px solid $primary
+		border-radius: 0.25rem
+
+dialog::backdrop
+	background-color: rgba(0, 0, 0, 0.5)
+
+dialog
+	margin: auto
+	border: none
+	padding: 2rem
+	width: 24rem
+	background-color: $primary_2
+	border-radius: $rounded-lg
+	box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5)
+	@include responsive($lg)
+		padding: 2rem 1rem
+
+.modal-content
+	display: flex
+	flex-direction: column
+	row-gap: 1rem
+	justify-content: center
+	align-items: center
+	text-align: center
+	line-height: 1.5rem
+	@include responsive($lg)
+		line-height: 2rem
+	h3
+		text-align: center
+		padding-bottom: 1rem
+	h4
+		text-align: center
+		padding-top: 1rem
+	button
+		@extend .styled-buttons, .button-group
+		padding: 0.75rem
+		width: 10em
+		@include responsive($lg)
+			padding: 0.5rem
+			width: 7rem
