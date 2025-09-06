@@ -1,12 +1,32 @@
+networks:
+  symc-network:
+    driver: bridge
+
+volumes:
+  shareyourmusic:
+    driver: local
+
 services:
   mongo:
-    image: mongo:latest
-    environment:
-      MONGO_INITDB_DATABASE: sym-db
+    container_name: symc-mongo
+    image: mongo:8
+    restart: always
+    env_file: .env
     ports:
       - 7655:27017
+    networks:
+      - symc-network
     volumes:
-      - clubdb:/data/db
-volumes:
-  clubdb:
-    driver: local
+      - shareyourmusic:/data/db
+
+  mongo-express:
+    container_name: symc-me
+    image: mongo-express
+    restart: always
+    env_file: .env
+    ports:
+      - 3001:3435
+    networks:
+      - symc-network
+    depends_on:
+      - mongo

@@ -7,7 +7,16 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "turbo": "^2.5.6",
     "typescript": "^5.8.0"
   },
-  "packageManager": "pnpm@10.15.0"
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev"
+  },
+  "packageManager": "pnpm@10.15.0",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
 }
