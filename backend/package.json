@@ -11,8 +11,8 @@
     "db:up": "docker compose up -d",
     "db:init": "node --experimental-strip-types ./tests/initTestData.js",
     "db:down": "docker compose down && docker volume rm backend_clubdb",
-    "lint": "biome lint",
-    "format": "biome format --write",
+    "lint": "oxlint lint",
+    "format": "prettier api/**/*.{ts,tsx} test/**/*.{ts,tsx} --write",
     "test": "jest"
   },
   "author": "Ashriel",
@@ -29,7 +29,6 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.2.3",
     "@jest/globals": "^29.7.0",
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.13",
