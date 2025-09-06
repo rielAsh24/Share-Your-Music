@@ -2,9 +2,10 @@
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "rootDir": "api",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "outDir": "dist"
   },
-  "include": ["api"]
+  "include": ["api/**/*.ts"]
 }
