@@ -1,5 +1,5 @@
 {
-  "name": "symc-backend",
+  "name": "backend",
   "version": "1.5.0",
   "description": "",
   "main": "./api/index.ts",
