@@ -8,8 +8,8 @@ import eventsList from "../tests/test_data/eventData.json";
 export async function addTestMember() {
   const testMember = {
     name: "test",
-    _id: "test@email.com",
-    password: bcrypt.hashSync("somebody#1usetoknow", 13),
+    _id: process.env.TEST_EMAIL!,
+    password: bcrypt.hashSync(process.env.TEST_PASS!, 13),
     role: "member"
   };
 
