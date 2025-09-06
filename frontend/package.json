@@ -12,9 +12,9 @@
     "clean:build": "rm -rf .next",
     "clean:install": "rm -rf .next node_modules",
     "dev": "next dev",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "biome lint",
+    "format": "biome format --write"
   },
   "author": "rielAsh24",
   "license": "ISC",

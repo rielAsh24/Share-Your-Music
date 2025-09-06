@@ -11,7 +11,8 @@
     "db:up": "docker compose up -d",
     "db:init": "node --experimental-strip-types ./tests/initTestData.js",
     "db:down": "docker compose down && docker volume rm backend_clubdb",
-    "lint": "eslint . --ext .ts",
+    "lint": "biome lint",
+    "format": "biome format --write",
     "test": "jest"
   },
   "author": "Ashriel",
