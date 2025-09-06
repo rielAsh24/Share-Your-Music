@@ -1,17 +1,9 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.2.3/schema.json",
-  "root": false,
-  "extends": "//",
   "vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
   "files": {
     "ignoreUnknown": false,
-    "includes": [
-      "api/**",
-      "test/**",
-      "!dist/**",
-      "!node_modules/**",
-      "!.turbo/**"
-    ]
+    "includes": ["api/**", "test/**", "!dist", "!node_modules", "!turbo"]
   },
   "formatter": { "enabled": true, "indentStyle": "tab" },
   "linter": {
@@ -71,7 +63,7 @@
         "noDuplicateParameters": "error",
         "noEmptyBlockStatements": "error",
         "noExplicitAny": "error",
-        "noExtraNonNullAssertion": "error",
+        "noExtraNonNullAssertion": "warn",
         "noFallthroughSwitchClause": "error",
         "noFunctionAssign": "error",
         "noGlobalAssign": "error",
