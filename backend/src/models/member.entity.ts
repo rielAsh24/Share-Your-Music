@@ -34,6 +34,11 @@ export class Member {
   })
   role: UserRole;
 
+  @Column({
+    default: false,
+  })
+  isBlocked: boolean;
+
   @BeforeInsert()
   hashPassword() {
     this.password = hashSync(this.password, 13);

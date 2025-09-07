@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { DataSource } from 'typeorm';
-import { Member, UserRole } from './models/members.entity';
+import { Member, UserRole } from './models/member.entity';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()

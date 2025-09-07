@@ -1,10 +1,11 @@
 import {
+  BadRequestException,
   Injectable,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-import { LoginDto } from './auth.dto';
-import { Member } from '../models/members.entity';
+import { ApplyDto, LoginDto } from './auth.dto';
+import { Member, UserRole } from '../models/member.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ObjectId, Repository } from 'typeorm';
 import { compare } from 'bcrypt';
@@ -91,5 +92,35 @@ export class AuthService {
     if (!member) throw new NotFoundException('Member not found');
 
     return this.generateTokens(member);
+  }
+
+  async register(data: ApplyDto) {
+    const { name, email, password } = data;
+    const existingMember = await this.memberRepository.findOneBy({
+      email,
+    });
+
+    if (existingMember)
+      throw new BadRequestException(
+        'An account with this email already exists',
+      );
+
+    try {
+      await this.memberRepository.save(
+        this.memberRepository.create({
+          name,
+          email,
+          password,
+          role: UserRole.MEMBER,
+        }),
+      );
+    } catch (error) {
+      throw new Error('Failed to register member', { cause: error });
+    }
+
+    // Email notification
+    return {
+      message: 'Member registered successfully',
+    };
   }
 }

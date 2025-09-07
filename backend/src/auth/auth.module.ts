@@ -2,8 +2,10 @@ import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
-import { Member } from 'src/models/members.entity';
+import { Member } from 'src/models/member.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './auth.guard';
 
 @Module({
   imports: [
@@ -13,10 +15,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   controllers: [AuthController],
   providers: [
     AuthService,
-    /* {
+    {
       provide: APP_GUARD,
       useClass: AuthGuard,
-    }, */
+    },
   ],
 })
 export class AuthModule {}
