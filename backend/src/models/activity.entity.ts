@@ -6,6 +6,13 @@ import {
   ObjectId,
 } from 'typeorm';
 
+export enum ActivityStatus {
+  CANCELLED = 'cancelled',
+  LIVE = 'live',
+  UPCOMING = 'upcoming',
+  COMPLETED = 'completed',
+}
+
 @Entity()
 export class Activity {
   @ObjectIdColumn()
@@ -19,4 +26,12 @@ export class Activity {
 
   @Column({ nullable: true })
   description?: string;
+
+  @Column({
+    type: 'enum',
+    enum: ActivityStatus,
+    default: ActivityStatus.UPCOMING,
+    nullable: false,
+  })
+  status: ActivityStatus;
 }

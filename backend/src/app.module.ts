@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { MemberModule } from './member/member.module';
+import { ActivityModule } from './activity/activity.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { MemberModule } from './member/member.module';
       }),
       inject: [ConfigService],
     }),
+    ActivityModule,
     AuthModule,
     MemberModule,
   ],
