@@ -9,6 +9,8 @@ import {
 } from '@nestjs/common';
 import { ActivityService } from './activity.service';
 import { CreateActivityDto, UpdateActivityDto } from './activity.dto';
+import { Role } from '../decorators/role.decorator';
+import { UserRole } from '../models/member.entity';
 
 @Controller('activity')
 export class ActivityController {
@@ -37,6 +39,7 @@ export class ActivityController {
     return this.activityService.update(id, updateActivityDto);
   }
 
+  @Role(UserRole.ADMIN)
   @Delete(':id')
   cancelActivity(@Param('id') id: string) {
     return this.activityService.cancel(id);

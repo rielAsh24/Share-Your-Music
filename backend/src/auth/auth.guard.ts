@@ -2,16 +2,22 @@ import {
   CanActivate,
   ExecutionContext,
   Injectable,
+  // Logger,
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
-import { IS_PUBLIC_KEY } from 'src/decorators/public.decorator';
+import { IS_PUBLIC_KEY } from '../decorators/public.decorator';
 import { type Request } from 'express';
+import { UserRole } from '../models/member.entity';
+import { ROLE_KEY } from '../decorators/role.decorator';
+import { PayloadType } from '../decorators/user.decorator';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  // private readonly logger = new Logger(AuthGuard.name);
+
   constructor(
     private configService: ConfigService,
     private jwtService: JwtService,
@@ -31,14 +37,24 @@ export class AuthGuard implements CanActivate {
 
     if (!token) throw new UnauthorizedException();
 
+    const allowedRole = this.reflector.getAllAndOverride<UserRole>(ROLE_KEY, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+
     try {
-      const payload = await this.jwtService.verifyAsync(token, {
+      const payload: PayloadType = await this.jwtService.verifyAsync(token, {
         secret: this.configService.get('JWT_SECRET'),
       });
+
+      if (allowedRole && payload.role !== allowedRole)
+        throw new UnauthorizedException();
+
       request['user'] = payload;
     } catch {
       throw new UnauthorizedException();
     }
+
     return true;
   }
 

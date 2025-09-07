@@ -1,4 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+import { UserRole } from 'src/models/member.entity';
 
 export const User = createParamDecorator(
   (_: unknown, ctx: ExecutionContext) => {
@@ -11,6 +12,6 @@ export type PayloadType = {
   id: string;
   name: string;
   email: string;
-  role: string;
+  role: UserRole;
   loggedInAt: string;
 };

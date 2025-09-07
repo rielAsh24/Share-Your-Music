@@ -44,16 +44,3 @@ export class Member {
     this.password = hashSync(this.password, 13);
   }
 }
-
-export type MemberType = {
-  id: string;
-  name: string;
-  password?: string;
-  role?: UserRole;
-};
-
-export type ProfileType = {
-  id: string;
-  name: string;
-  role?: UserRole;
-};
