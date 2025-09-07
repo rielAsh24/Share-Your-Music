@@ -3,17 +3,16 @@
 import { cookies } from "next/headers";
 
 async function allEvents() {
-  const header_cookie = cookies().get(process.env.COOKIE_NAME!);
+  const access_token = cookies().get("access_token");
 
-  const response = await fetch(`${process.env.SERVER_HOME}/events`, {
+  const response = await fetch(`${process.env.SERVER_HOME}/activity`, {
     method: "GET",
     headers: {
-      cookie: `${header_cookie!.value}`,
+      Authorization: `Bearer ${access_token!.value}`,
     },
   });
 
   if (response.status === 200) return await response.json();
-  else if (response.status === 500) return response.status;
 }
 
 export { allEvents };
