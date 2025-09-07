@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { DataSource } from 'typeorm';
-import { Member } from './models/members.entity';
+import { Member, UserRole } from './models/members.entity';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
@@ -27,11 +27,13 @@ export class AppService {
             email: this.configService.get('TEST_EMAIL'),
             name: 'Test',
             password: this.configService.get('TEST_PASS') as string,
+            role: UserRole.MEMBER,
           }),
           MemberRepository.create({
             email: this.configService.get('ADMIN_EMAIL'),
             name: 'Admin',
             password: this.configService.get('ADMIN_PASS') as string,
+            role: UserRole.ADMIN,
           }),
         ]);
 
