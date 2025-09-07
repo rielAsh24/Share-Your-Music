@@ -1,81 +1,80 @@
-import "dotenv/config";
+import 'dotenv/config';
 
-import { afterAll, beforeAll, describe, expect, test } from "@jest/globals";
-import type { Member } from "../api/models/Members";
+import type { Member } from '../../backend2/api/models/Members';
 
 const api = `${process.env.API_URL}/members`;
 
 let cookie: string;
 
 const testMember: Member = {
-  name: "test",
-  email: "test3@email.com",
-  password: "test"
+  name: 'test',
+  email: 'test3@email.com',
+  password: 'test',
 };
 
 beforeAll(async () => {
   const response = await fetch(`${process.env.API_URL}/auth/login`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       email: process.env.ADMIN_EMAIL!,
-      password: process.env.ADMIN_PASS!
-    })
+      password: process.env.ADMIN_PASS!,
+    }),
   });
 
   cookie = response.headers.getSetCookie()[0];
 });
 
-describe("1. Post An member", () => {
-  test("should return 201 (member Added)", async () => {
+describe('1. Post An member', () => {
+  test('should return 201 (member Added)', async () => {
     const response = await fetch(api, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        cookie: cookie
+        'Content-Type': 'application/json',
+        cookie: cookie,
       },
-      body: JSON.stringify(testMember)
+      body: JSON.stringify(testMember),
     });
     expect(response.ok).toBeTruthy();
     expect(response.status).toBe(201);
   });
 });
 
-describe("2. Get all members", () => {
-  test("should return all members", async () => {
+describe('2. Get all members', () => {
+  test('should return all members', async () => {
     const response = await fetch(api, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        cookie: cookie
-      }
+        cookie: cookie,
+      },
     });
     expect(response.ok).toBeTruthy();
     expect(response.status).toBe(200);
   });
 });
 
-describe("3. Get One member", () => {
-  test("should return a member", async () => {
+describe('3. Get One member', () => {
+  test('should return a member', async () => {
     const response = await fetch(`${api}/${testMember.email}`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        cookie: cookie
-      }
+        cookie: cookie,
+      },
     });
     expect(response.ok).toBeTruthy();
     expect(response.status).toBe(200);
   });
 });
 
-describe("4. Delete An member", () => {
+describe('4. Delete An member', () => {
   test("should return 'member Added' message", async () => {
     const response = await fetch(`${api}/${testMember.email}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        cookie: cookie
-      }
+        cookie: cookie,
+      },
     });
     expect(response.ok).toBeTruthy();
     expect(response.status).toBe(204);
@@ -84,9 +83,9 @@ describe("4. Delete An member", () => {
 
 afterAll(async () => {
   await fetch(`${api}/test2@email.com`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      cookie: cookie
-    }
+      cookie: cookie,
+    },
   });
 });

@@ -1,11 +1,23 @@
 {
-  "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "rootDir": "api",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "outDir": "dist"
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "module": "commonjs",
+    "noFallthroughCasesInSwitch": false,
+    "noImplicitAny": false,
+    "outDir": "./dist",
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strictBindCallApply": false,
+    "strictNullChecks": true,
+    "target": "ES2023",
   },
-  "include": ["api/**/*.ts"]
+  "exclude": ["node_modules", "dist"]
 }
