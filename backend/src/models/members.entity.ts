@@ -1,4 +1,11 @@
-import { Entity, Column, ObjectId, ObjectIdColumn } from 'typeorm';
+import { hashSync } from 'bcrypt';
+import {
+  Entity,
+  Column,
+  ObjectId,
+  ObjectIdColumn,
+  BeforeInsert,
+} from 'typeorm';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -26,6 +33,11 @@ export class Member {
     nullable: false,
   })
   role: UserRole;
+
+  @BeforeInsert()
+  hashPassword() {
+    this.password = hashSync(this.password, 13);
+  }
 }
 
 export type MemberType = {

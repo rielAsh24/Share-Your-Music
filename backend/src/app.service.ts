@@ -22,17 +22,17 @@ export class AppService {
 
       // Create Members
       if (!adminExists) {
-        await MemberRepository.insert([
-          {
+        await MemberRepository.save([
+          MemberRepository.create({
             email: this.configService.get('TEST_EMAIL'),
             name: 'Test',
-            password: this.configService.get('TEST_PASS'),
-          },
-          {
+            password: this.configService.get('TEST_PASS') as string,
+          }),
+          MemberRepository.create({
             email: this.configService.get('ADMIN_EMAIL'),
             name: 'Admin',
-            password: this.configService.get('ADMIN_PASS'),
-          },
+            password: this.configService.get('ADMIN_PASS') as string,
+          }),
         ]);
 
         this.logger.verbose('Data initialized');
