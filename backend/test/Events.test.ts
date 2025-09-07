@@ -1,13 +1,13 @@
 import 'dotenv/config';
 
-import type { Activity } from '../../backend2/api/models/Events';
-import eventsList from './test_data/eventData.json';
+import { Activity } from '../src/models/activity.entity';
+import eventsList from '../data/event-data.json';
 
 const api = `${process.env.API_URL}/events`;
 
 let cookie: string;
 
-const eventsTest: Activity[] = eventsList.map((e, i) => {
+const eventsTest: Partial<Activity>[] = eventsList.map((e, i) => {
   return {
     _id: `${e.name.substring(0, 2).toUpperCase()}${i}`,
     name: e.name,

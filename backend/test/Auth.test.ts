@@ -1,15 +1,15 @@
 import 'dotenv/config';
 
-import type { Member } from '../../backend2/api/models/Members';
+import { Member } from '../src/models/member.entity';
 
 const api = `${process.env.API_URL}/auth`;
 
 let cookie: string;
 
-const testMember: Member = {
+const testMember: Partial<Member> = {
   name: 'test2',
-  email: 'test2@email.com',
-  password: 'somebody#2usetoknow',
+  email: process.env.TEST_EMAIL!,
+  password: process.env.TEST_PASSWORD!,
 };
 
 describe('1. Apply for membership', () => {

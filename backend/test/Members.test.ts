@@ -1,15 +1,15 @@
 import 'dotenv/config';
-
-import type { Member } from '../../backend2/api/models/Members';
+import { Member, UserRole } from '../src/models/member.entity';
 
 const api = `${process.env.API_URL}/members`;
 
 let cookie: string;
 
-const testMember: Member = {
+const testMember: Partial<Member> = {
   name: 'test',
-  email: 'test3@email.com',
+  email: process.env.TEST_EMAIL!,
   password: 'test',
+  role: UserRole.MEMBER,
 };
 
 beforeAll(async () => {
