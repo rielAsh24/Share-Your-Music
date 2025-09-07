@@ -6,8 +6,12 @@ meta {
 
 get {
   url: {{process.env['API_URL']}}/member
-  body: json
+  body: none
   auth: bearer
+}
+
+headers {
+  refresh-token: {{process.env.REFRESH_TOKEN}}
 }
 
 auth:bearer {

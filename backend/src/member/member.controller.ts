@@ -1,7 +1,6 @@
 import { Controller, Get, Body, Patch, Param } from '@nestjs/common';
 import { MemberService } from './member.service';
 import { UpdateMemberDto } from './member.dto';
-import { IsPublic } from '../decorators/public.decorator';
 
 @Controller('member')
 export class MemberController {
