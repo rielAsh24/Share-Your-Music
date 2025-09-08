@@ -3,12 +3,13 @@
 import { cookies } from "next/headers";
 
 export async function getProfile() {
-  const header_cookie = cookies().get(process.env.COOKIE_NAME!);
+  const access_token = cookies().get("access_token");
+  const user = JSON.parse(cookies().get("user")!.value);
 
-  const response = await fetch(`${process.env.SERVER_HOME}/auth/profile`, {
+  const response = await fetch(`${process.env.SERVER_HOME}/member/${user.id}`, {
     method: "GET",
     headers: {
-      cookie: `${header_cookie!.value}`,
+      Authorization: `Bearer ${access_token!.value}`,
     },
   });
 

@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { redirect, RedirectType } from "next/navigation";
 
 async function apply(data: FormData) {
-  const response = await fetch(`${process.env.SERVER_HOME}/auth/apply`, {
+  const response = await fetch(`${process.env.SERVER_HOME}/auth/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -36,40 +36,24 @@ async function login(data: FormData) {
 
   if (response.ok) {
     const res = await response.json();
-    if (res.sess)
-      cookies().set(
-        process.env.COOKIE_NAME!,
-        response.headers.getSetCookie()[0],
-        {
-          httpOnly: true,
-          maxAge: 60 * 30,
-        },
-      );
+    if (res.token) cookies().set("access_token", res.token);
+    if (res.refreshToken) cookies().set("refresh_token", res.refreshToken);
+    if (res.user) cookies().set("user", JSON.stringify(res.user));
   } else throw Error("Something went wrong :(");
   redirect("/members", RedirectType.replace);
 }
 
 async function logout() {
-  const header_cookie = cookies().get(process.env.COOKIE_NAME!);
-
-  const response: Response = await fetch(
-    `${process.env.SERVER_HOME}/auth/logout`,
-    {
-      method: "GET",
-      headers: {
-        cookie: `${header_cookie!.value}`,
-      },
-    },
-  );
-
-  if (response.ok) {
-    cookies().delete(process.env.COOKIE_NAME!);
+  if (cookies().has("access_token")) {
+    cookies().delete("access_token");
+    cookies().delete("refresh_token");
+    cookies().delete("user");
     redirect("/", RedirectType.replace);
   } else throw "Something went wrong :(";
 }
 
 async function isAuth() {
-  const authenticated: boolean = cookies().has(process.env.COOKIE_NAME!);
+  const authenticated: boolean = cookies().has("access_token");
   if (authenticated) return true;
   return false;
 }

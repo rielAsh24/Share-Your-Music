@@ -1,7 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "plugins": [
-    "import",
     "typescript",
     "unicorn"
   ],
@@ -11,10 +10,13 @@
   "env": {
     "builtin": true,
     "commonjs": true,
-    "mongo": true,
+    "jest": true,
     "node": true,
     "shared-node-browser": true
   },
+  "ignorePatterns": [
+    "eslint.config.mjs"
+  ],
   "rules": {
     "for-direction": "error",
     "no-async-promise-executor": "error",
@@ -70,16 +72,11 @@
     "require-yield": "error",
     "use-isnan": "error",
     "valid-typeof": "error",
-    "import/namespace": "warn",
-    "import/default": "warn",
-    "import/no-named-as-default": "error",
-    "import/no-named-as-default-member": "error",
-    "import/no-duplicates": "error",
     "@typescript-eslint/ban-ts-comment": "error",
     "no-array-constructor": "error",
     "@typescript-eslint/no-duplicate-enum-values": "error",
     "@typescript-eslint/no-empty-object-type": "error",
-    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-extra-non-null-assertion": "error",
     "@typescript-eslint/no-misused-new": "error",
     "@typescript-eslint/no-namespace": "error",
@@ -91,21 +88,25 @@
     "@typescript-eslint/no-unsafe-function-type": "error",
     "no-unused-expressions": "error",
     "@typescript-eslint/no-wrapper-object-types": "error",
+    "no-throw-literal": "off",
     "@typescript-eslint/prefer-as-const": "error",
     "@typescript-eslint/prefer-namespace-keyword": "error",
+    "prefer-promise-reject-errors": "off",
+    "require-await": "off",
     "@typescript-eslint/triple-slash-reference": "error",
     "curly": "off",
     "unicorn/empty-brace-spaces": "off",
     "unicorn/no-nested-ternary": "off",
-    "unicorn/number-literal-case": "off"
+    "unicorn/number-literal-case": "off",
+    "arrow-body-style": "off"
   },
-  "ignorePatterns": [
-    "dist/**/*"
-  ],
   "overrides": [
     {
       "files": [
-        null
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.mts",
+        "**/*.cts"
       ],
       "rules": {
         "no-class-assign": "off",
@@ -124,14 +125,6 @@
         "no-with": "off",
         "prefer-rest-params": "error",
         "prefer-spread": "error"
-      }
-    },
-    {
-      "files": [
-        "tests/**/*"
-      ],
-      "env": {
-        "jest": true
       }
     }
   ]

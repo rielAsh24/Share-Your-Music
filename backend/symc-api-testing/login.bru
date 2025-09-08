@@ -1,0 +1,22 @@
+meta {
+  name: login
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{process.env['API_URL']}}/auth/login
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "{{process.env['ADMIN_EMAIL']}}",
+    "password": "{{process.env['ADMIN_PASS']}}"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

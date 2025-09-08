@@ -1,0 +1,29 @@
+meta {
+  name: crud
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{process.env['API_URL']}}/member
+  body: none
+  auth: bearer
+}
+
+headers {
+  refresh-token: {{process.env.REFRESH_TOKEN}}
+}
+
+auth:bearer {
+  token: {{process.env.ACCESS_TOKEN}}
+}
+
+body:json {
+  {
+    "name": "Test"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

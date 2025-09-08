@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="grid gap-4 pr-8 lg:text-right">
             {[
               ["Home", "/"],
-              ["Events", "/members/events"],
+              ["Events", "/members/activities"],
               ["Sign Up", "/apply"],
               ["Login", "/login"],
             ].map((link) => {

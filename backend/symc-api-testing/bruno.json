@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "symc-api-testing",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

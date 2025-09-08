@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { cookies } from "next/headers";
 
 export function middleware(request: NextRequest) {
-  const isAuthenticated = cookies().has(process.env.COOKIE_NAME!);
+  const isAuthenticated = cookies().has("access_token");
   const reqURL: string = request.nextUrl.pathname;
 
   if (isAuthenticated) {
