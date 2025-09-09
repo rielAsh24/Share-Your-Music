@@ -1,7 +1,7 @@
 "use client";
 
-import { Label } from "./ui/label";
 import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 export default function ProfileForm({ email }: { email: string }) {
   return (

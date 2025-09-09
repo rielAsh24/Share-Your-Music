@@ -1,11 +1,13 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+
+import { login } from "@/actions/auth";
 import type { LoginData } from "@/lib/schemas";
 import { loginSchema } from "@/lib/schemas";
-import { login } from "@/actions/auth";
 
 import { Button } from "./ui/button";
 import {
@@ -65,7 +67,13 @@ export default function LoginForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Login</Button>
+        <Button type="submit" disabled={form.formState.isSubmitting}>
+          {form.formState.isSubmitting ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            "Login"
+          )}
+        </Button>
       </form>
     </Form>
   );
