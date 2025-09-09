@@ -1,11 +1,12 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { apply } from "@/actions/auth";
 import type { ApplyData } from "@/lib/schemas";
 import { applySchema } from "@/lib/schemas";
-import { apply } from "@/actions/auth";
 
 import { Button } from "./ui/button";
 import {

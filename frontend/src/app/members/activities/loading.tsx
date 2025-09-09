@@ -1,8 +1,7 @@
-import type { Activity } from "@/lib/schemas";
 import { allEvents } from "@/actions/activities";
-
 import { CardContent, Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import type { Activity } from "@/lib/schemas";
 
 export default async function Activities() {
   const eventsList: Activity[] = await allEvents();
@@ -14,7 +13,7 @@ export default async function Activities() {
         <Skeleton className="h-4 w-full pt-2" />
       </div>
       <div className="space-y-8">
-        {eventsList.map((e: Activity) => (
+        {eventsList?.map((e: Activity) => (
           <Card key={e._id} className="max-w-screen-xl p-4 shadow-none">
             <CardContent className="flex items-start justify-between gap-x-8">
               <div className="space-y-2">

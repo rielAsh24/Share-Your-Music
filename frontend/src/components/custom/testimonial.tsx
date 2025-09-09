@@ -1,5 +1,5 @@
-import { Avatar, AvatarImage, AvatarFallback } from "./avatar";
-import { Card, CardContent, CardHeader } from "./card";
+import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
+import { Card, CardContent, CardHeader } from "../ui/card";
 
 export default function Testimonial({
   name,

@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import heroImg from "@/../public/hero.jpg";
 import hero2 from "@/../public/hero-2.jpg";
-
+import heroImg from "@/../public/hero.jpg";
+import Testimonial from "@/components/custom/testimonial";
 import { Button } from "@/components/ui/button";
-import Testimonial from "@/components/ui/testimonial";
 
 export default function Page() {
   return (

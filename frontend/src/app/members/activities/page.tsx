@@ -1,8 +1,4 @@
-import type { Activity } from "@/lib/schemas";
 import { allEvents } from "@/actions/activities";
-
-import { Button } from "@/components/ui/button";
-import { CardContent, Card } from "@/components/ui/card";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,6 +10,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { CardContent, Card } from "@/components/ui/card";
+import type { Activity } from "@/lib/schemas";
 
 function Register() {
   return (
@@ -51,7 +50,7 @@ export default async function Activities() {
         </p>
       </div>
       <div className="space-y-8">
-        {eventsList.map((e: Activity) => (
+        {eventsList?.map((e: Activity) => (
           <Card
             key={e._id}
             className="p-3 shadow-none lg:max-w-screen-xl lg:p-4"

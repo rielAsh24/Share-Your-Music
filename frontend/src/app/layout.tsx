@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
 import { ReactNode } from "react";
+
+import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 
-import Navigation from "@/components/navigation/Navigation";
 import Footer from "@/components/Footer";
-
+import Navigation from "@/components/navigation/Navigation";
 import "@/styles/global.css";
 
 const nunitoSans = Nunito_Sans({
