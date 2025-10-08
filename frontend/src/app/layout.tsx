@@ -5,6 +5,7 @@ import { Nunito_Sans } from "next/font/google";
 
 import Footer from "@/components/Footer";
 import Navigation from "@/components/navigation/Navigation";
+import { Toaster } from "@/components/ui/sonner";
 import "@/styles/global.css";
 
 const nunitoSans = Nunito_Sans({
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <div className="flex min-h-dvh flex-col">
           <Navigation />
           <main>{children}</main>
+          <Toaster richColors />
         </div>
         <Footer />
       </body>

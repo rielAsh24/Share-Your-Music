@@ -3,10 +3,13 @@ import Link from "next/link";
 
 import hero2 from "@/../public/hero-2.jpg";
 import heroImg from "@/../public/hero.jpg";
+import { isAuth } from "@/actions/auth";
 import Testimonial from "@/components/custom/testimonial";
 import { Button } from "@/components/ui/button";
 
-export default function Page() {
+export default async function Page() {
+  const isAuthenticated = await isAuth();
+
   return (
     <section className="grid w-full grid-cols-1 justify-items-center gap-y-60 pb-24">
       <article className="grid w-full place-content-center gap-y-6">
@@ -23,9 +26,11 @@ export default function Page() {
             A club for music enthusiasts. We are divided by genres, united in
             Symphony.
           </p>
-          <Button className="w-32 lg:justify-self-end" asChild>
-            <Link href="/apply">Register Now!</Link>
-          </Button>
+          {!isAuthenticated && (
+            <Button className="w-32 lg:justify-self-end" asChild>
+              <Link href="/apply">Register Now!</Link>
+            </Button>
+          )}
         </div>
       </article>
       <article className="flex w-full flex-col items-center justify-around gap-12 md:flex-row lg:max-w-screen-xl">

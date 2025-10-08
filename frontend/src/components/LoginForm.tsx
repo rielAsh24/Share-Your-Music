@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 import { login } from "@/actions/auth";
 import type { LoginData } from "@/lib/schemas";
@@ -22,6 +24,7 @@ import {
 import { Input } from "./ui/input";
 
 export default function LoginForm() {
+  const router = useRouter();
   const form = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -30,10 +33,19 @@ export default function LoginForm() {
     },
   });
 
+  async function onSubmit(data: LoginData) {
+    try {
+      await login(data);
+      router.push("/");
+    } catch (error: any) {
+      toast.error(`Error while logging you in: ${error.message}`);
+    }
+  }
+
   return (
     <Form {...form}>
       <form
-        action={login}
+        onSubmit={form.handleSubmit(onSubmit)}
         className="grid w-[400px] grid-flow-row items-center gap-y-4"
       >
         <FormField

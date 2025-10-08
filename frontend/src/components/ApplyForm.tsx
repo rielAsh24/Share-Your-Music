@@ -3,6 +3,9 @@
 import { useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 import { apply } from "@/actions/auth";
 import type { ApplyData } from "@/lib/schemas";
@@ -21,6 +24,7 @@ import {
 import { Input } from "./ui/input";
 
 export default function ApplyForm() {
+  const router = useRouter();
   const form = useForm<ApplyData>({
     resolver: zodResolver(applySchema),
     defaultValues: {
@@ -30,10 +34,20 @@ export default function ApplyForm() {
     },
   });
 
+  async function register(data: FormData) {
+    try {
+      await apply(data);
+      toast.success("Member registered successfully");
+      router.push("/");
+    } catch (error: Error | any) {
+      toast.error(error.message);
+    }
+  }
+
   return (
     <Form {...form}>
       <form
-        action={apply}
+        action={register}
         className="grid w-[400px] grid-flow-row items-center gap-y-4"
       >
         <FormField
@@ -83,7 +97,13 @@ export default function ApplyForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={form.formState.isSubmitting}>
+          {form.formState.isSubmitting ? (
+            <Loader2 className="animate-spin" />
+          ) : (
+            "Submit"
+          )}
+        </Button>
       </form>
     </Form>
   );

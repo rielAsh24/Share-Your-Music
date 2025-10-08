@@ -25,3 +25,5 @@ firebase-hosting-*.yml
 .vscode
 .DS_Store
 .cursor
+
+PLAN.md
