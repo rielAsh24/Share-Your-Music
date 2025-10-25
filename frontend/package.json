@@ -14,11 +14,13 @@
     "dev": "next dev",
     "start": "next start",
     "lint": "oxlint --fix",
-    "format": "prettier src/**/*.{ts,tsx} --write"
+    "format": "prettier src/**/*.{ts,tsx} --write",
+    "test": "playwright test"
   },
   "author": "rielAsh24",
   "license": "ISC",
   "devDependencies": {
+    "@playwright/test": "^1.56.1",
     "@types/node": "^20.2.1",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
