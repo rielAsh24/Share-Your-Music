@@ -3,7 +3,7 @@ import { test, expect, Locator, Page } from "@playwright/test";
 test.describe("Footer", () => {
   const footerData: Locator[] = [];
 
-  const getFooterData = async (page: Page) => {
+  test.beforeEach(async ({ page }: { page: Page }) => {
     await page.goto("/");
     const footer = await page.locator("footer");
 
@@ -15,10 +15,9 @@ test.describe("Footer", () => {
       .all();
 
     footerData.push(...footerLinks.slice(1));
-  };
+  });
 
-  test("Footer is Visible", async ({ page }) => {
-    await getFooterData(page);
+  test("Footer is Visible", async () => {
     expect(footerData.length).toBeGreaterThan(1);
   });
 

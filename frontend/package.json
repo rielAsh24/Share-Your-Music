@@ -15,7 +15,8 @@
     "start": "next start",
     "lint": "oxlint --fix",
     "format": "prettier src/**/*.{ts,tsx} --write",
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
   },
   "author": "rielAsh24",
   "license": "ISC",

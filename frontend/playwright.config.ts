@@ -1,5 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
+import path from "path";
+import { loadEnvFile } from "process";
 
+// Read from ".env" file.
+loadEnvFile(path.resolve(__dirname, ".env.development"));
 /**
  * See https://playwright.dev/docs/test-configuration.
  */

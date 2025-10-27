@@ -3,7 +3,7 @@ import { test, expect, Locator, Page } from "@playwright/test";
 test.describe("Navigation Bar", () => {
   const navigationData: Locator[] = [];
 
-  const getNavitionData = async (page: Page) => {
+  test.beforeEach(async ({ page }) => {
     await page.goto("/");
     const navbar = await page.getByRole("navigation");
 
@@ -15,15 +15,13 @@ test.describe("Navigation Bar", () => {
       .all();
 
     navigationData.push(...navigation);
-  };
+  });
 
-  test("Navigation Links are present", async ({ page }) => {
-    await getNavitionData(page);
+  test("Navigation Links are present", async () => {
     await expect(navigationData.length).toBeGreaterThan(1);
   });
 
   test(`Navigation is working`, async ({ page }) => {
-    await getNavitionData(page);
     for (const n of navigationData) {
       const dest = await n.getAttribute("href");
       await expect(dest).toBeTruthy();
