@@ -62,7 +62,7 @@ export default function ApplyForm() {
               <FormDescription>
                 This is your public display name.
               </FormDescription>
-              <FormMessage />
+              <FormMessage data-testid="error-name" />
             </FormItem>
           )}
         />
@@ -79,7 +79,7 @@ export default function ApplyForm() {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage data-testid="error-email" />
             </FormItem>
           )}
         />
@@ -93,7 +93,7 @@ export default function ApplyForm() {
                 <Input type="password" placeholder="Password" {...field} />
               </FormControl>
               <FormDescription></FormDescription>
-              <FormMessage />
+              <FormMessage data-testid="error-password" />
             </FormItem>
           )}
         />
