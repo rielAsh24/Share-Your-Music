@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "clean": "rm -rf ./node_modules pnpm-local.yaml **/node_modules **/.turbo **/dist **/.next",
+    "clean": "rm -rf ./node_modules pnpm-lock.yaml **/node_modules **/.turbo **/dist **/.next",
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
