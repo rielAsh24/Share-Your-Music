@@ -3,22 +3,28 @@
 import { cookies } from "next/headers";
 import { redirect, RedirectType } from "next/navigation";
 
-import { LoginData } from "@/lib/schemas";
+import { ApplyData, LoginData } from "@/lib/schemas";
 
-async function apply(data: FormData) {
+async function apply(data: ApplyData) {
   const response = await fetch(`${process.env.SERVER_HOME}/auth/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      name: data.get("name"),
-      email: data.get("email"),
-      password: data.get("password"),
+      name: data.name,
+      email: data.email,
+      password: data.password,
     }),
   });
 
-  return response.json();
+  if (response.ok) {
+    try {
+      return response.json();
+    } catch (error: any) {
+      throw new Error(`Error while registering: ${error.message}`);
+    }
+  }
 }
 
 async function login(data: LoginData) {
@@ -56,11 +62,14 @@ async function logout() {
 }
 
 async function refresh() {
+  const customHeaders = new Headers({ "Content-Type": "application/json" });
+  customHeaders.set(
+    "refresh-token",
+    cookies().get("refresh-token")!.toString(),
+  );
+
   const response = await fetch(`${process.env.SERVER_HOME}/auth/refresh`, {
-    headers: {
-      "Content-Type": "application/json",
-      "refresh-token": cookies().get("refresh-token"),
-    },
+    headers: customHeaders,
   });
 
   if (response.ok) {
