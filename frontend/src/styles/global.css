@@ -1,10 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-body,
-:root {
-  min-height: 100dvh;
+@layer utilities {
+
+  body,
+  :root {
+    min-height: 100dvh;
+  }
 }
 
 @layer base {
@@ -118,6 +119,7 @@ body,
     --letter-spacing: 0em;
     --spacing: 0.25rem;
   }
+
   .theme {
     --font-sans: Inter, sans-serif;
     --font-mono: JetBrains Mono, monospace;
@@ -129,6 +131,7 @@ body,
     --tracking-wider: calc(var(--tracking-normal) + 0.05em);
     --tracking-widest: calc(var(--tracking-normal) + 0.1em);
   }
+
   body {
     letter-spacing: var(--tracking-normal);
   }
@@ -138,9 +141,11 @@ body,
   * {
     @apply border-border;
   }
+
   body {
     @apply flex flex-col overflow-y-scroll bg-background text-base text-foreground;
   }
+
   main {
     @apply flex grow justify-center py-8 sm:container max-sm:px-4;
   }
@@ -156,6 +161,7 @@ body,
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }

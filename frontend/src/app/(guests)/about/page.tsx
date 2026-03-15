@@ -23,7 +23,7 @@ export default function Page() {
           </p>
         </div>
       </article>
-      <article className="flex w-full flex-col items-center justify-around gap-12 md:flex-row lg:max-w-screen-xl">
+      <article className="flex w-full flex-col items-center justify-around gap-12 md:flex-row lg:max-w-(--breakpoint-xl)">
         <Image src={about1} alt="Logo" className="aspect-auto lg:w-[463px]" />
         <div className="grid max-w-lg gap-y-8 text-justify">
           <h2 className="text-4xl">Our History</h2>
@@ -44,7 +44,7 @@ export default function Page() {
       </article>
       <article className="grid w-full items-center justify-items-center gap-y-12">
         <h2 className="text-center text-4xl">Activities We Conduct</h2>
-        <div className="flex w-full max-w-screen-xl flex-col-reverse items-center justify-around lg:flex-row">
+        <div className="flex w-full max-w-(--breakpoint-xl) flex-col-reverse items-center justify-around lg:flex-row">
           <div className="grid max-w-md grid-rows-3 gap-y-8">
             <div className="space-y-1.5 text-justify">
               <h2 className="font-bold">Jam Sessions</h2>

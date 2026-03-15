@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <section className="grid w-full grid-cols-1 justify-items-center gap-y-60 pb-24">
       <Hero />
-      <article className="flex w-full flex-col items-center justify-around gap-12 md:flex-row lg:max-w-screen-xl">
+      <article className="flex w-full flex-col items-center justify-around gap-12 md:flex-row lg:max-w-(--breakpoint-xl)">
         <img src="/hero-2.jpg" alt="Logo" className="aspect-auto" />
         <div className="max-w-lg space-y-6">
           <h2 className="text-4xl">United by a Passion</h2>

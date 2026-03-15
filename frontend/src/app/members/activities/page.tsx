@@ -53,7 +53,7 @@ export default async function Activities() {
         {eventsList?.map((e: Activity) => (
           <Card
             key={e._id}
-            className="p-3 shadow-none lg:max-w-screen-xl lg:p-4"
+            className="p-3 shadow-none lg:max-w-(--breakpoint-xl) lg:p-4"
           >
             <CardContent className="flex flex-col items-start justify-between gap-8 lg:flex-row">
               <div className="space-y-2">

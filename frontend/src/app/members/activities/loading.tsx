@@ -14,7 +14,7 @@ export default async function Activities() {
       </div>
       <div className="space-y-8">
         {eventsList?.map((e: Activity) => (
-          <Card key={e._id} className="max-w-screen-xl p-4 shadow-none">
+          <Card key={e._id} className="max-w-(--breakpoint-xl) p-4 shadow-none">
             <CardContent className="flex items-start justify-between gap-x-8">
               <div className="space-y-2">
                 <Skeleton className="h-7 w-full" />
