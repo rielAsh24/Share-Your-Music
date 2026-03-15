@@ -13,14 +13,12 @@ import { applySchema } from "@/lib/schemas";
 
 import { Button } from "./ui/button";
 import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "./ui/form";
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+} from "./ui/field";
 import { Input } from "./ui/input";
 
 export default function ApplyForm() {
@@ -34,77 +32,76 @@ export default function ApplyForm() {
     },
   });
 
-  async function register(data: FormData) {
+  async function register(data: ApplyData) {
     try {
       await apply(data);
       toast.success("Member registered successfully");
       router.push("/");
-    } catch (error: Error | any) {
+    } catch (error: any) {
       toast.error(error.message);
     }
   }
 
   return (
-    <Form {...form}>
-      <form
-        action={register}
-        className="grid w-[400px] grid-flow-row items-center gap-y-4"
-      >
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input placeholder="John Doe" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage data-testid="error-name" />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input
-                  type="email"
-                  placeholder="john.doe@email.com"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage data-testid="error-email" />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input type="password" placeholder="Password" {...field} />
-              </FormControl>
-              <FormDescription></FormDescription>
-              <FormMessage data-testid="error-password" />
-            </FormItem>
-          )}
-        />
-        <Button type="submit" disabled={form.formState.isSubmitting}>
-          {form.formState.isSubmitting ? (
-            <Loader2 className="animate-spin" />
-          ) : (
-            "Submit"
-          )}
-        </Button>
-      </form>
-    </Form>
+    <form
+      onSubmit={form.handleSubmit(register)}
+      className="grid w-[400px] grid-flow-row items-center gap-y-4"
+    >
+      <Field data-invalid={!!form.formState.errors.name}>
+        <FieldLabel htmlFor="name">Name</FieldLabel>
+        <FieldContent>
+          <Input
+            id="name"
+            placeholder="John Doe"
+            {...form.register("name")}
+            aria-invalid={!!form.formState.errors.name}
+          />
+          <FieldDescription>This is your public display name.</FieldDescription>
+          <FieldError data-testid="error-name">
+            {form.formState.errors.name?.message}
+          </FieldError>
+        </FieldContent>
+      </Field>
+
+      <Field data-invalid={!!form.formState.errors.email}>
+        <FieldLabel htmlFor="email">Email</FieldLabel>
+        <FieldContent>
+          <Input
+            id="email"
+            type="email"
+            placeholder="john.doe@email.com"
+            {...form.register("email")}
+            aria-invalid={!!form.formState.errors.email}
+          />
+          <FieldError data-testid="error-email">
+            {form.formState.errors.email?.message}
+          </FieldError>
+        </FieldContent>
+      </Field>
+
+      <Field data-invalid={!!form.formState.errors.password}>
+        <FieldLabel htmlFor="password">Password</FieldLabel>
+        <FieldContent>
+          <Input
+            id="password"
+            type="password"
+            placeholder="Password"
+            {...form.register("password")}
+            aria-invalid={!!form.formState.errors.password}
+          />
+          <FieldError data-testid="error-password">
+            {form.formState.errors.password?.message}
+          </FieldError>
+        </FieldContent>
+      </Field>
+
+      <Button type="submit" disabled={form.formState.isSubmitting}>
+        {form.formState.isSubmitting ? (
+          <Loader2 className="animate-spin" />
+        ) : (
+          "Submit"
+        )}
+      </Button>
+    </form>
   );
 }
